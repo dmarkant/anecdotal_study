@@ -1,0 +1,172 @@
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
+const responseSchema = require("../models/response");
+const csv = require("csvtojson");
+const path = require("path");
+const fs = require("fs");
+const _ = require("lodash");
+// const Response = require("../models/response");
+const randomstring = require("randomstring");
+const { json } = require("express/lib/response");
+// API calls
+let test = false;
+let collection = "response";
+
+const Response = mongoose.model(collection, responseSchema);
+
+router.post("/preq", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { preq: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/cogref", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { preq: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.get("/debrief", (req, res) => {
+  if (req.session.completed) {
+    res.status(200).json({ token: req.session.usertoken });
+  } else {
+    res.status(200).send({
+      token: "you have skiped pages. Please complete the study first.",
+    });
+  }
+});
+
+router.post("/postq", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  req.session.completed = true;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { postq: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.status(200).json(req.body);
+    }
+  );
+});
+
+router.get("/data", async (req, res) => {
+  let data = await randomize_data();
+  res.status(200).json(data);
+});
+
+async function randomize_data() {
+  const jsonArray = await csv().fromFile(
+    path.join(__dirname + "../../../public/anecdotal evidence.csv")
+  );
+
+  // let groups = jsonArray.reduce((result, item, ind) => {
+  //   let res_index = Math.floor(ind / 4);
+  //   // console.log(res_index);
+  //   let quad = (result[res_index] = result[res_index] || []);
+  //   console.log(quad);
+  //   let pair = (quad[Math.floor(ind / 2)] = quad[Math.floor(ind / 2)] || []);
+  //   // console.log(pair.length)
+  //   // pair.push(item);
+  //   return result;
+  // }, []);
+  let quads = nestArray(jsonArray, 4);
+  let groups = quads.map((quad) => {
+    return nestArray(quad, 2);
+  });
+
+  // console.log(groups);
+  //
+  let phase_1 = [];
+  let phase_2 = [];
+  // console.log(groups[0][0][0]);
+  groups.forEach((group) => {
+    let firstIndex = Math.floor(Math.random() * 2);
+    let secondIndex = firstIndex ^ 1;
+    // console.log(firstIndex, secondIndex);
+    // console.log(group);
+    phase_1.push(group[0][firstIndex]);
+    phase_1.push(group[1][secondIndex]);
+    phase_2.push(group[1][firstIndex]);
+    phase_2.push(group[0][secondIndex]);
+  });
+  return [phase_1, phase_2];
+}
+
+randomize_data();
+
+function nestArray(array, size) {
+  let arrayCopy = [...array];
+  let nest = [];
+  while (arrayCopy.length > 0) nest.push(arrayCopy.splice(0, size));
+  return nest;
+}
+router.get("/consent", (req, res) => {
+  if (!req.session.consent) {
+    let usertoken = randomstring.generate(8);
+    req.session.consent = true;
+    req.session.completed = false;
+    req.session.usertoken = usertoken;
+
+    let newResponse = new Response({
+      usertoken: usertoken,
+    });
+
+    newResponse.save(function (err) {
+      if (err) console.log(err);
+      res.send({
+        token: usertoken,
+      });
+    });
+  } else {
+    res.send({
+      token: req.session.usertoken,
+    });
+  }
+});
+
+function choose(choices) {
+  var index = Math.floor(Math.random() * choices.length);
+  return choices[index];
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+module.exports = router;
