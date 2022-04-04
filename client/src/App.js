@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { dataState } from "./atoms/data";
 import { responseState } from "./atoms/response";
 import { answerIndexState } from "./atoms/answerIndex";
@@ -26,17 +26,19 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory,
+  useLocation,
 } from "react-router-dom";
 
 import "./App.css";
 
-// const App = () => {
 const App = () => {
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
   const [qualResponseIndex, setQualResponseIndex] =
     useRecoilState(qualResponseState);
+
   const [loadingOpacity, setLoadingOpacity] = useState(0);
 
   useEffect(() => {
@@ -86,10 +88,14 @@ const App = () => {
           shuffle(result.data[0].slice(0, 4)),
           shuffle(result.data[1].slice(0, 4)),
         ];
+        // FOR DEV
+
+        // FOR DEV
         window.localStorage.setItem("data", JSON.stringify(shuffledData));
         setData(shuffledData);
       }, 1000);
     }
+    window.localStorage.clear();
     const sessionData = window.localStorage.getItem("data");
     if (sessionData !== null) {
       setData(JSON.parse(sessionData));

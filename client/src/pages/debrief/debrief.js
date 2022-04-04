@@ -56,16 +56,13 @@ const Debrief = (props) => {
         Ryan Wesslen (College of Computing and Informatics)
       </p> */}
       <p>
-        Thank you for your participation! In this study, we were investigating
-        how images affect your decisions about news online. In some cases, we
-        showed you tweets with one of the following conditions: 1) with angry
-        images from news sources, 2) happy images from news sources, or 3) Mixed
-        angry and happy images or 4) no images from news sources. All the text
-        and images were collected from Twitter.
+        Thank you for your participation! In this study, we investiage whether
+        anecdotal evidence (experience of a single person) used as evidence is
+        seen as strong evidence.
       </p>
       <h3>
-        Here is your token of completion. Please enter this into Amazon MTurk.
-        Do not close this page.
+        Here is your token of completion. Please enter this into Prolific. You
+        may close the page after you have entered the code
       </h3>
 
       <hr />

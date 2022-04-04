@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Divider, Typography, Container } from "@mui/material/";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
+import pageHandler from "../pageHandler";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const messageFontSize = "min(1.3vw, 24px)";
@@ -86,6 +87,7 @@ const Instructions2 = (props) => {
   const [stage, setStage] = useState(-1);
   const maxStage = 5;
   const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
   const handleClick = () => {
     // history.push("instructions1");
@@ -100,7 +102,8 @@ const Instructions2 = (props) => {
     if (stage === -1) {
       incrementStage();
     } else if (stage > maxStage) {
-      history.push("task1");
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
     }
   }, [stage]);
 

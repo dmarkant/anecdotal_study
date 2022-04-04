@@ -49,24 +49,9 @@ export default function FullScreenDialog(props) {
       >
         <div style={{ width: "60%" }}>
           <Typography variant="h5">
-            Now, you will evaluate a series of tweets. Each tweet, is an example
-            of a Twitter user making a claim about a topic such as masks, or
-            election results. They quote a tweet from a news agency to support
-            their claim.
-          </Typography>
-          <br></br>
-          <Typography variant="h5">
-            You will use a slider to make a decision about the given tweet. This
-            task will be repeated multiple times.
-          </Typography>
-          <br></br>
-          <Typography variant="h5">
-            Please assume that the quoted news headlines are true.
-          </Typography>
-          <br></br>
-          <Typography variant="h5">
-            After you have evaluated the tweet, Click on Next to see the next
-            tweet
+            Now we will show you exactly the rating you provided for each of the
+            tweets! We ask that you try your best to provide reasons for your
+            ratings. Any rationale would be good!
           </Typography>
         </div>
       </div>

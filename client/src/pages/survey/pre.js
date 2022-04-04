@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import * as Survey from "survey-react";
+import { useRecoilState } from "recoil";
+import pageHandler from "../pageHandler";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
+  const location = useLocation();
   const history = useHistory();
+
+  // const history = useHistory();
   const json = {
     elements: [
       {
@@ -74,7 +79,9 @@ const PreSurveyPage = (props) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/preq", survey.data).then((response) => {
-      history.push("/instructions1");
+      // history.push("/instructions1");
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
     });
   };
 

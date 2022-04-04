@@ -10,7 +10,8 @@ import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 
 import Instructions from "../../components/instructions/instructions";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import pageHandler from "../pageHandler";
 import { Button, Divider, Typography } from "@mui/material/";
 import CustomSlider from "../../components/slider/slider";
 import Fakerator from "fakerator";
@@ -25,6 +26,7 @@ const Task1Page = (props) => {
   const data = allData ? allData[props.phase] : null;
 
   const history = useHistory();
+  const location = useLocation();
 
   const [labels, setLabels] = useState(() => [
     "Does not support",
@@ -74,16 +76,8 @@ const Task1Page = (props) => {
     setOpenInstructions(true);
   };
 
-  const handleCloseInstructions = (value) => {
+  const handleCloseInstructions = () => {
     setOpenInstructions(false);
-  };
-
-  const handleCloseAlertMoreTweet = (value) => {
-    setOpenAlertMoreTweet(false);
-  };
-
-  const handleCloseAlertAnswerCount = (value) => {
-    setOpenAlertAnswerCount(false);
   };
 
   const handleAddMoreClick = async () => {
@@ -148,11 +142,13 @@ const Task1Page = (props) => {
           handle: handle,
         });
       } else {
-        if (props.phase === 0) {
-          history.push("cogref");
-        } else {
-          history.push("task3");
-        }
+        // if (props.phase === 0) {
+        //   history.push("cogref");
+        // } else {
+        //   history.push("task3");
+        // }
+        let nextPage = pageHandler(location.pathname);
+        history.push(nextPage);
       }
     }
   }, [data, answerIndex]);
@@ -233,11 +229,11 @@ const Task1Page = (props) => {
         open={openInstructions}
         onClose={handleCloseInstructions}
       ></InstructionsDialog>
-      <AlertDialog
+      {/* <AlertDialog
         open={openAlertAnswerCount}
         onClose={handleCloseAlertAnswerCount}
         message={`Please view at least s tweets to make a a decision about this account!`}
-      ></AlertDialog>
+      ></AlertDialog> */}
     </div>
   );
 };

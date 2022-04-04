@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
   const history = useHistory();
+  const location = useLocation();
   const json = {
     elements: [
       {
@@ -46,7 +48,8 @@ const PreSurveyPage = (props) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/cogref", survey.data).then((response) => {
-      history.push("/task2");
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
     });
   };
   //   console.log(props.setChoice);

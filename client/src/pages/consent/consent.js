@@ -4,6 +4,8 @@ import { Button, Container } from "@mui/material/";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
+import { useRecoilState } from "recoil";
+import pageHandler from "../pageHandler";
 
 const useStyles = makeStyles((theme) => ({
   emph: {
@@ -32,16 +34,8 @@ const Consent = (props) => {
   const query = queryString.parse(location.search);
 
   const handleConsent = () => {
-    let baseQuery = `/api/consent?`;
-    if (query.id) {
-      baseQuery = `/api/consent?sona_token=${query.id}`;
-    }
-
-    console.log(baseQuery);
-    axios.get(baseQuery).then((result) => {
-      //   console.log(result.data);
-      history.push("/pre");
-    });
+    let nextPage = pageHandler(location.pathname);
+    history.push(nextPage);
   };
   const classes = useStyles();
   const [overflow, setOverflow] = useState(true);
@@ -68,21 +62,6 @@ const Consent = (props) => {
         ></img> */}
       </div>
       <h1>Consent to Participate in a Research Study</h1>
-      {/* <p>
-        <b>Title of Project:</b> Understanding News Bias on Social Media
-      </p>
-      <p>
-        <b>Principal investigator:</b> #WHY ARE YOU SEARCHING FOR WHO I AM? :D, College of Computing and
-        Informatics
-      </p>
-      <p>
-        <b>Faculty Adviser:</b> #, College of Computing and
-        Informatics
-      </p>
-      <p>
-        <b>Co-PIs:</b># (Department of Psychological Science),
-        # (College of Computing and Informatics)
-      </p> */}
 
       <p>
         You are invited to participate in a research study. Participation in
@@ -103,26 +82,6 @@ const Consent = (props) => {
           We are asking individuals who are age 18 or older and fluent in
           English to participate. Participation will take approximately 20-30
           minutes in total.
-        </li>
-        <li>
-          If you are viewing this study through{" "}
-          <span className={classes.emph}>MTURK</span>, Upon completion of the
-          study, you will earn a minimum of $2.00 through Amazon MTurk.
-        </li>
-        <li>
-          If you are a student. If your instructor has offered extra credits for
-          the completion of this study, you can email your token at the end of
-          this study to them. The amount of extra credit is decided by your
-          instructor, we have made sure that your class offers other means of
-          obtaining extra credits if you are interested in alternative means.
-        </li>
-        <li>
-          if you are completing this study through SONA, 0.5 participation
-          credit will be assigned to you after completing the study.
-        </li>
-        <li>
-          Please read this form in order to decide whether to participate in
-          this research study.
         </li>
       </ul>
 

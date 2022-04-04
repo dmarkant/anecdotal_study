@@ -3,17 +3,17 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { qualResponseState } from "../../atoms/qualResponseIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
-import axios from "axios";
+
 import AlertDialog from "../../components/dialog/alertDialog";
-import InstructionsDialog from "../../components/instructions/instructionsDialog";
+import InstructionsDialogQual from "../../components/instructions/instructionsDialogQual";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 
 import Instructions from "../../components/instructions/instructions";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import pageHandler from "../pageHandler";
 import { Button, Divider, Typography } from "@mui/material/";
 import CustomSlider from "../../components/slider/sliderFixed";
-import Fakerator from "fakerator";
 import QualResponse from "../../components/qualResponse/qualResponse";
 import $ from "jquery";
 
@@ -22,6 +22,7 @@ const QualTask = (props) => {
   // console.log(allData);
   const data = allData !== null ? allData[0].concat(allData[1]) : null;
   const history = useHistory();
+  const location = useLocation();
 
   const [labels, setLabels] = useState(() => [
     "Does not support",
@@ -40,8 +41,6 @@ const QualTask = (props) => {
   const [answerIndex, setAnswerIndex] = useRecoilState(qualResponseState);
   const [opacity, setOpacity] = useState(1);
   const [openInstructions, setOpenInstructions] = useState(false);
-  const [openAlertMoreTweet, setOpenAlertMoreTweet] = useState(false);
-  // const [openAlertAnswerCount, setOpenAlertAnswerCount] = useState(false);
 
   const divContainer = useRef(null);
   const questionWidth = "50%";
@@ -100,10 +99,10 @@ const QualTask = (props) => {
     }, 600);
   }
 
-  // useEffect(() => {
-  //   // handleOpenInstructions();
-  //   console.log(data);
-  // }, [data]);
+  useEffect(() => {
+    handleOpenInstructions();
+    // console.log(data);
+  }, []);
 
   useEffect(() => {
     // console.log(answerIndex);
@@ -137,7 +136,8 @@ const QualTask = (props) => {
         //   handle: handle,
         // });
       } else {
-        history.push("post");
+        let nextPage = pageHandler(location.pathname);
+        history.push(nextPage);
         // if (props.phase === 0) {
         //   setAnswerIndex(0);
         //   history.push("cogref");
@@ -224,10 +224,10 @@ const QualTask = (props) => {
         </Button>
       </div>
 
-      <InstructionsDialog
+      <InstructionsDialogQual
         open={openInstructions}
         onClose={handleCloseInstructions}
-      ></InstructionsDialog>
+      ></InstructionsDialogQual>
     </div>
   );
 };
