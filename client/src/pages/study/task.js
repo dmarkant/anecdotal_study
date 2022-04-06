@@ -3,8 +3,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { answerIndexState } from "../../atoms/answerIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
-import axios from "axios";
-import AlertDialog from "../../components/dialog/alertDialog";
 import InstructionsDialog from "../../components/instructions/instructionsDialog";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";

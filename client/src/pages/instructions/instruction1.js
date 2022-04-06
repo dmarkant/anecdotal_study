@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Divider, Typography, Container } from "@mui/material/";
 import { useHistory, useLocation } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import pageHandler from "../pageHandler";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const messageFontSize = "min(1.3vw, 24px)";
 

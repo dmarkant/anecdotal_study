@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import * as Survey from "survey-react";
-import { useRecoilState } from "recoil";
 import pageHandler from "../pageHandler";
 import "survey-react/survey.css";
 

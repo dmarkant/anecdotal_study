@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Container } from "@mui/material/";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
-import { useRecoilState } from "recoil";
 import pageHandler from "../pageHandler";
 
 const useStyles = makeStyles((theme) => ({

@@ -13,6 +13,8 @@ import {
   useRecoilValue,
 } from "recoil";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -29,7 +31,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       {" "}
       <RecoilRoot>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </RecoilRoot>
     </ThemeProvider>
   </React.Fragment>,
