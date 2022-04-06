@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container } from "@mui/material/";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   emph: {

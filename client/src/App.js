@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { dataState } from "./atoms/data";
 import { responseState } from "./atoms/response";
 import { answerIndexState } from "./atoms/answerIndex";
@@ -20,15 +20,12 @@ import Instructions2 from "./pages/instructions/instructions2";
 import Quiz from "./pages/survey/quiz";
 //pages
 import LoadingCircle from "./components/loading/loading";
-import { shuffle } from "./functions/functions";
 import axios from "axios";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-  useHistory,
-  useLocation,
 } from "react-router-dom";
 
 import "./App.css";

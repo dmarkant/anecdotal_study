@@ -4,7 +4,7 @@ import { qualResponseState } from "../../atoms/qualResponseIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
 import axios from "axios";
-import AlertDialog from "../../components/dialog/alertDialog";
+
 import InstructionsDialogQual from "../../components/instructions/instructionsDialogQual";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";

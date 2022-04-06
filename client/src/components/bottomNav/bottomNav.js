@@ -3,13 +3,13 @@ import { useHistory, useLocation } from "react-router-dom";
 // import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: "white",
+    color: "black",
     "&$selected": {
-      color: "blue",
+      color: "grey",
     },
   },
   selected: {},
@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
 const BottomNav = (props) => {
   const classes = useStyles();
-  const history = useHistory();
   let location = useLocation();
   //   console.log(history);
   // const setHistory = (newValue) => {

@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import PersonIcon from "@material-ui/icons/Person";
+import { makeStyles } from "@mui/styles";
+import PersonIcon from "@mui/icons-material/Person";
 
 var parser = new DOMParser();
 function parseString(encodedString) {

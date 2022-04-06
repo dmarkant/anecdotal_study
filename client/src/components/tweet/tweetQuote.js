@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import PersonIcon from "@material-ui/icons/Person";
+import { Typography } from "@mui/material";
 
 var parser = new DOMParser();
 function parseString(encodedString) {
@@ -48,15 +48,23 @@ const Tweet = (props) => {
           <div
             style={{
               borderRadius: "50%",
-              width: "25px",
-              height: "25px",
+              width: "40px",
+              height: "40px",
               backgroundColor: "grey",
-              display: "inline-block",
-              marginRight: "2px",
+              display: "flex",
+              marginRight: "4px",
               marginBottom: "5px",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            <PersonIcon></PersonIcon>
+            {/* <PersonIcon></PersonIcon> */}
+            <Typography>
+              {accName
+                .split(" ")
+                .map((l) => l[0])
+                .join("")}
+            </Typography>
           </div>
           <span style={{ fontWeight: "bold", marginRight: "2px" }}>
             {accName + " "}{" "}
