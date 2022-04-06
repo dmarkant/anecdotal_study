@@ -64,7 +64,6 @@ const Debrief = (props) => {
         Here is your token of completion. Please enter this into Prolific. You
         may close the page after you have entered the code
       </h3>
-
       <hr />
       <h3>{token}</h3>
       <hr />

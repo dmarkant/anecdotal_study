@@ -186,8 +186,8 @@ const Instructions2 = (props) => {
           className={classes.assume}
           style={stage >= 4 ? easinStyle : hiddenStyle}
         >
-          Please assume that the statement from the news story is factually
-          correct, even if that seems unlikely to you.
+          Please assume that the news headline is factually correct, even if
+          that seems unlikely to you.
         </div>
         <div
           className={classes.pointToQuoteLeft}
@@ -200,7 +200,7 @@ const Instructions2 = (props) => {
           style={stage >= 5 ? easinStyle : hiddenStyle}
         >
           So in this case, assume latest three Spielberg movies were in fact
-          among the owrs rated Rotten Tomatoes movies!
+          among the worst rated Rotten Tomatoes movies!
         </div>
         <div
           className={classes.tweet}

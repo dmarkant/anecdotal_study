@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { qualResponseState } from "../../atoms/qualResponseIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
-
+import axios from "axios";
 import AlertDialog from "../../components/dialog/alertDialog";
 import InstructionsDialogQual from "../../components/instructions/instructionsDialogQual";
 import Tweet from "../../components/tweet/tweet";
@@ -18,6 +18,7 @@ import QualResponse from "../../components/qualResponse/qualResponse";
 import $ from "jquery";
 
 const QualTask = (props) => {
+  let minCharacterCount = 10;
   const allData = useRecoilValue(dataState);
   // console.log(allData);
   const data = allData !== null ? allData[0].concat(allData[1]) : null;
@@ -36,6 +37,7 @@ const QualTask = (props) => {
   });
 
   const question = `In the previous task, your rating for ${tweetText.name}'s claim was:`;
+
   const [response, setResponse] = useRecoilState(responseState);
   const [qualResponse, setQualResponse] = useState(() => "");
   const [answerIndex, setAnswerIndex] = useRecoilState(qualResponseState);
@@ -47,6 +49,7 @@ const QualTask = (props) => {
 
   const submitResponse = async (r) => {
     // console.log(r);
+
     let responseCopy = { ...response };
     responseCopy[answerIndex] = { ...responseCopy[answerIndex] };
     responseCopy[answerIndex]["qualResponse"] = qualResponse;
@@ -136,8 +139,12 @@ const QualTask = (props) => {
         //   handle: handle,
         // });
       } else {
-        let nextPage = pageHandler(location.pathname);
-        history.push(nextPage);
+        axios.post("/api/response", response).then((r) => {
+          // history.push("/debrief");
+          let nextPage = pageHandler(location.pathname);
+          history.push(nextPage);
+        });
+
         // if (props.phase === 0) {
         //   setAnswerIndex(0);
         //   history.push("cogref");
@@ -215,7 +222,7 @@ const QualTask = (props) => {
           style={{
             marginRight: "10px",
           }}
-          disabled={qualResponse.length <= 15}
+          disabled={qualResponse.length <= minCharacterCount}
           color="primary"
           variant="contained"
           onClick={handleAddMoreClick}

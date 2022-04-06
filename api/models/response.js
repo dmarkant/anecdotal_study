@@ -12,6 +12,8 @@ const responseSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  quiz: Schema.Types.Mixed,
+  cogref: Schema.Types.Mixed,
   preq: Schema.Types.Mixed,
   postq: Schema.Types.Mixed,
   responses: Schema.Types.Mixed,

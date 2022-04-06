@@ -1,32 +1,43 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import pageHandler from "../pageHandler";
 import axios from "axios";
 import * as Survey from "survey-react";
+import { Divider, Typography, Container } from "@mui/material";
+import Tweet from "../../components/tweet/tweet";
+import TweetQuote from "../../components/tweet/tweetQuote";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
   const history = useHistory();
+  const location = useLocation();
   const json = {
     elements: [
       {
-        name: "batBall",
-        type: "text",
-        title:
-          "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost? _____ cents",
+        name: "claim",
+        type: "radiogroup",
+        title: `The tweet: "All of Steven Spielberg's movies are aweful and have always been aweful." is ___`,
         isRequired: true,
+        choices: ["a claim", "a news headline", "evidence", "I don't know"],
       },
       {
-        name: "5Machines",
-        type: "text",
-        title:
-          "If it takes 5 machines 5 min to make 5 widgets, how long would it take 100 machines to make 100 widgets? _____ min.",
+        name: "headline",
+        type: "radiogroup",
+        title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___`,
         isRequired: true,
+        choices: ["a claim", "a news headline", "evidence", "I don't know"],
       },
       {
-        name: "lakeSize",
+        name: "understand",
+        type: "radiogroup",
+        title: "Do you understand what this study is asking you to do?",
+        isRequired: true,
+        choices: ["yes", "no"],
+      },
+      {
+        name: "understand-text",
         type: "text",
-        title:
-          "In a lake, there is a patch of lily pads. Every day, the patch doubles in size. If it takes 48 days for the patch to cover the entire lake, how long would it take for the patch to cover half of the lake? _____ days. ",
+        title: "Please describe what this study is asking you to do",
         isRequired: true,
       },
     ],
@@ -45,8 +56,9 @@ const PreSurveyPage = (props) => {
   const onComplete = (survey, options) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data));
-    axios.post("/api/cogref", survey.data).then((response) => {
-      history.push("/task2");
+    axios.post("/api/quiz", survey.data).then((response) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
     });
   };
   //   console.log(props.setChoice);
@@ -63,18 +75,52 @@ const PreSurveyPage = (props) => {
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
   return (
-    <div
+    <Container
+      maxWidth={false}
       style={{
         width: "100%",
-        height: "100%",
-        margin: "0 auto",
         overflow: "auto",
+        height: "100%",
         paddingTop: "30px",
         paddingBottm: "30px",
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h5">
+          Now considering this tweet, please respond to the following questions
+        </Typography>
+        <Divider></Divider>
+        <div style={{ width: "50%", margin: "30px" }}>
+          <Tweet
+            text={`All of Steven Spielberg's movies are aweful and have always been aweful.`}
+            accName={"Johnatan Nolander"}
+            screen_name={"JNolander"}
+            style={{ width: "50%" }}
+          >
+            <TweetQuote
+              text={
+                "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
+              }
+              accName={"Sunny Hollywood News"}
+              screen_name={"SunnyHollywood"}
+              showImage={true}
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
+              }
+            ></TweetQuote>
+          </Tweet>
+        </div>
+      </div>
+      <Divider></Divider>
       <Survey.Survey model={model} onComplete={onComplete} />
-    </div>
+    </Container>
   );
 };
 

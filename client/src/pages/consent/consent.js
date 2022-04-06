@@ -34,8 +34,11 @@ const Consent = (props) => {
   const query = queryString.parse(location.search);
 
   const handleConsent = () => {
-    let nextPage = pageHandler(location.pathname);
-    history.push(nextPage);
+    axios.get("/api/consent").then((result) => {
+      console.log(result);
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
   };
   const classes = useStyles();
   const [overflow, setOverflow] = useState(true);

@@ -17,6 +17,7 @@ import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1";
 import Instructions2 from "./pages/instructions/instructions2";
+import Quiz from "./pages/survey/quiz";
 //pages
 import LoadingCircle from "./components/loading/loading";
 import { shuffle } from "./functions/functions";
@@ -43,9 +44,11 @@ const App = () => {
 
   useEffect(() => {
     const localStorage = window.localStorage;
+    localStorage.clear();
     const sessionResponse = localStorage.getItem("response");
     const sessionAnswerIndex = localStorage.getItem("answerIndex");
     const sessionQualResponseIndex = localStorage.getItem("qualResponseIndex");
+    console.log(sessionResponse);
     if (sessionResponse !== null) {
       setResponse(JSON.parse(sessionResponse));
       console.log(sessionResponse);
@@ -85,8 +88,8 @@ const App = () => {
         console.log(result.data);
         // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
         let shuffledData = [
-          shuffle(result.data[0].slice(0, 4)),
-          shuffle(result.data[1].slice(0, 4)),
+          result.data[0].slice(0, 4),
+          result.data[1].slice(0, 4),
         ];
         // FOR DEV
 
@@ -95,7 +98,7 @@ const App = () => {
         setData(shuffledData);
       }, 1000);
     }
-    window.localStorage.clear();
+
     const sessionData = window.localStorage.getItem("data");
     if (sessionData !== null) {
       setData(JSON.parse(sessionData));
@@ -109,8 +112,9 @@ const App = () => {
       <Router>
         <NavBar height={"7%"} className="navBar"></NavBar>
         <Container
-          style={{ height: "86%", margin: "0 auto", width: "100%" }}
+          style={{ height: "86%", margin: "0 auto" }}
           id="root-container"
+          maxWidth="lg"
         >
           <Switch>
             <Route
@@ -129,6 +133,9 @@ const App = () => {
             </Route>
             <Route path="/instructions2">
               <Instructions2></Instructions2>
+            </Route>
+            <Route path="/quiz">
+              <Quiz></Quiz>
             </Route>
             <Route path="/task1">
               <Task

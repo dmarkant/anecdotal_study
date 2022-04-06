@@ -48,6 +48,7 @@ const PreSurveyPage = (props) => {
     //Write survey results into database
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/cogref", survey.data).then((response) => {
+      console.log(response);
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
