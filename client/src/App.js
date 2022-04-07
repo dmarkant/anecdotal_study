@@ -84,10 +84,7 @@ const App = () => {
       setTimeout(() => {
         console.log(result.data);
         // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
-        let shuffledData = [
-          result.data[0].slice(0, 4),
-          result.data[1].slice(0, 4),
-        ];
+        let shuffledData = [result.data[0], result.data[1]];
         // FOR DEV
 
         // FOR DEV
