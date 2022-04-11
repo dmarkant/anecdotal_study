@@ -4,13 +4,17 @@ const pages = [
   "instructions1",
   "instructions2",
   "quiz",
+  "instructions3",
   "task1",
   "cogref",
   "task2",
+  "instructions4",
   "task3",
   "post",
   "debrief",
 ];
+
+// gets next page path.
 
 const pageHandler = (donePage) => {
   console.log(donePage);

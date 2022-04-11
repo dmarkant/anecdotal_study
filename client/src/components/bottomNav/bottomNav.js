@@ -28,6 +28,22 @@ const useStyles = makeStyles((theme) => ({
 const BottomNav = (props) => {
   const classes = useStyles();
   let location = useLocation();
+  const getValue = (location) => {
+    if (
+      ["/instructions1", "/instructions2", "/instructions3", "/quiz"].includes(
+        location
+      )
+    ) {
+      return "/instructions";
+    }
+    if (["/task1", "/task2"].includes(location)) {
+      return "/task1_2";
+    }
+    if (["/instructions4", "/task3"].includes(location)) {
+      return "/task3";
+    }
+    return location;
+  };
   //   console.log(history);
   // const setHistory = (newValue) => {
   //   history.push(newValue);
@@ -35,7 +51,7 @@ const BottomNav = (props) => {
 
   return (
     <BottomNavigation
-      value={location.pathname}
+      value={getValue(location.pathname)}
       // onChange={(event, newValue) => {
       //   console.log(newValue);
       //   setPageIndex(newValue);
@@ -66,7 +82,12 @@ const BottomNav = (props) => {
         value="/instructions"
         classes={classes}
       />
-      <BottomNavigationAction label="Task" value="/task" classes={classes} />
+      <BottomNavigationAction
+        label="Task 1 and 2"
+        value="/task1_2"
+        classes={classes}
+      />
+      <BottomNavigationAction label="Task 3" value="/task3" classes={classes} />
       {/* <BottomNavigationAction label="Task 2" value="/task2" classes={classes} /> */}
       <BottomNavigationAction
         label="Post-questionaire"

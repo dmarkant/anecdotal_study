@@ -6,7 +6,6 @@ import { makeStyles } from "@mui/styles";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import pageHandler from "../pageHandler";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 
 const messageFontSize = "min(1.3vw, 24px)";
 
@@ -207,7 +206,7 @@ const Instructions2 = (props) => {
           style={stage >= 0 ? easinStyle : hiddenStyle}
         >
           <Tweet
-            text={`All of Steven Spielberg's movies are aweful and have always been aweful.`}
+            text={`Spielberg is one of the worst directors of the recent decade.`}
             accName={"Johnatan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}

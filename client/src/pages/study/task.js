@@ -4,6 +4,11 @@ import { answerIndexState } from "../../atoms/answerIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
 import InstructionsDialog from "../../components/instructions/instructionsDialog";
+import {
+  labelSelector,
+  questionSelector,
+  questionState,
+} from "../../atoms/questionSelector";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 
@@ -19,32 +24,30 @@ import $ from "jquery";
 let fakerator = Fakerator();
 const Task1Page = (props) => {
   //   console.log(props.setChoice);
-  // const data = props.data;
-  const allData = useRecoilValue(dataState);
-  const data = allData ? allData[props.phase] : null;
-
+  // const data = props.data;\
   const history = useHistory();
   const location = useLocation();
 
-  const [labels, setLabels] = useState(() => [
-    "Does not support",
-    "Slightly supports",
-    "Moderately supports",
-    "Strongly supports",
-  ]);
+  const allData = useRecoilValue(dataState);
+  const data = allData ? allData[props.phase] : null;
+
+  const questionCondition = useRecoilValue(questionState);
+  const getQuestion = useRecoilValue(questionSelector);
+  const labels = useRecoilValue(labelSelector);
 
   const [tweetText, setTweetText] = useState(() => {
     return { claim: "", evidence: "", name: "", handle: "", image: "" };
   });
 
-  const question = `To what extent does the quoted news story support ${tweetText.name}'s claim?`;
+  const question = getQuestion(tweetText);
+
   const [response, setResponse] = useRecoilState(responseState);
   const [sliderResponse, setSliderResponse] = useState(null);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
   const [opacity, setOpacity] = useState(1);
   const [openInstructions, setOpenInstructions] = useState(false);
-  const [openAlertMoreTweet, setOpenAlertMoreTweet] = useState(false);
-  const [openAlertAnswerCount, setOpenAlertAnswerCount] = useState(false);
+  // const [openAlertMoreTweet, setOpenAlertMoreTweet] = useState(false);
+  // const [openAlertAnswerCount, setOpenAlertAnswerCount] = useState(false);
 
   const divContainer = useRef(null);
   const questionWidth = "50%";
@@ -67,6 +70,7 @@ const Task1Page = (props) => {
     responseCopy[answerIndex]["accName"] = tweetText["accName"];
     responseCopy[answerIndex]["screen_name"] = tweetText["screen_name"];
     responseCopy[answerIndex]["phase"] = props.phase;
+    responseCopy[answerIndex]["questionCondition"] = questionCondition;
     setResponse(responseCopy);
   };
 
@@ -116,9 +120,9 @@ const Task1Page = (props) => {
     }, 1200);
   }
 
-  useEffect(() => {
-    handleOpenInstructions();
-  }, []);
+  // useEffect(() => {
+  //   handleOpenInstructions();
+  // }, []);
 
   useEffect(() => {
     console.log(answerIndex);

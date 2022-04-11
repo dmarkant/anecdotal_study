@@ -4,6 +4,7 @@ import { dataState } from "./atoms/data";
 import { responseState } from "./atoms/response";
 import { answerIndexState } from "./atoms/answerIndex";
 import { qualResponseState } from "./atoms/qualResponseIndex";
+import { questionState } from "./atoms/questionSelector";
 import NavBar from "./components/nav/nav";
 import Container from "@mui/material/Container";
 import BottomNav from "./components/bottomNav/bottomNav";
@@ -17,6 +18,8 @@ import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1";
 import Instructions2 from "./pages/instructions/instructions2";
+import Instructions3 from "./pages/instructions/instructions3";
+import Instructions4 from "./pages/instructions/instructions4";
 import Quiz from "./pages/survey/quiz";
 //pages
 import LoadingCircle from "./components/loading/loading";
@@ -27,13 +30,17 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { choose } from "./functions/functions";
 
 import "./App.css";
 
 const App = () => {
+  const questions = ["strength", "share"];
+  const DEV = false;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
+  const [question, setQuestion] = useRecoilState(questionState);
   const [qualResponseIndex, setQualResponseIndex] =
     useRecoilState(qualResponseState);
 
@@ -41,7 +48,11 @@ const App = () => {
 
   useEffect(() => {
     const localStorage = window.localStorage;
-    localStorage.clear();
+    /// FOR DEV
+    if (DEV) {
+      localStorage.clear();
+    }
+
     const sessionResponse = localStorage.getItem("response");
     const sessionAnswerIndex = localStorage.getItem("answerIndex");
     const sessionQualResponseIndex = localStorage.getItem("qualResponseIndex");
@@ -79,15 +90,35 @@ const App = () => {
   }, [qualResponseIndex]);
 
   useEffect(() => {
+    if (question) {
+      window.localStorage.setItem("question", question);
+    }
+  }, [question]);
+
+  useEffect(() => {
     async function fetchData() {
       const result = await axios.get("/api/data");
       setTimeout(() => {
         console.log(result.data);
         // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
-        let shuffledData = [result.data[0], result.data[1]];
-        // FOR DEV
-
-        // FOR DEV
+        let shuffledData;
+        if (DEV) {
+          shuffledData = [
+            result.data[0].slice(0, 2),
+            result.data[1].slice(0, 2),
+          ];
+        } else {
+          shuffledData = [result.data[0], result.data[1]];
+          // shuffledData = [
+          //   result.data[0].slice(0, 2),
+          //   result.data[1].slice(0, 2),
+          // ];
+        }
+        console.log(shuffledData);
+        let q = choose(questions);
+        console.log(q);
+        window.localStorage.setItem("question", q);
+        setQuestion(q);
         window.localStorage.setItem("data", JSON.stringify(shuffledData));
         setData(shuffledData);
       }, 1000);
@@ -128,6 +159,9 @@ const App = () => {
             <Route path="/instructions2">
               <Instructions2></Instructions2>
             </Route>
+            <Route path="/Instructions3">
+              <Instructions3></Instructions3>
+            </Route>
             <Route path="/quiz">
               <Quiz></Quiz>
             </Route>
@@ -145,6 +179,9 @@ const App = () => {
                 opacity={loadingOpacity}
                 setLoadingOpacity={setLoadingOpacity}
               ></Task>
+            </Route>
+            <Route path="/Instructions4">
+              <Instructions4></Instructions4>
             </Route>
             <Route path="/task3">
               <QualTask

@@ -9,34 +9,44 @@ import InstructionsDialogQual from "../../components/instructions/instructionsDi
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 
+import {
+  labelSelector,
+  qualQuestionSelector,
+  questionState,
+} from "../../atoms/questionSelector";
+
 import Instructions from "../../components/instructions/instructions";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import { Button, Divider, Typography } from "@mui/material/";
-import CustomSlider from "../../components/slider/sliderFixed";
+import SliderFixed from "../../components/slider/sliderFixed";
 import QualResponse from "../../components/qualResponse/qualResponse";
 import $ from "jquery";
 
 const QualTask = (props) => {
-  let minCharacterCount = 10;
+  let minCharacterCount = 5;
   const allData = useRecoilValue(dataState);
   // console.log(allData);
   const data = allData !== null ? allData[0].concat(allData[1]) : null;
   const history = useHistory();
   const location = useLocation();
 
-  const [labels, setLabels] = useState(() => [
-    "Does not support",
-    "Slightly supports",
-    "Moderately supports",
-    "Strongly supports",
-  ]);
-
   const [tweetText, setTweetText] = useState(() => {
     return { claim: "", evidence: "", name: "", handle: "", image: "" };
   });
 
-  const question = `In the previous task, your rating for ${tweetText.name}'s claim was:`;
+  const questionCondition = useRecoilValue(questionState);
+  const getQuestion = useRecoilValue(qualQuestionSelector);
+  const labels = useRecoilValue(labelSelector);
+  // console.log(labels);
+  // const [labels, setLabels] = useState(() => [
+  //   "Does not support",
+  //   "Slightly supports",
+  //   "Moderately supports",
+  //   "Strongly supports",
+  // ]);
+
+  const [question, setQuestion] = useState("");
 
   const [response, setResponse] = useRecoilState(responseState);
   const [qualResponse, setQualResponse] = useState(() => "");
@@ -46,6 +56,8 @@ const QualTask = (props) => {
 
   const divContainer = useRef(null);
   const questionWidth = "50%";
+
+  console.log(response);
 
   const submitResponse = async (r) => {
     // console.log(r);
@@ -102,10 +114,15 @@ const QualTask = (props) => {
     }, 600);
   }
 
+  // useEffect(() => {
+  //   handleOpenInstructions();
+  //   // console.log(data);
+  // }, []);
+
   useEffect(() => {
-    handleOpenInstructions();
-    // console.log(data);
-  }, []);
+    let q = getQuestion(tweetText);
+    setQuestion(q);
+  }, [tweetText]);
 
   useEffect(() => {
     // console.log(answerIndex);
@@ -113,31 +130,23 @@ const QualTask = (props) => {
     if (data !== null) {
       if (answerIndex < data.length) {
         console.log(answerIndex);
-        console.log(response);
-        let name =
-          Object.keys(response).length > 0
-            ? response[answerIndex]["name"]
-            : "Alireza Karduni";
+
+        let lenResponse = Object.keys(response).length;
+        let name = lenResponse > 0 ? response[answerIndex]["name"] : "";
+        let accName = lenResponse > 0 ? response[answerIndex]["accName"] : "";
+        let screen_name =
+          lenResponse > 0 ? response[answerIndex]["screen_name"] : "";
         let nameSplit = name.split(" ");
         let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
         setTweetText({
           evidence: data[answerIndex]["evidence"],
           claim: data[answerIndex].claim,
           image: data[answerIndex].image,
-          accName: "City News Today",
-          screen_name: "CityNews",
+          accName: accName,
+          screen_name: screen_name,
           name: name,
           handle: handle,
         });
-        // setTweetText({
-        //   evidence: d["evidence"],
-        //   claim: d.claim,
-        //   image: d.image,
-        //   accName: "City News Today",
-        //   screen_name: "CityNews",
-        //   name: name,
-        //   handle: handle,
-        // });
       } else {
         axios.post("/api/response", response).then((r) => {
           // history.push("/debrief");
@@ -152,7 +161,7 @@ const QualTask = (props) => {
         // }
       }
     }
-  }, [answerIndex]);
+  }, [answerIndex, response]);
 
   return (
     <div
@@ -197,13 +206,13 @@ const QualTask = (props) => {
             src={tweetText.image}
           ></TweetQuote>
         </Tweet>
-        <CustomSlider
+        <SliderFixed
           labels={labels}
           domain={[0, 1]}
           question={question}
           // handleResponse={handleSliderResponse}
           value={response[answerIndex] ? response[answerIndex]["value"] : 0.5}
-        ></CustomSlider>
+        ></SliderFixed>
         <QualResponse
           setQualResponse={setQualResponse}
           qualResponse={qualResponse}

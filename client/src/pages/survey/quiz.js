@@ -18,14 +18,14 @@ const PreSurveyPage = (props) => {
         type: "radiogroup",
         title: `The tweet: "All of Steven Spielberg's movies are aweful and have always been aweful." is ___`,
         isRequired: true,
-        choices: ["a claim", "a news headline", "evidence", "I don't know"],
+        choices: ["a claim", "a news headline", "I don't know"],
       },
       {
         name: "headline",
         type: "radiogroup",
         title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___`,
         isRequired: true,
-        choices: ["a claim", "a news headline", "evidence", "I don't know"],
+        choices: ["a claim", "a news headline", "I don't know"],
       },
       {
         name: "understand",
