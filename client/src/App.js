@@ -35,7 +35,8 @@ import { choose } from "./functions/functions";
 import "./App.css";
 
 const App = () => {
-  const questions = ["strength", "share"];
+  // const questions = ["strength", "share"];
+  const questions = ["strength"];
   const DEV = false;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
