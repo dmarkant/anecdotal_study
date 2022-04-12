@@ -36,7 +36,7 @@ import "./App.css";
 
 const App = () => {
   const questions = ["strength", "share"];
-  const DEV = true;
+  const DEV = false;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
