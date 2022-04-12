@@ -94,12 +94,13 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          Now considering this tweet, please respond to the following questions
+          One last thing before we start, please respond to the following
+          questions about our study!
         </Typography>
         <Divider></Divider>
         <div style={{ width: "50%", margin: "30px" }}>
           <Tweet
-            text={`All of Steven Spielberg's movies are aweful and have always been aweful.`}
+            text={`Spielberg is one of the worst directors of the recent decade.`}
             accName={"Johnatan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}

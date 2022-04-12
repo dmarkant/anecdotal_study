@@ -42,15 +42,20 @@ const InstructionsTask3 = (props) => {
   const getQuestion = useRecoilValue(questionSelector);
   const labels = useRecoilValue(labelSelector);
 
-  const [tweetText, setTweetText] = useState(() => {
-    return {
-      claim: "",
-      evidence: "",
-      name: "Johnathan Nolander",
-      handle: "",
-      image: "",
-    };
-  });
+  const tweetText = {
+    claim: "",
+    evidence: "",
+    name: "Johnathan Nolander",
+    handle: "",
+    image: "",
+  };
+
+  const [trialResponse, setTrialResponse] = useState(null);
+
+  const handleSliderResponse = (event, r) => {
+    // console.log(r);
+    setTrialResponse(r);
+  };
 
   const question = getQuestion(tweetText);
 
@@ -81,9 +86,10 @@ const InstructionsTask3 = (props) => {
         </h3>
         <p>
           We will use a <span className={classes.emph}>slider (see below)</span>{" "}
-          to get your response. Please familiarize yourself with it. For each
-          tweet, you would have to drag circular shape and move the slider
-          around to the point that best represents your judgement.{" "}
+          to get your response. For each tweet, you would drag circular shape
+          slide it around to the point that best represents your judgement.
+          Please familiarize yourself with it. Click continue to move to the
+          next step!
         </p>
         <Divider></Divider>
         <br />
@@ -110,7 +116,8 @@ const InstructionsTask3 = (props) => {
           labels={labels}
           domain={[0, 1]}
           question={question}
-          handleResponse={console.log}
+          handleResponse={handleSliderResponse}
+          response={trialResponse}
         ></CustomSlider>
       </div>
       <div
@@ -124,6 +131,7 @@ const InstructionsTask3 = (props) => {
           // style={{ backgroundColor: "gray", color: "black" }}
           variant="contained"
           onClick={handleConsent}
+          disabled={trialResponse !== null ? false : true}
         >
           Continue
         </Button>
