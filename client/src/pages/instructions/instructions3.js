@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, Container, Divider } from "@mui/material/";
+import { Button, Container } from "@mui/material/";
 import { useHistory, useLocation } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { instructionResponseState } from "../../atoms/instructionResponse";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { makeStyles } from "@mui/styles";
@@ -13,6 +14,8 @@ import {
   questionState,
 } from "../../atoms/questionSelector";
 
+const messageFontSize = "min(1.3vw, 24px)";
+
 const useStyles = makeStyles((theme) => ({
   emph: {
     fontWeight: "bold",
@@ -23,13 +26,47 @@ const useStyles = makeStyles((theme) => ({
   },
   instructContainer: {
     height: "100%",
-    margin: "0 auto",
     overflow: "auto",
   },
   image: {
     width: "50%",
     display: "block",
     margin: "auto",
+  },
+  grid: {
+    paddingTop: "20px",
+    display: "grid",
+    gridTemplateColumns: "repeat(12, 1fr)",
+    gridTemplateRows: "repeat(12, 1fr)",
+    width: "100%",
+    gap: "10px",
+  },
+  tweet: {
+    gridColumn: "4 /  10",
+    gridRow: "1 /  9",
+    // justifySelf: "center",
+    // alignSelf: "center",
+  },
+  slider: {
+    gridColumn: "4 /  10",
+    gridRow: "9 /  13",
+    // justifySelf: "center",
+    // alignSelf: "center",
+  },
+  pointToSlider: {
+    gridColumn: "3/4",
+    gridRow: "9 /  11",
+    fontSize: messageFontSize,
+  },
+  toughPart: {
+    gridColumn: "1/3",
+    gridRow: "9 /  13",
+    fontSize: messageFontSize,
+  },
+  judgment: {
+    gridColumn: "1/4",
+    gridRow: "7 /  9",
+    fontSize: messageFontSize,
   },
 }));
 
@@ -38,9 +75,11 @@ const InstructionsTask3 = (props) => {
   const location = useLocation();
   const classes = useStyles();
 
-  const questionCondition = useRecoilValue(questionState);
   const getQuestion = useRecoilValue(questionSelector);
   const labels = useRecoilValue(labelSelector);
+  const [instructionResponse, setInstructionResponse] = useRecoilState(
+    instructionResponseState
+  );
 
   const tweetText = {
     claim: "",
@@ -50,11 +89,9 @@ const InstructionsTask3 = (props) => {
     image: "",
   };
 
-  const [trialResponse, setTrialResponse] = useState(null);
-
   const handleSliderResponse = (event, r) => {
-    // console.log(r);
-    setTrialResponse(r);
+    console.log(r);
+    setInstructionResponse(r);
   };
 
   const question = getQuestion(tweetText);
@@ -62,64 +99,59 @@ const InstructionsTask3 = (props) => {
   const handleConsent = () => {
     let nextPage = pageHandler(location.pathname);
     history.push(nextPage);
-    // axios.get("/consent").then((result) => {
-    //   //   console.log(result.data);
-
-    // });
   };
 
   return (
-    <Container maxWidth="md" className={classes.instructContainer}>
-      <div
-        style={{
-          width: "70%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          margin: "0 auto",
-        }}
-      >
-        <h3>
-          Ok, now that we have established the goal of this study, here is how
-          will ask for your judgements in this study:
-        </h3>
-        <p>
-          We will use a <span className={classes.emph}>slider (see below)</span>{" "}
-          to get your response. For each tweet, you would drag circular shape
-          slide it around to the point that best represents your judgement.
-          Please familiarize yourself with it. Click continue to move to the
-          next step!
-        </p>
-        <Divider></Divider>
-        <br />
-        <Tweet
-          text={`Spielberg is one of the worst directors of the recent decade.`}
-          accName={"Johnatan Nolander"}
-          screen_name={"JNolander"}
-          style={{ width: "50%" }}
-        >
-          <TweetQuote
-            text={
-              "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
-            }
-            accName={"Sunny Hollywood News"}
-            screen_name={"SunnyHollywood"}
-            showImage={true}
-            src={
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
-            }
-          ></TweetQuote>
-        </Tweet>
-        <CustomSlider
-          // style={{ width: "80%" }}
-          labels={labels}
-          domain={[0, 1]}
-          question={question}
-          handleResponse={handleSliderResponse}
-          response={trialResponse}
-        ></CustomSlider>
+    <Container maxWidth="xl" className={classes.instructContainer}>
+      <div className={classes.grid}>
+        {" "}
+        <div className={classes.judgment}>
+          <p>
+            For each tweet, we will ask you to provide your judgement using a
+            slider.
+          </p>
+        </div>
+        <div className={classes.toughPart}>
+          <p>
+            Drag the slider to the point that best represents your judgment
+            about the question.
+          </p>
+        </div>
+        <div className={classes.pointToSlider}>
+          <p>👉👉👉</p>
+        </div>
+        <div className={classes.tweet}>
+          <Tweet
+            text={`Spielberg is one of the worst directors of the recent decade.`}
+            accName={"Johnatan Nolander"}
+            screen_name={"JNolander"}
+            style={{ width: "50%" }}
+          >
+            <TweetQuote
+              text={
+                "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes."
+              }
+              accName={"Sunny Hollywood News"}
+              screen_name={"SunnyHollywood"}
+              showImage={true}
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Steven_Spielberg_%2836057844341%29.jpg/800px-Steven_Spielberg_%2836057844341%29.jpg?20170801002525"
+              }
+            ></TweetQuote>
+          </Tweet>
+        </div>
+        <div className={classes.slider}>
+          <CustomSlider
+            // style={{ width: "80%" }}
+            labels={labels}
+            domain={[0, 1]}
+            question={question}
+            handleResponse={handleSliderResponse}
+            response={instructionResponse}
+          ></CustomSlider>
+        </div>
       </div>
+
       <div
         style={{
           textAlign: "center",
@@ -131,7 +163,7 @@ const InstructionsTask3 = (props) => {
           // style={{ backgroundColor: "gray", color: "black" }}
           variant="contained"
           onClick={handleConsent}
-          disabled={trialResponse !== null ? false : true}
+          disabled={instructionResponse !== null ? false : true}
         >
           Continue
         </Button>

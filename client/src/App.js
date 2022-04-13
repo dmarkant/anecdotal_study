@@ -35,9 +35,10 @@ import { choose } from "./functions/functions";
 import "./App.css";
 
 const App = () => {
-  // const questions = ["strength", "share"];
-  const questions = ["strength"];
-  const DEV = false;
+  const questions = ["strength", "share"];
+  // const questions = ["strength"];
+  // const questions = ["share"];
+  const DEV = true;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
@@ -157,9 +158,16 @@ const App = () => {
             <Route path="/instructions1">
               <Instructions1></Instructions1>
             </Route>
-            <Route path="/instructions2">
-              <Instructions2></Instructions2>
-            </Route>
+            <Route
+              path="/instructions2"
+              render={() => {
+                if (question === "strength") {
+                  return <Instructions2></Instructions2>;
+                } else {
+                  return <Redirect to="/instructions3"></Redirect>;
+                }
+              }}
+            ></Route>
             <Route path="/Instructions3">
               <Instructions3></Instructions3>
             </Route>

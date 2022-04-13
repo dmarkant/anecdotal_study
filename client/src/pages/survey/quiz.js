@@ -6,17 +6,50 @@ import * as Survey from "survey-react";
 import { Divider, Typography, Container } from "@mui/material";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
+import { useRecoilValue } from "recoil";
+import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
   const history = useHistory();
   const location = useLocation();
+  const questionCondition = useRecoilValue(questionState);
+  console.log(questionCondition);
+  const extraQuestions =
+    questionCondition == "strength"
+      ? [
+          {
+            name: "support",
+            type: "radiogroup",
+            title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
+            isRequired: true,
+            choices: [
+              "Evalute whether that's supported by the headline",
+              "give my opinion whether that's true regardless of the headline",
+              "I don't know",
+            ],
+          },
+
+          {
+            name: "headline_true",
+            type: "radiogroup",
+            title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
+            isRequired: true,
+            choices: [
+              "Evaluate whether that statement is true.",
+              "Assume that it's true.",
+              "I don't know",
+            ],
+          },
+        ]
+      : [];
+
   const json = {
     elements: [
       {
         name: "claim",
         type: "radiogroup",
-        title: `The tweet: "All of Steven Spielberg's movies are aweful and have always been aweful." is ___`,
+        title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___`,
         isRequired: true,
         choices: ["a claim", "a news headline", "I don't know"],
       },
@@ -27,6 +60,7 @@ const PreSurveyPage = (props) => {
         isRequired: true,
         choices: ["a claim", "a news headline", "I don't know"],
       },
+      ...extraQuestions,
       {
         name: "understand",
         type: "radiogroup",
@@ -38,7 +72,7 @@ const PreSurveyPage = (props) => {
         name: "understand-text",
         type: "text",
         title: "Please describe what this study is asking you to do",
-        isRequired: true,
+        isRequired: false,
       },
     ],
   };

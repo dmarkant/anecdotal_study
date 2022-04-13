@@ -92,9 +92,9 @@ const Task1Page = (props) => {
     });
   };
 
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
+  // useEffect(() => {
+  //   console.log(response);
+  // }, [response]);
 
   const scrollToBottom = () => {
     if (divContainer.current) {
@@ -120,9 +120,9 @@ const Task1Page = (props) => {
     }, 1200);
   }
 
-  // useEffect(() => {
-  //   handleOpenInstructions();
-  // }, []);
+  useEffect(() => {
+    loading();
+  }, []);
 
   useEffect(() => {
     console.log(answerIndex);

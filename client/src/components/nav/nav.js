@@ -3,6 +3,10 @@ import { makeStyles } from "@mui/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Switch from "@mui/material/Switch";
+import { useRecoilState } from "recoil";
+import { questionState } from "../../atoms/questionSelector";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar(props) {
   const classes = useStyles();
-
+  const [questionCondition, setQuestionCondition] =
+    useRecoilState(questionState);
   return (
     <div className={classes.root} style={{ height: props.height }}>
       <AppBar
@@ -32,6 +37,23 @@ export default function NavBar(props) {
           <Typography variant="h6" className={classes.title}>
             Social Media News Judgment Study
           </Typography>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Typography>
+              FOR TESTING ONLY: Change Question Condition:{" "}
+            </Typography>
+            <Typography>Share</Typography>
+            <Switch
+              checked={questionCondition == "strength"}
+              onChange={(event) => {
+                if (event.target.checked) {
+                  setQuestionCondition("strength");
+                } else {
+                  setQuestionCondition("share");
+                }
+              }}
+            />
+            <Typography>Strength</Typography>
+          </Stack>
         </Toolbar>
       </AppBar>
     </div>

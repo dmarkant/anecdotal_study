@@ -40,8 +40,8 @@ const CustomSlider = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "50px",
-        marginTop: "50px",
+        marginBottom: "10px",
+        marginTop: "10px",
       }}
     >
       <div

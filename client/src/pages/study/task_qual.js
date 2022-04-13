@@ -114,15 +114,14 @@ const QualTask = (props) => {
     }, 600);
   }
 
-  // useEffect(() => {
-  //   handleOpenInstructions();
-  //   // console.log(data);
-  // }, []);
+  useEffect(() => {
+    loading();
+  }, []);
 
   useEffect(() => {
     let q = getQuestion(tweetText);
     setQuestion(q);
-  }, [tweetText]);
+  }, [tweetText, questionCondition]);
 
   useEffect(() => {
     // console.log(answerIndex);
