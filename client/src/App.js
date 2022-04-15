@@ -51,25 +51,27 @@ const App = () => {
   useEffect(() => {
     const localStorage = window.localStorage;
     /// FOR DEV
-    if (DEV) {
-      localStorage.clear();
-    }
-
-    const sessionResponse = localStorage.getItem("response");
-    const sessionAnswerIndex = localStorage.getItem("answerIndex");
-    const sessionQualResponseIndex = localStorage.getItem("qualResponseIndex");
-    // console.log(sessionResponse);
-    if (sessionResponse !== null) {
-      setResponse(JSON.parse(sessionResponse));
-      console.log(sessionResponse);
-    }
-    if (sessionAnswerIndex !== null) {
-      setAnswerIndex(+sessionAnswerIndex);
-      console.log("session answer index", sessionAnswerIndex);
-    }
-    if (sessionQualResponseIndex !== null) {
-      setQualResponseIndex(+sessionQualResponseIndex);
-      console.log("qual response index", sessionQualResponseIndex);
+    // if (DEV) {
+    //   localStorage.clear();
+    // }
+    if (!DEV) {
+      const sessionResponse = localStorage.getItem("response");
+      const sessionAnswerIndex = localStorage.getItem("answerIndex");
+      const sessionQualResponseIndex =
+        localStorage.getItem("qualResponseIndex");
+      // console.log(sessionResponse);
+      if (sessionResponse !== null) {
+        setResponse(JSON.parse(sessionResponse));
+        console.log(sessionResponse);
+      }
+      if (sessionAnswerIndex !== null) {
+        setAnswerIndex(+sessionAnswerIndex);
+        console.log("session answer index", sessionAnswerIndex);
+      }
+      if (sessionQualResponseIndex !== null) {
+        setQualResponseIndex(+sessionQualResponseIndex);
+        console.log("qual response index", sessionQualResponseIndex);
+      }
     }
   }, []);
 
