@@ -178,7 +178,7 @@ const Instructions2 = (props) => {
         >
           <p>
             So in this case, it doesn't matter whether you personally believe
-            Spielberg's movies are aweful or not.
+            Spielberg is one of the worst directors in history or not.
           </p>
         </div>
         <div

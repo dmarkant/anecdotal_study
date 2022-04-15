@@ -58,7 +58,7 @@ const App = () => {
     const sessionResponse = localStorage.getItem("response");
     const sessionAnswerIndex = localStorage.getItem("answerIndex");
     const sessionQualResponseIndex = localStorage.getItem("qualResponseIndex");
-    console.log(sessionResponse);
+    // console.log(sessionResponse);
     if (sessionResponse !== null) {
       setResponse(JSON.parse(sessionResponse));
       console.log(sessionResponse);
@@ -106,9 +106,10 @@ const App = () => {
         let shuffledData;
         if (DEV) {
           shuffledData = [
-            result.data[0].slice(0, 2),
-            result.data[1].slice(0, 2),
+            result.data[0].slice(0, 8),
+            result.data[1].slice(0, 8),
           ];
+          // shuffledData = [result.data[0], result.data[1]];
         } else {
           shuffledData = [result.data[0], result.data[1]];
           // shuffledData = [
