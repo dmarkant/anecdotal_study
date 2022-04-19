@@ -37,7 +37,7 @@ export default function NavBar(props) {
           <Typography variant="h6" className={classes.title}>
             Social Media News Judgment Study
           </Typography>
-          <Stack direction="row" spacing={1} alignItems="center">
+          {/* <Stack direction="row" spacing={1} alignItems="center">
             <Typography>
               FOR TESTING ONLY: Change Question Condition:{" "}
             </Typography>
@@ -53,7 +53,7 @@ export default function NavBar(props) {
               }}
             />
             <Typography>Strength</Typography>
-          </Stack>
+          </Stack> */}
         </Toolbar>
       </AppBar>
     </div>
