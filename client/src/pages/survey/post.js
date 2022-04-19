@@ -14,7 +14,7 @@ const PostSurveyPage = (props) => {
         type: "radiogroup",
         name: "economic",
         title:
-          "How would you describe your political outlook with regard to economic issues?",
+          "How would you describe your political outlook with regard to economic issues? (e.g., tax rates, government spending, corporate regulatings)",
         isRequired: true,
         colCount: 5,
         choices: [
@@ -22,14 +22,14 @@ const PostSurveyPage = (props) => {
           "Slightly liberal",
           "Moderate",
           "Slightly Conservative",
-          "Very Consertavite",
+          "Very Conservative",
         ],
       },
       {
         type: "radiogroup",
         name: "social",
         title:
-          "How would you describe your political outlook with regard to social issues?",
+          "How would you describe your political outlook with regard to social issues? (e.g., Human rights, LGBTQ rights, gender equality)",
         isRequired: true,
         colCount: 5,
         choices: [
@@ -37,7 +37,7 @@ const PostSurveyPage = (props) => {
           "Slightly liberal",
           "Moderate",
           "Slightly Conservative",
-          "Very Consertavite",
+          "Very Conservative",
         ],
       },
       {
@@ -59,7 +59,7 @@ const PostSurveyPage = (props) => {
         type: "radiogroup",
         name: "hydroxi_attitude",
         title:
-          "To what extent are you in favor or against medicine such as Hydroxychloroquine as a treatment for covid?",
+          "To what extent are you in favor or against Hydroxychloroquine as a treatment for covid?",
         isRequired: true,
         colCount: 5,
         choices: [

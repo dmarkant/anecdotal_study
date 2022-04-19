@@ -18,7 +18,7 @@ const PreSurveyPage = (props) => {
         title: "What is your gender?",
         isRequired: true,
         colCount: 1,
-        choices: ["Female", "Male", "Other", "Prefer not to say"],
+        choices: ["Female", "Male", "other", "Prefer not to say"],
       },
       {
         type: "radiogroup",
@@ -37,12 +37,14 @@ const PreSurveyPage = (props) => {
           "Middle Eastern",
           "Pacific Islander",
           "Australian Aboriginal",
+          "other",
+          "Prefer not to say",
         ],
       },
       {
         type: "radiogroup",
         name: "education",
-        title: "What is your education?",
+        title: "What is your highest level of educational attainment?",
         isRequired: true,
         colCount: 1,
         choices: [

@@ -138,8 +138,8 @@ const Task1Page = (props) => {
           evidence: d["evidence"],
           claim: d.claim,
           image: d.image,
-          accName: "City News Today",
-          screen_name: "CityNews",
+          accName: d.source_name,
+          screen_name: d.source_name.split(" ").join(""),
           name: name,
           handle: handle,
         });

@@ -13,14 +13,14 @@ export const questionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `To what extent does the quoted news headline support ${tweetText.name}'s claim?`;
+          return `To what extent does the quoted news headline support ${tweetText.name}'s conclusion?`;
         };
         return getQL;
 
         break;
       case "share":
         getQL = (tweetText) => {
-          return `How likely are you to share ${tweetText.name}'s tweet on your social media profile (for example Twitter or Facebook)?`;
+          return `Would you consider sharing ${tweetText.name}'s tweet on social media (for example Twitter or Facebook)?`;
         };
         return getQL;
         break;
@@ -36,14 +36,14 @@ export const qualQuestionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `You can see your response for "how strong the quoted news headline supports ${tweetText.name}'s claim?" below:`;
+          return `You can see your response for "how strong the quoted news headline supports ${tweetText.name}'s conclusion?" below:`;
         };
         return getQL;
 
         break;
       case "share":
         getQL = (tweetText) => {
-          return `You can see your response for "how likely are you to share ${tweetText.name}'s tweet on your social media platforms?" below:`;
+          return `You can see your response for "Would you consider sharing ${tweetText.name}'s tweet on social media?" below:`;
         };
         return getQL;
         break;
@@ -57,12 +57,13 @@ export const labelSelector = selector({
     let questionCondition = get(questionState);
     switch (questionCondition) {
       case "share":
-        return [
-          "Not likely at all",
-          "Slightly likely",
-          "Moderately Likely",
-          "Completely likely",
-        ];
+        // return [
+        //   "Not likely at all",
+        //   "Slightly likely",
+        //   "Moderately Likely",
+        //   "Completely likely",
+        // ];
+        return ["No", "Slightly", "Moderately", "Strongly"];
         break;
       case "strength":
         return [
@@ -71,6 +72,7 @@ export const labelSelector = selector({
           "Moderately supports",
           "Strongly supports",
         ];
+
         break;
     }
   },

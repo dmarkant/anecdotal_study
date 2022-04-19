@@ -24,8 +24,8 @@ const PreSurveyPage = (props) => {
             title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
             isRequired: true,
             choices: [
-              "Evalute whether that's supported by the headline",
-              "give my opinion whether that's true regardless of the headline",
+              "Evalute whether it is supported by the headline",
+              "Give my opinion whether I think it is true regardless of the headline",
               "I don't know",
             ],
           },
@@ -36,8 +36,8 @@ const PreSurveyPage = (props) => {
             title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
             isRequired: true,
             choices: [
-              "Evaluate whether that statement is true.",
-              "Assume that it's true.",
+              "Evaluate whether the headline is accurate.",
+              "Assume that the headline is true.",
               "I don't know",
             ],
           },
@@ -51,14 +51,22 @@ const PreSurveyPage = (props) => {
         type: "radiogroup",
         title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___`,
         isRequired: true,
-        choices: ["a claim", "a news headline", "I don't know"],
+        choices: [
+          "a conclusion about a topic",
+          "a news headline",
+          "I don't know",
+        ],
       },
       {
         name: "headline",
         type: "radiogroup",
         title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___`,
         isRequired: true,
-        choices: ["a claim", "a news headline", "I don't know"],
+        choices: [
+          "a conclusion about a topic",
+          "a news headline",
+          "I don't know",
+        ],
       },
       ...extraQuestions,
       {

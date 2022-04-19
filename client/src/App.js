@@ -38,7 +38,7 @@ const App = () => {
   const questions = ["strength", "share"];
   // const questions = ["strength"];
   // const questions = ["share"];
-  const DEV = true;
+  const DEV = false;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
@@ -48,56 +48,56 @@ const App = () => {
 
   const [loadingOpacity, setLoadingOpacity] = useState(0);
 
-  useEffect(() => {
-    const localStorage = window.localStorage;
-    /// FOR DEV
-    // if (DEV) {
-    //   localStorage.clear();
-    // }
-    if (!DEV) {
-      const sessionResponse = localStorage.getItem("response");
-      const sessionAnswerIndex = localStorage.getItem("answerIndex");
-      const sessionQualResponseIndex =
-        localStorage.getItem("qualResponseIndex");
-      // console.log(sessionResponse);
-      if (sessionResponse !== null) {
-        setResponse(JSON.parse(sessionResponse));
-        console.log(sessionResponse);
-      }
-      if (sessionAnswerIndex !== null) {
-        setAnswerIndex(+sessionAnswerIndex);
-        console.log("session answer index", sessionAnswerIndex);
-      }
-      if (sessionQualResponseIndex !== null) {
-        setQualResponseIndex(+sessionQualResponseIndex);
-        console.log("qual response index", sessionQualResponseIndex);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const localStorage = window.localStorage;
+  //   /// FOR DEV
+  //   // if (DEV) {
+  //   //   localStorage.clear();
+  //   // }
+  //   if (!DEV) {
+  //     const sessionResponse = localStorage.getItem("response");
+  //     const sessionAnswerIndex = localStorage.getItem("answerIndex");
+  //     const sessionQualResponseIndex =
+  //       localStorage.getItem("qualResponseIndex");
+  //     // console.log(sessionResponse);
+  //     if (sessionResponse !== null) {
+  //       setResponse(JSON.parse(sessionResponse));
+  //       console.log(sessionResponse);
+  //     }
+  //     if (sessionAnswerIndex !== null) {
+  //       setAnswerIndex(+sessionAnswerIndex);
+  //       console.log("session answer index", sessionAnswerIndex);
+  //     }
+  //     if (sessionQualResponseIndex !== null) {
+  //       setQualResponseIndex(+sessionQualResponseIndex);
+  //       console.log("qual response index", sessionQualResponseIndex);
+  //     }
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("response", JSON.stringify(response));
-    }
-  }, [response]);
+  // useEffect(() => {
+  //   if (response && Object.keys(response).length > 0) {
+  //     window.localStorage.setItem("response", JSON.stringify(response));
+  //   }
+  // }, [response]);
 
-  useEffect(() => {
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("answerIndex", answerIndex);
-    }
-  }, [answerIndex]);
+  // useEffect(() => {
+  //   if (response && Object.keys(response).length > 0) {
+  //     window.localStorage.setItem("answerIndex", answerIndex);
+  //   }
+  // }, [answerIndex]);
 
-  useEffect(() => {
-    if (response && Object.keys(response).length > 0) {
-      window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
-    }
-  }, [qualResponseIndex]);
+  // useEffect(() => {
+  //   if (response && Object.keys(response).length > 0) {
+  //     window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
+  //   }
+  // }, [qualResponseIndex]);
 
-  useEffect(() => {
-    if (question) {
-      window.localStorage.setItem("question", question);
-    }
-  }, [question]);
+  // useEffect(() => {
+  //   if (question) {
+  //     window.localStorage.setItem("question", question);
+  //   }
+  // }, [question]);
 
   useEffect(() => {
     async function fetchData() {
@@ -122,9 +122,9 @@ const App = () => {
         console.log(shuffledData);
         let q = choose(questions);
         console.log(q);
-        window.localStorage.setItem("question", q);
+        // window.localStorage.setItem("question", q);
         setQuestion(q);
-        window.localStorage.setItem("data", JSON.stringify(shuffledData));
+        // window.localStorage.setItem("data", JSON.stringify(shuffledData));
         setData(shuffledData);
       }, 1000);
     }

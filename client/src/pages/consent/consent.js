@@ -57,146 +57,138 @@ const Consent = (props) => {
       className={classes.instructContainer}
       id="consent-container"
     >
-      <div style={{ textAlign: "center" }}>
+      <div>
         {/* <img
           src={process.env.PUBLIC_URL + "/university.png"}
           height="120px"
         ></img> */}
       </div>
-      <h1>Consent to Participate in a Research Study</h1>
+      <h1>Consent to Participate in Online Research</h1>
+      <h2>Title of Research Study:</h2>
+      <p>Reasoning with Evidence on Social Media</p>
+      <h2>Principal Investigator</h2>
+      <p>Dr. Steven Franconeri</p>
 
+      <h2>Key Information about this research study:</h2>
       <p>
-        You are invited to participate in a research study. Participation in
-        this research study is voluntary. The information provided on this form
-        is to help you decide whether or not to participate.
+        The following is a short summary of this study to help you decide
+        whether to be a part of this study. Information that is more detailed is
+        listed later on in this form. The purpose of this study is to test how
+        participants reason with the evidence presented in the form of news
+        headlines on social media. Additionally, we will assess whether certain
+        interventions in the form of explanations reduce users’ reliance on weak
+        evidence. You will be asked to read sentences on a screen, and asked
+        questions about what you read. We expect that you will be in this
+        research study for between 20 and 30 minutes. Your participation in this
+        study does not involve any risks other than what you would encounter in
+        daily life. You are not likely to have any direct benefit from being in
+        this research study. The potential benefits to you from participation
+        may include learning about how psychological research is conducted, and
+        you may learn about issues of current interest in psychology.{" "}
       </p>
 
-      <h2>Important Information You Need to Know</h2>
+      <h2>Why am I being asked to take part in this research study?</h2>
+      <p>
+        We are asking you to take part in this research study because you are 18
+        years or older and are an English speaker living in the United States.
+      </p>
+
+      <h2>How many people will be in this study?</h2>
+      <p>We expect no more than 1000 people will be in this research study.</p>
+
+      <h2>What should I know about participating in a research study?</h2>
       <ul>
-        <li>
-          The purpose of this study is to understand how users rate credibility
-          of sources based on multiple tweets on social media. In this study, we
-          have masked the names of the sources, and we are asking you to read
-          multiple tweets including text and images and assess the credibility
-          of the source of those tweets.
-        </li>
-        <li>
-          We are asking individuals who are age 18 or older and fluent in
-          English to participate. Participation will take approximately 20-30
-          minutes in total.
-        </li>
+        <li>Whether or not you take part is up to you.</li>
+        <li>You can choose not to take part.</li>
+        <li>You can agree to take part and later change your mind.</li>
+        <li>Your decision will not be held against you.</li>
       </ul>
-
-      <h2>Why are we doing this study?</h2>
+      <h2>What happens if I say, “Yes, I want to be in this research”?</h2>
       <p>
-        The purpose of this study is to measure people’s assessment of Twitter
-        news sources without knowing the identity of the source. For example,
-        for a source of news X (could be CNN or Fox News for example, but you
-        will not see the name in the study) you will go through multiple tweets
-        with text and with or without images from that source. When you feel
-        like you have enough information to assess the source, you will rate
-        whether you find that source X credible, and whether you believe the
-        source to be left leaning or right leaning. Please note that not all the
-        details of this study are shared with you before the study. After you
-        complete the study, we will explain in more detail, information about
-        the study you are partaking in.
+        Your participation in this study will last between 20 and 30 minutes. In
+        this experiment you will be asked to perform a task on a computer screen
+        that will require your focus. You will be asked to read text, reflect on
+        the information, and answer questions about what you read.
       </p>
 
-      <h2>Why are you being asked to be in this research study?</h2>
+      <h2>Is there any way being in this study could be bad for me?</h2>
       <p>
-        You are being asked to be in this study because you are age 18 and older
-        and are fluent in English.
-      </p>
-
-      <h2>What will happen if I take part in this study?</h2>
-      <p>
-        If you choose to participate in this study, you will complete a
-        computer-based task in which you will make judgments about credibility
-        of sources of news on Twitter. After completing the task, you will be
-        asked some questions about your experience as well as basic demographic
-        questions (age, level of education, biological sex). Your total time
-        commitment if you choose to participate will be approximately 20-30
-        minutes.
-      </p>
-
-      <h2>What benefits might I experience?</h2>
-      <p>
-        You will not benefit directly from being in this study. The broader
-        benefits of this research include improved scientific understanding of
-        how users decide to trust news on social media.
-      </p>
-
-      <h2>What risks might I experience?</h2>
-      <p>
-        We are showing you Tweets from different real political social media
-        news accounts with different political affiliations and orientations,
-        there is a slight chance of emotional distress, since some tweets could
-        be highly emotional or politically charged. However, this would not be
-        any different from tweets or posts publicly available on Twitter.
-      </p>
-
-      <h2>How will my information be protected?</h2>
-      <p>
-        Research data collected as part of this study will remain confidential
-        to the fullest extent possible and will only be disclosed with your
-        permission or as required by law. Identifiable information (Amazon
-        Mechanical Turk IDs) will be stored separately from all other data
-        collected during this study. Records of your responses during the task
-        will be linked to identifiable data (your MTurk ID) only for payment
-        purposes; your information will be permanently deleted when your payment
-        is processed. Until that point any identifiable information will be
-        stored in protected databases accessible only to the researchers or
-        University administrators, on University-managed infrastructure.
-      </p>
-
-      <h2>How will my information be used after the study is over?</h2>
-      <p>
-        After the study is complete, study data may be shared with other
-        researchers for use in other studies or as may be needed for publishing
-        our results. The data we share will NOT include information that could
-        identify you.
-      </p>
-
-      <h2>Will I receive an incentive for taking part in this study?</h2>
-      <p>There will be no incentive for you participation</p>
-      {/* <p>
-        You will receive a minimum payment of $1.00 through Amazon Mechanical
-        Turk upon completion of the study. If you decide to withdraw from the
-        study prior to completion you will not be eligible for payment.
-      </p>
-      <p style={{ fontWeight: "bold", color: "red" }}>
-        You will receive an extra $1.00 in bonuses based on your performance in
-        evaluating the different sources in this study.
-      </p> */}
-
-      <h2>What are my rights if I take part in this study?</h2>
-      <p>
-        It is up to you to decide to be in this research study. Participating in
-        this study is voluntary. Even if you decide to be part of the study now,
-        you may change your mind and stop at any time. You do not have to answer
-        any questions you do not want to answer.
+        Your participation in this study does not involve any risks other than
+        what you would encounter in daily life. In particular, you may
+        experience fatigue or boredom, however you may take breaks between
+        tasks. The effects of participating should be comparable to those you
+        would experience from viewing a computer monitor and using a keyboard.
+        You may withdraw at any time.
       </p>
 
       <h2>
-        Who can answer my questions about this study and my rights as a
-        participant?
+        What happens if I do not want to be in this research or if I say “Yes”,
+        but I change my mind later?
       </h2>
-      {/* <p>
-        For questions about this research, you may contact # and #. If you have
-        questions about your rights as a research participant, or wish to obtain
-        information, ask questions, or discuss any concerns about this study
-        with someone other than the researcher(s), please contact the Office of
-        Research Protections and Integrity at 704-687-1871 or uncc-irb@uncc.edu.
-      </p> */}
+      <p>
+        You can decide not to participate in this research or you can start and
+        then decide to leave the research at any time and it will not be held
+        against you. To do so, simply exit the experiment. Any data already
+        collected will not be saved.
+      </p>
+
+      <h2>What happens to the information collected for the research?</h2>
+      <p>
+        Efforts will be made to limit the use and disclosure of your personal
+        information, including research study records, to people who have a need
+        to review this information. We cannot promise complete secrecy.
+        Organizations that may inspect and copy your information include the IRB
+        and other representatives of this institution.
+      </p>
+      <p>
+        Data Sharing: De-identified data from this study will be shared with the
+        research team and the research community at large to advance science and
+        health. We will remove or code any personal information that could
+        identify you before files are shared with other researchers to ensure
+        that, by current scientific standards and known methods, no one will be
+        able to identify you from the information we share. Despite these
+        measures, we cannot guarantee anonymity of your personal data.
+      </p>
+
+      <h2>What else do I need to know?</h2>
+      <p>
+        Compensation: If you agree to take part in this research study, we will
+        pay you $2.50 per ten minutes for your time and effort. You will be paid
+        in accordance with the stated policies of Prolific.co. Payment will be
+        made upon completion and acceptance of the submission that you have
+        agreed to complete and you will be paid via Prolific. If you choose to
+        withdraw from the study, you will not be compensated for your
+        participation.
+      </p>
+
+      <h2>Who can I talk to?</h2>
+      <p>
+        If you have questions, concerns, or complaints, or think the research
+        has affected you in some way, talk to the research team at
+        visualthinking@northwestern.edu or call the Primary Investigator, Dr.
+        Steven Franconeri at (847) 467-1259. This research has been reviewed and
+        approved by an Institutional Review Board (“IRB”). You may talk to them
+        at (312) 503-9338 or irb@northwestern.edu if:
+      </p>
+      <ul>
+        <li>
+          Your questions, concerns, or complaints are not being answered by the
+          research team.
+        </li>
+        <li>You cannot reach the research team.</li>
+        <li>You want to talk to someone besides the research team.</li>
+        <li>You have questions about your rights as a research participant.</li>
+        <li>
+          You want to get information or provide input about this research.
+        </li>
+      </ul>
 
       <h2>Consent to Participate</h2>
       <p>
-        By submitting this form you are agreeing to be in this study. Make sure
-        you understand what the study is about before you submit. You may use
-        the button below to download a PDF version of this form for your
-        records. If you have any questions about the study after you submit this
-        form, you can contact the study team using the information provided
-        above.
+        If you want a copy of this consent for your records, you can print it
+        from the screen. If you consent to participate in this experiment, click
+        the checkbox below. If you do not wish to participate, please close this
+        window now.
       </p>
 
       <p>
@@ -216,12 +208,6 @@ const Consent = (props) => {
         <span></span> Print a copy of this page
       </Button>
       <hr />
-
-      <p style={{ color: "red" }}>
-        Please do not skip pages, hit refresh or the back button. You might lose
-        progress and not receive a token. Your compensation is contingent upon
-        successful entry of the token!
-      </p>
       <div
         style={{
           textAlign: "center",
@@ -234,7 +220,7 @@ const Consent = (props) => {
           variant="contained"
           onClick={handleConsent}
         >
-          Give Consent
+          I Consent
         </Button>
       </div>
     </Container>

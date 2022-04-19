@@ -124,7 +124,7 @@ const Instructions1 = (props) => {
           <p>
             {" "}
             Here is a <span className={classes.emph}>headline</span> from a news
-            story that Louis quotes
+            story that Johnatan quotes
           </p>
         </div>
         <div
