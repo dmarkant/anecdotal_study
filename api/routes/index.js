@@ -121,7 +121,7 @@ router.get("/data", async (req, res) => {
 });
 
 async function randomize_data() {
-  let p = __dirname + "../../../public/";
+  let p = __dirname + "/../../../public/";
   const jsonArray = await csv().fromFile(
     path.join(p + "anecdotal evidence.csv")
   );
