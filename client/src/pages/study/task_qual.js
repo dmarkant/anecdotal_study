@@ -176,7 +176,7 @@ const QualTask = (props) => {
       ref={divContainer}
     >
       <Instructions>
-        <Typography variant="h5" align="center">
+        <Typography variant="h6" align="center">
           Tweet {answerIndex + 1}/{data ? data.length : 18}
         </Typography>
       </Instructions>
@@ -196,11 +196,12 @@ const QualTask = (props) => {
           text={`${tweetText.claim}`}
           accName={tweetText.name}
           screen_name={tweetText.handle}
+          person_image_path={tweetText.person_image_path}
         >
           <TweetQuote
             text={tweetText.evidence}
-            accName="City News Today"
-            screen_name="City News"
+            accName={tweetText.accName}
+            screen_name={tweetText.screen_name}
             showImage={true}
             src={tweetText.image}
           ></TweetQuote>
