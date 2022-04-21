@@ -16,21 +16,27 @@ const CustomSlider = ({ labels, domain, question, value }) => {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "10px",
+        marginBottom: "25px",
         marginTop: "10px",
+        maxWidth: "500px",
+        overflow: "visible",
       }}
     >
+      <Typography variant="body">{question}</Typography>
       <div
         style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          flexDirection: "column",
+          // display: "flex",
+          // justifyContent: "flex-start",
+          // flexDirection: "column",
+          marginTop: "30px",
+          width: "100%",
           gap: "20px",
+          // padding: "0 10%",
         }}
       >
-        <Typography variant="h6">{question}</Typography>
         <Slider
           value={value}
           step={0.01}

@@ -13,7 +13,8 @@ function parseString(encodedString) {
 }
 const useStyles = makeStyles({
   tweetCard: {
-    width: "100%",
+    // width: "100%",
+
     padding: "10px",
     borderStyle: "solid",
     borderColor: "lightgrey",
@@ -21,7 +22,8 @@ const useStyles = makeStyles({
     border: "0.1px",
   },
   card: {
-    width: "100%",
+    maxWidth: "500px",
+    // width: "max(100%,400px)",
     backgroundColor: "#white",
     color: "black",
     borderRadius: "10px",
@@ -35,16 +37,21 @@ const Tweet = (props) => {
   const classes = useStyles();
   const accName = props.accName || "Twitter Account";
   const screen_name = props.screen_name || "tweetScreenName";
-  console.log();
+  console.log("personimage", props.person_image_path);
+  const bg_image =
+    props.person_image_path == undefined
+      ? ""
+      : `url('${props.person_image_path}')`;
+  console.log(bg_image);
   return (
     <div className={classes.card}>
       <div
         className={classes.tweetCard}
-        style={{ width: "100%", display: "flex", flexDirection: "row" }}
+        style={{ display: "flex", flexDirection: "row" }}
       >
         <div
           style={{
-            flexBasis: "50px",
+            flexBasis: "10px",
             justifyContent: "left",
             flexDirection: "row",
           }}
@@ -54,17 +61,27 @@ const Tweet = (props) => {
               borderRadius: "50%",
               width: "50px",
               height: "50px",
-
+              backgroundImage: bg_image,
               backgroundColor: "grey",
+              backgroundSize: "100% auto",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <PersonIcon></PersonIcon>
+            {props.person_image_path == undefined ? (
+              <PersonIcon></PersonIcon>
+            ) : null}
           </div>
         </div>
-        <div style={{ flexBasis: 0, flexGrow: 1, marginLeft: "20px" }}>
+        <div
+          style={{
+            flexBasis: 0,
+            flexGrow: 1,
+            marginLeft: "20px",
+            width: "100%",
+          }}
+        >
           <div>
             <span style={{ fontWeight: "bold" }}>{accName + " "} </span>
             <span style={{ color: "grey" }}>@{screen_name}</span>
@@ -72,16 +89,16 @@ const Tweet = (props) => {
           {/* <Typography variant="body1" style={{ marginBottom: "10px" }}>
           {parseString(props.text)}
         </Typography> */}
-          <p
+          <div
             style={{
               marginBottom: "10px",
-              fontSize: "20px",
+              fontSize: "14px",
               margin: 0,
               marginBottom: "10px",
             }}
           >
             {parseString(props.text)}
-          </p>
+          </div>
           {props.showImage ? (
             <img
               src={props.src}

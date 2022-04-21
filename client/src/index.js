@@ -5,13 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot } from "recoil";
 
 import { BrowserRouter as Router } from "react-router-dom";
 

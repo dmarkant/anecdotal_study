@@ -121,9 +121,18 @@ router.get("/data", async (req, res) => {
 });
 
 async function randomize_data() {
+  let p = __dirname + "../../../public/";
   const jsonArray = await csv().fromFile(
-    path.join(__dirname + "../../../public/anecdotal evidence.csv")
+    path.join(p + "anecdotal evidence.csv")
   );
+
+  const peopleImages = shuffle(fs.readdirSync(p + "/faces/"));
+  jsonArray.forEach((entry, ind) => {
+    let fileName = peopleImages[ind];
+    let person_name = fileName.replace(".png", "");
+    entry["person_image_path"] = `/faces/${fileName}`;
+    entry["person_name"] = person_name;
+  });
 
   let quads = nestArray(jsonArray, 4);
   let groups = quads.map((quad) => {

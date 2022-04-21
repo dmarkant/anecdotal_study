@@ -27,17 +27,22 @@ export default function NavBar(props) {
     useRecoilState(questionState);
   return (
     <div className={classes.root} style={{ height: props.height }}>
-      <AppBar
-        position="sticky"
-        className={classes.navBar}
-        color="secondary"
-        // style={{ backgroundColor: "lightgrey" }}
-      >
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Social Media News Judgment Study
-          </Typography>
-          {/* <Stack direction="row" spacing={1} alignItems="center">
+      <AppBar position="sticky" className={classes.navBar} color="secondary">
+        <Toolbar style={{ justifyContent: "space-between" }}>
+          <div
+            style={{
+              maxWidth: "30%",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              paddingRight: "10px",
+            }}
+          >
+            <Typography variant="h6" className={classes.title}>
+              Social Media News Judgment Study
+            </Typography>
+          </div>
+          <Stack direction="row" spacing={1} alignItems="center" style={{}}>
             <Typography>
               FOR TESTING ONLY: Change Question Condition:{" "}
             </Typography>
@@ -53,7 +58,7 @@ export default function NavBar(props) {
               }}
             />
             <Typography>Strength</Typography>
-          </Stack> */}
+          </Stack>
         </Toolbar>
       </AppBar>
     </div>

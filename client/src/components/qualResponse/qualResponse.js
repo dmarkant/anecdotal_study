@@ -11,10 +11,11 @@ export default function FullWidthTextField(props) {
         justifyContent: "flex-start",
         flexDirection: "column",
         gap: "20px",
+        maxWidth: "400px",
       }}
     >
       <Typography variant="h6">
-        Please type down the reason for your judgement below.
+        Please explain your reasons for the judgment below 👇
       </Typography>
       <TextField
         fullWidth
@@ -24,7 +25,7 @@ export default function FullWidthTextField(props) {
         label="your response"
         id="fullWidth"
         onChange={(event) => {
-            props.setQualResponse(event.target.value);
+          props.setQualResponse(event.target.value);
         }}
         style={{ marginBottom: "20px" }}
       />

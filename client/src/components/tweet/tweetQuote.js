@@ -27,7 +27,6 @@ const Tweet = (props) => {
   const classes = useStyles();
   const accName = props.accName || "Twitter Account";
   const screen_name = props.screen_name || "tweetScreenName";
-  console.log();
   return (
     <div
       className={classes.tweetCard}
@@ -48,8 +47,8 @@ const Tweet = (props) => {
           <div
             style={{
               borderRadius: "50%",
-              width: "40px",
-              height: "40px",
+              width: "25px",
+              height: "25px",
               backgroundColor: "grey",
               display: "flex",
               marginRight: "4px",
@@ -59,12 +58,12 @@ const Tweet = (props) => {
             }}
           >
             {/* <PersonIcon></PersonIcon> */}
-            <Typography>
+            <p style={{ fontSize: "8px" }}>
               {accName
                 .split(" ")
                 .map((l) => l[0])
                 .join("")}
-            </Typography>
+            </p>
           </div>
           <span style={{ fontWeight: "bold", marginRight: "2px" }}>
             {accName + " "}{" "}
@@ -74,18 +73,29 @@ const Tweet = (props) => {
         <p
           style={{
             marginBottom: "5px",
-            fontSize: "20px",
+            fontSize: "15px",
             margin: 0,
           }}
         >
           {parseString(props.text)}
         </p>
         {props.showImage ? (
-          <img
-            src={props.src}
-            style={{ borderRadius: 15, width: "100%", marginTop: "20px" }}
-            alt="tweet content"
-          />
+          // <img
+          //   src={props.src}
+          //   style={{ borderRadius: 15, width: "100%", marginTop: "20px" }}
+          //   alt="tweet image related to the headline"
+          // />
+          <div
+            style={{
+              marginTop: "10px",
+              borderRadius: 15,
+              width: "100%",
+              height: "200px",
+              backgroundImage: `url('${props.src}')`,
+              backgroundPosition: "center",
+              backgroundSize: "100% auto",
+            }}
+          ></div>
         ) : null}
       </div>
     </div>

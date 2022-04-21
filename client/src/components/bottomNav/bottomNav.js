@@ -73,7 +73,7 @@ const BottomNav = (props) => {
         classes={classes}
       />
       <BottomNavigationAction
-        label="Pre-questionaire"
+        label="Pre-questionnaire"
         value="/pre"
         classes={classes}
       />
@@ -90,7 +90,7 @@ const BottomNav = (props) => {
       <BottomNavigationAction label="Task 3" value="/task3" classes={classes} />
       {/* <BottomNavigationAction label="Task 2" value="/task2" classes={classes} /> */}
       <BottomNavigationAction
-        label="Post-questionaire"
+        label="Post-questionnaire"
         value="/post"
         classes={classes}
       />

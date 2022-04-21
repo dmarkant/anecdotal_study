@@ -15,7 +15,6 @@ import {
   questionState,
 } from "../../atoms/questionSelector";
 
-import Instructions from "../../components/instructions/instructions";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import { Button, Divider, Typography } from "@mui/material/";
@@ -55,7 +54,7 @@ const QualTask = (props) => {
   const [openInstructions, setOpenInstructions] = useState(false);
 
   const divContainer = useRef(null);
-  const questionWidth = "50%";
+  const questionWidth = "500px";
 
   console.log(response);
 
@@ -135,6 +134,7 @@ const QualTask = (props) => {
         let accName = lenResponse > 0 ? response[answerIndex]["accName"] : "";
         let screen_name =
           lenResponse > 0 ? response[answerIndex]["screen_name"] : "";
+        let person_image_path = response[answerIndex]["person_image_path"];
         let nameSplit = name.split(" ");
         let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
         setTweetText({
@@ -145,19 +145,13 @@ const QualTask = (props) => {
           screen_name: screen_name,
           name: name,
           handle: handle,
+          person_image_path: person_image_path,
         });
       } else {
         axios.post("/api/response", response).then((r) => {
-          // history.push("/debrief");
           let nextPage = pageHandler(location.pathname);
           history.push(nextPage);
         });
-
-        // if (props.phase === 0) {
-        //   setAnswerIndex(0);
-        //   history.push("cogref");
-        // } else {
-        // }
       }
     }
   }, [answerIndex, response]);
@@ -167,31 +161,37 @@ const QualTask = (props) => {
       style={{
         width: "100%",
         height: "100%",
-        margin: "0 auto",
         overflow: "auto",
-        paddingTop: "30px",
-        paddingBottm: "30px",
+        // paddingBottm: "30px",
+        // paddingTop: "50px",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "50px",
+        alignItems: "center",
+        justifyContent: "center",
+
         opacity: opacity,
       }}
       ref={divContainer}
     >
-      <Instructions>
-        <Typography variant="h6" align="center">
-          Tweet {answerIndex + 1}/{data ? data.length : 18}
-        </Typography>
-      </Instructions>
-      <Divider></Divider>
       <div
         style={{
-          width: questionWidth,
+          // width: questionWidth,
+          minWidth: "360px",
+          // flexGrow: 1,
           display: "flex",
-          alignItems: "center",
+          alignItems: "start",
           justifyContent: "center",
           flexDirection: "column",
-          margin: "0 auto",
         }}
       >
-        {" "}
+        <Typography
+          variant="h6"
+          align="center"
+          style={{ marginBottom: "10px" }}
+        >
+          Tweet {answerIndex + 1}/{data ? data.length : 18}
+        </Typography>{" "}
         <Tweet
           text={`${tweetText.claim}`}
           accName={tweetText.name}
@@ -213,31 +213,39 @@ const QualTask = (props) => {
           // handleResponse={handleSliderResponse}
           value={response[answerIndex] ? response[answerIndex]["value"] : 0.5}
         ></SliderFixed>
+      </div>
+
+      <div
+        style={{
+          // mindWidth: questionWidth,
+          minWidth: "360px",
+          // flexGrow: 1,
+        }}
+      >
         <QualResponse
           setQualResponse={setQualResponse}
           qualResponse={qualResponse}
         ></QualResponse>
-      </div>
-      <Divider></Divider>
 
-      <div
-        style={{
-          textAlign: "center",
-          paddingTop: "10px",
-          paddingBottom: "10px",
-        }}
-      >
-        <Button
+        <div
           style={{
-            marginRight: "10px",
+            textAlign: "center",
+            paddingTop: "10px",
+            paddingBottom: "10px",
           }}
-          disabled={qualResponse.length <= minCharacterCount}
-          color="primary"
-          variant="contained"
-          onClick={handleAddMoreClick}
         >
-          Next!
-        </Button>
+          <Button
+            style={{
+              marginRight: "10px",
+            }}
+            disabled={qualResponse.length <= minCharacterCount}
+            color="primary"
+            variant="contained"
+            onClick={handleAddMoreClick}
+          >
+            Next!
+          </Button>
+        </div>
       </div>
 
       <InstructionsDialogQual

@@ -11,17 +11,13 @@ import {
 } from "../../atoms/questionSelector";
 import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
-
-import Instructions from "../../components/instructions/instructions";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import { Button, Divider, Typography } from "@mui/material/";
 import CustomSlider from "../../components/slider/slider";
-import Fakerator from "fakerator";
 import $ from "jquery";
 
 // let index = 0;
-let fakerator = Fakerator();
 const Task1Page = (props) => {
   //   console.log(props.setChoice);
   // const data = props.data;\
@@ -50,7 +46,7 @@ const Task1Page = (props) => {
   // const [openAlertAnswerCount, setOpenAlertAnswerCount] = useState(false);
 
   const divContainer = useRef(null);
-  const questionWidth = "50%";
+  const questionWidth = "500px";
 
   const handleSliderResponse = (event, r) => {
     // console.log(r);
@@ -69,6 +65,8 @@ const Task1Page = (props) => {
     responseCopy[answerIndex]["name"] = tweetText["name"];
     responseCopy[answerIndex]["accName"] = tweetText["accName"];
     responseCopy[answerIndex]["screen_name"] = tweetText["screen_name"];
+    responseCopy[answerIndex]["person_image_path"] =
+      tweetText["person_image_path"];
     responseCopy[answerIndex]["phase"] = props.phase;
     responseCopy[answerIndex]["questionCondition"] = questionCondition;
     setResponse(responseCopy);
@@ -131,7 +129,10 @@ const Task1Page = (props) => {
       let pindex = answerIndex - props.phase * data.length;
       if (pindex < data.length) {
         let d = data[pindex];
-        let name = fakerator.names.name();
+        console.log(d);
+        // let name = fakerator.names.name();
+        let name = d.person_name;
+        let person_image_path = d.person_image_path;
         let nameSplit = name.split(" ");
         let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
         setTweetText({
@@ -142,6 +143,7 @@ const Task1Page = (props) => {
           screen_name: d.source_name.split(" ").join(""),
           name: name,
           handle: handle,
+          person_image_path: person_image_path,
         });
       } else {
         // if (props.phase === 0) {
@@ -159,36 +161,41 @@ const Task1Page = (props) => {
     <div
       style={{
         width: "100%",
-        height: "100%",
-        margin: "0 auto",
-        overflow: "auto",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "50px",
+        alignItems: "center",
+        justifyContent: "center",
         paddingTop: "30px",
         paddingBottm: "30px",
         opacity: opacity,
       }}
       ref={divContainer}
     >
-      <Instructions>
-        <Typography variant="h5" align="center">
-          Tweet {answerIndex + 1}/{data ? data.length * 2 : 18}
-        </Typography>
-      </Instructions>
-      <Divider></Divider>
+      {/* <Instructions>
+
+      </Instructions> */}
+
+      {/* <Divider></Divider> */}
       <div
         style={{
           width: questionWidth,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: "start",
+          justifyContent: "flex-start",
           flexDirection: "column",
-          margin: "0 auto",
         }}
       >
         {" "}
+        {/* <Divider></Divider> */}
+        <Typography variant="h6">
+          Tweet {answerIndex + 1}/{data ? data.length * 2 : 18}
+        </Typography>
         <Tweet
           text={`${tweetText.claim}`}
           accName={tweetText.name}
           screen_name={tweetText.handle}
+          person_image_path={tweetText.person_image_path}
         >
           <TweetQuote
             text={tweetText.evidence}

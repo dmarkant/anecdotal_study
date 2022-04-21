@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material/";
+import { useRecoilValue } from "recoil";
+import { sliderStepsState } from "../../atoms/sliderSteps";
 
 const StyledSlider = styled(Slider)(({ theme }) => ({
   "& .MuiSlider-mark": {
@@ -23,6 +25,7 @@ const CustomSlider = ({
   response,
 }) => {
   const [value, setValue] = useState(null);
+  const stepsValue = useRecoilValue(sliderStepsState);
   const range = domain[1] - domain[0];
   const marks = labels.map((l, i) => {
     return {
@@ -40,7 +43,7 @@ const CustomSlider = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "10px",
+        marginBottom: "25px",
         marginTop: "10px",
       }}
     >
@@ -55,7 +58,7 @@ const CustomSlider = ({
         <Typography variant="h6">{question}</Typography>
         <StyledSlider
           value={value == null ? 0.5 : value}
-          step={0.01}
+          step={stepsValue}
           marks={marks}
           min={domain[0]}
           max={domain[1]}

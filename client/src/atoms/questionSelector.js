@@ -24,6 +24,11 @@ export const questionSelector = selector({
         };
         return getQL;
         break;
+      default:
+        getQL = (tweetText) => {
+          return `To what extent does the quoted news headline support ${tweetText.name}'s conclusion?`;
+        };
+        return getQL;
     }
   },
 });
@@ -36,14 +41,14 @@ export const qualQuestionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `You can see your response for "how strong the quoted news headline supports ${tweetText.name}'s conclusion?" below:`;
+          return `For the tweet above👆 You made the below👇 judgment when asked: "how strong the quoted news headline supports ${tweetText.name}'s conclusion?"`;
         };
         return getQL;
 
         break;
       case "share":
         getQL = (tweetText) => {
-          return `You can see your response for "Would you consider sharing ${tweetText.name}'s tweet on social media?" below:`;
+          return `For the tweet above👆 You made the below👇 judgment when asked: "Would you consider sharing ${tweetText.name}'s tweet on social media?"`;
         };
         return getQL;
         break;
@@ -63,7 +68,13 @@ export const labelSelector = selector({
         //   "Moderately Likely",
         //   "Completely likely",
         // ];
-        return ["No", "Slightly", "Moderately", "Strongly"];
+        // return ["No", "Slightly", "Moderately", "Strongly"];
+        return [
+          "Definitely no",
+          "Probably no",
+          "Probably yes",
+          "Definitely yes",
+        ];
         break;
       case "strength":
         return [
