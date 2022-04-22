@@ -130,14 +130,14 @@ const PostSurveyPage = (props) => {
         ],
       },
 
-      // ,
-      // {
-      //   type: "comment",
-      //   name: "attention1",
-      //   title:
-      //     'Imagine you found yourself in the following situation: "On the morning of an important job interview, you wake up with fever and chills." \n What is a potential course of action that you could take in this situation?',
-      //   isRequired: true,
-      // },
+      ,
+      {
+        type: "comment",
+        name: "study",
+        title:
+          "Please provide any feedback or general comments about this study:",
+        isRequired: false,
+      },
       // {
       //   type: "comment",
       //   name: "attention2",

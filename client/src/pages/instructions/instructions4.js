@@ -15,7 +15,7 @@ import {
 } from "../../atoms/questionSelector";
 import QualResponse from "../../components/qualResponse/qualResponse";
 
-const messageFontSize = "min(1.3vw, 24px)";
+const messageFontSize = "min(1.3vw, 20px)";
 
 const useStyles = makeStyles((theme) => ({
   emph: {

@@ -7,7 +7,7 @@ import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import pageHandler from "../pageHandler";
 
-const messageFontSize = "min(1.3vw, 24px)";
+const messageFontSize = "min(1.3vw, 20px)";
 
 const useStyles = makeStyles((theme) => ({
   emph: {

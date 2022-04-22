@@ -28,6 +28,7 @@ const PreSurveyPage = (props) => {
               "Give my opinion whether I think it is true regardless of the headline",
               "I don't know",
             ],
+            correctAnswer: "Evalute whether it is supported by the headline",
           },
 
           {
@@ -40,6 +41,7 @@ const PreSurveyPage = (props) => {
               "Assume that the headline is true.",
               "I don't know",
             ],
+            correctAnswer: "Assume that the headline is true.",
           },
         ]
       : [];
@@ -47,26 +49,32 @@ const PreSurveyPage = (props) => {
   const json = {
     elements: [
       {
+        type: "html",
+        html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly. You can change your answers until all responses are correct.<h4/>",
+      },
+      {
         name: "claim",
         type: "radiogroup",
-        title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___`,
+        title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
         isRequired: true,
         choices: [
           "a conclusion about a topic",
           "a news headline",
           "I don't know",
         ],
+        correctAnswer: "a conclusion about a topic",
       },
       {
         name: "headline",
         type: "radiogroup",
-        title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___`,
+        title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
         isRequired: true,
         choices: [
           "a conclusion about a topic",
           "a news headline",
           "I don't know",
         ],
+        correctAnswer: "a news headline",
       },
       ...extraQuestions,
       {
@@ -80,7 +88,7 @@ const PreSurveyPage = (props) => {
         name: "understand-text",
         type: "text",
         title: "Please describe what this study is asking you to do",
-        isRequired: false,
+        isRequired: true,
       },
     ],
   };
@@ -93,29 +101,85 @@ const PreSurveyPage = (props) => {
   defaultThemeColors["$header-background-color"] = "#4a4a4a";
   defaultThemeColors["$body-container-background-color"] = "#f8f8f8";
 
+  const correctStr = "Correct";
+  const inCorrectStr = "Incorrect";
+
   Survey.StylesManager.applyTheme();
+
+  const onCompleting = (survey, options) => {
+    console.log(options);
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+      allTrue = allTrue && isAnswerCorrect(q);
+      renderCorrectAnswer(q);
+    });
+    if (allTrue) {
+      options.allowComplete = true;
+    } else {
+      options.allowComplete = false;
+    }
+  };
 
   const onComplete = (survey, options) => {
     //Write survey results into database
+    console.log(options);
+
     console.log("Survey results: " + JSON.stringify(survey.data));
     axios.post("/api/quiz", survey.data).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });
   };
-  //   console.log(props.setChoice);
 
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       const result = await axios("/study/getData");
-  //       // console.log(result.data);
-  //       console.log(result.data);
-  //     }
+  function getTextHtml(text, str, isCorrect) {
+    if (text.indexOf(str) < 0) return undefined;
+    return (
+      text.substring(0, text.indexOf(str)) +
+      "<span style='color:" +
+      (isCorrect ? "green" : "red") +
+      "'>" +
+      str +
+      "</span>"
+    );
+  }
+  function isAnswerCorrect(q) {
+    const right = q.correctAnswer;
+    if (right == undefined) return true;
+    if (!right || q.isEmpty()) return undefined;
+    var left = q.value;
+    if (!Array.isArray(right)) return right == left;
+    if (!Array.isArray(left)) left = [left];
+    for (var i = 0; i < left.length; i++) {
+      if (right.indexOf(left[i]) < 0) return false;
+    }
+    return true;
+  }
 
-  //     fetchData();
-  //   }, []);
+  function renderCorrectAnswer(q) {
+    if (!q) return;
+    const isCorrect = isAnswerCorrect(q);
+    if (!q.prevTitle) {
+      q.prevTitle = q.title;
+    }
+    if (isCorrect === undefined) {
+      q.title = q.prevTitle;
+    }
+    q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
+  }
+
   const model = new Survey.Model(json);
   model.showCompletedPage = false;
+  model.onTextMarkdown.add((sender, options) => {
+    var text = options.text;
+    var html = getTextHtml(text, correctStr, true);
+    if (!html) {
+      html = getTextHtml(text, inCorrectStr, false);
+    }
+    if (!!html) {
+      options.html = html;
+    }
+  });
+
   return (
     <Container
       maxWidth={false}
@@ -162,7 +226,11 @@ const PreSurveyPage = (props) => {
         </div>
       </div>
       <Divider></Divider>
-      <Survey.Survey model={model} onComplete={onComplete} />
+      <Survey.Survey
+        model={model}
+        onComplete={onComplete}
+        onCompleting={onCompleting}
+      />
     </Container>
   );
 };
