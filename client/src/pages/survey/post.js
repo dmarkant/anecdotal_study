@@ -11,10 +11,14 @@ const PostSurveyPage = (props) => {
   const json = {
     elements: [
       {
+        type: "html",
+        html: "<h3>Please respond to these last questions. Your responses do not impact your payment and are fully anonymous! Thank you so much!<h3/>",
+      },
+      {
         type: "radiogroup",
         name: "economic",
         title:
-          "How would you describe your political outlook with regard to economic issues? (e.g., tax rates, government spending, corporate regulatings)",
+          "How would you describe your political outlook with regard to economic issues? (e.g., tax rates, government spending, corporate regulations)",
         isRequired: true,
         colCount: 5,
         choices: [
@@ -129,11 +133,9 @@ const PostSurveyPage = (props) => {
           "Extremely in favor",
         ],
       },
-
-      ,
       {
         type: "comment",
-        name: "study",
+        name: "study_feedback",
         title:
           "Please provide any feedback or general comments about this study:",
         isRequired: false,

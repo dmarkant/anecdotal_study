@@ -37,12 +37,12 @@ const Tweet = (props) => {
   const classes = useStyles();
   const accName = props.accName || "Twitter Account";
   const screen_name = props.screen_name || "tweetScreenName";
-  console.log("personimage", props.person_image_path);
+
   const bg_image =
     props.person_image_path == undefined
       ? ""
       : `url('${props.person_image_path}')`;
-  console.log(bg_image);
+
   return (
     <div className={classes.card}>
       <div

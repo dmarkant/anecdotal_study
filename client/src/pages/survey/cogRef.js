@@ -11,6 +11,10 @@ const PreSurveyPage = (props) => {
   const json = {
     elements: [
       {
+        type: "html",
+        html: "<h4>Please respond to these questions. Your responses do not impact your payment!<h4/>",
+      },
+      {
         name: "batBall",
         type: "text",
         title:

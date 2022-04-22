@@ -24,11 +24,11 @@ const PreSurveyPage = (props) => {
             title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
             isRequired: true,
             choices: [
-              "Evalute whether it is supported by the headline",
-              "Give my opinion whether I think it is true regardless of the headline",
-              "I don't know",
+              "Evaluate whether it is supported by the headline.",
+              "Give my opinion whether I think it is true regardless of the headline.",
+              "I don't know.",
             ],
-            correctAnswer: "Evalute whether it is supported by the headline",
+            correctAnswer: "Evaluate whether it is supported by the headline.",
           },
 
           {
@@ -39,7 +39,7 @@ const PreSurveyPage = (props) => {
             choices: [
               "Evaluate whether the headline is accurate.",
               "Assume that the headline is true.",
-              "I don't know",
+              "I don't know.",
             ],
             correctAnswer: "Assume that the headline is true.",
           },
@@ -84,12 +84,12 @@ const PreSurveyPage = (props) => {
         isRequired: true,
         choices: ["yes", "no"],
       },
-      {
-        name: "understand-text",
-        type: "text",
-        title: "Please describe what this study is asking you to do",
-        isRequired: true,
-      },
+      // {
+      //   name: "understand-text",
+      //   type: "text",
+      //   title: "Please describe what this study is asking you to do",
+      //   isRequired: true,
+      // },
     ],
   };
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
