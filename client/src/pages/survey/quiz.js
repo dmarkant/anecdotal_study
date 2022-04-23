@@ -207,7 +207,7 @@ const PreSurveyPage = (props) => {
         <div style={{ width: "50%", margin: "30px" }}>
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnatan Nolander"}
+            accName={"Johnathan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}
           >

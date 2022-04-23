@@ -17,7 +17,9 @@ import CogRefSurveyPage from "./pages/survey/cogRef";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
 import Instructions1 from "./pages/instructions/instruction1";
-import Instructions2 from "./pages/instructions/instructions2";
+import InstructionsStrength from "./pages/instructions/instructionsStrength";
+import InstructionsShare from "./pages/instructions/instructionsShare";
+
 import Instructions3 from "./pages/instructions/instructions3";
 import Instructions4 from "./pages/instructions/instructions4";
 import Quiz from "./pages/survey/quiz";
@@ -173,9 +175,10 @@ const App = () => {
               path="/instructions2"
               render={() => {
                 if (question === "strength") {
-                  return <Instructions2></Instructions2>;
+                  return <InstructionsStrength></InstructionsStrength>;
                 } else {
-                  return <Redirect to="/instructions3"></Redirect>;
+                  // return <Redirect to="/instructions3"></Redirect>;
+                  return <InstructionsShare></InstructionsShare>;
                 }
               }}
             ></Route>

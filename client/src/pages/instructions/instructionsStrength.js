@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   tweet: {
     gridColumn: "4 /  10",
     gridRow: "2 /  13",
+    justifySelf: "center",
     // justifySelf: "center",
     // alignSelf: "center",
   },
@@ -57,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
   },
   assume: {
     gridColumn: "11 / 13",
-    gridRow: "4 / 7",
+    gridRow: "3 / 7",
     fontSize: messageFontSize,
   },
   pointToQuoteLeft: {
     gridColumn: "10 / 11",
-    gridRow: "4 / 7",
+    gridRow: "3 / 7",
     fontSize: messageFontSize,
   },
   assumeExample: {
@@ -207,7 +208,7 @@ const Instructions2 = (props) => {
         >
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnatan Nolander"}
+            accName={"Johnathan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}
           >

@@ -14,6 +14,11 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
       opacity: 1,
       backgroundColor: "currentColor",
     },
+    "&.MuiSlider-markLabelActive": {
+      opacity: 1,
+      color: "rgba(0, 0, 0, 0.6)",
+      backgroundColor: "black",
+    },
   },
 }));
 

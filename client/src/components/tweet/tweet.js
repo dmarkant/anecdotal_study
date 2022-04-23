@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   card: {
     maxWidth: "500px",
-    // width: "max(100%,400px)",
+    width: "max(100%,400px)",
     backgroundColor: "#white",
     color: "black",
     borderRadius: "10px",

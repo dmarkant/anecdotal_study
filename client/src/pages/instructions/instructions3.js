@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "repeat(12, 1fr)",
     width: "100%",
+    height: "100%",
     gap: "10px",
   },
   tweet: {
@@ -49,7 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
   slider: {
     gridColumn: "4 /  10",
-    gridRow: "9 /  13",
+    gridRow: "9 /  12",
+    // justifySelf: "center",
+    // alignSelf: "center",
+  },
+  button: {
+    gridColumn: "4 /  10",
+    gridRow: "11 /  13",
     // justifySelf: "center",
     // alignSelf: "center",
   },
@@ -60,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
   },
   toughPart: {
     gridColumn: "1/3",
-    gridRow: "9 /  13",
+    gridRow: "8 /  13",
     fontSize: messageFontSize,
   },
   judgment: {
     gridColumn: "1/4",
-    gridRow: "7 /  9",
+    gridRow: "6 /  10",
     fontSize: messageFontSize,
   },
 }));
@@ -107,7 +114,7 @@ const InstructionsTask3 = (props) => {
         {" "}
         <div className={classes.judgment}>
           <p>
-            For each tweet, we will ask you to provide your judgement using a
+            For each tweet, we will ask you to provide your judgment using a
             slider.
           </p>
         </div>
@@ -118,12 +125,12 @@ const InstructionsTask3 = (props) => {
           </p>
         </div>
         <div className={classes.pointToSlider}>
-          <p>👉👉👉</p>
+          <p>👉👉</p>
         </div>
         <div className={classes.tweet}>
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnatan Nolander"}
+            accName={"Johnathan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}
           >
@@ -139,8 +146,6 @@ const InstructionsTask3 = (props) => {
               }
             ></TweetQuote>
           </Tweet>
-        </div>
-        <div className={classes.slider}>
           <CustomSlider
             // style={{ width: "80%" }}
             labels={labels}
@@ -150,9 +155,27 @@ const InstructionsTask3 = (props) => {
             response={instructionResponse}
           ></CustomSlider>
         </div>
+        {/* <div className={classes.slider}></div> */}
+        <div
+          className={classes.button}
+          style={{
+            textAlign: "center",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+          }}
+        >
+          <Button
+            // style={{ backgroundColor: "gray", color: "black" }}
+            variant="contained"
+            onClick={handleConsent}
+            disabled={instructionResponse !== null ? false : true}
+          >
+            Continue
+          </Button>
+        </div>
       </div>
 
-      <div
+      {/* <div
         style={{
           textAlign: "center",
           paddingTop: "10px",
@@ -167,7 +190,7 @@ const InstructionsTask3 = (props) => {
         >
           Continue
         </Button>
-      </div>
+      </div> */}
     </Container>
   );
 };

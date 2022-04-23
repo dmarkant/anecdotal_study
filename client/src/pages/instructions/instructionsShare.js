@@ -35,19 +35,40 @@ const useStyles = makeStyles((theme) => ({
     gridColumn: "4 /  10",
     gridRow: "2 /  13",
     justifySelf: "center",
+    // justifySelf: "center",
     // alignSelf: "center",
   },
-  hello: { gridColumn: "1/4", gridRow: "2/5", fontSize: messageFontSize },
-  thisTweet: { gridColumn: "1/3", gridRow: "2/5", fontSize: messageFontSize },
-  thisQuote: { gridColumn: "11/13", gridRow: "3/5", fontSize: messageFontSize },
+  yourJob: { gridColumn: "1/4", gridRow: "2/5", fontSize: messageFontSize },
+  toughPart: { gridColumn: "1/3", gridRow: "1/4", fontSize: messageFontSize },
   pointToTweet: {
     gridColumn: "3/4",
-    gridRow: "2/3",
+    gridRow: "2/5",
     fontSize: messageFontSize,
   },
+  youshould: { gridColumn: "1/3", gridRow: "4/7", fontSize: messageFontSize },
   pointToQuote: {
-    gridColumn: "10/11",
-    gridRow: "3/5",
+    gridColumn: "3/4",
+    gridRow: "4/7",
+    fontSize: messageFontSize,
+  },
+  inThisCase: {
+    gridColumn: "1/4",
+    gridRow: "7/12",
+    fontSize: messageFontSize,
+  },
+  assume: {
+    gridColumn: "10 / 13",
+    gridRow: "3 / 7",
+    fontSize: messageFontSize,
+  },
+  pointToQuoteLeft: {
+    gridColumn: "10 / 11",
+    gridRow: "3 / 7",
+    fontSize: messageFontSize,
+  },
+  assumeExample: {
+    gridColumn: "11 / 13",
+    gridRow: "7 / 12",
     fontSize: messageFontSize,
   },
 }));
@@ -62,13 +83,14 @@ const hiddenStyle = {
   opacity: 0,
 };
 
-const Instructions1 = (props) => {
-  const location = useLocation();
+const Instructions2 = (props) => {
   const [stage, setStage] = useState(-1);
-  const maxStage = 4;
+  const maxStage = 3;
   const history = useHistory();
+  const location = useLocation();
   const classes = useStyles();
   const handleClick = () => {
+    // history.push("instructions1");
     incrementStage();
   };
 
@@ -77,65 +99,84 @@ const Instructions1 = (props) => {
   };
 
   useEffect(() => {
-    console.log("stage", stage);
     if (stage === -1) {
       incrementStage();
-    } else if (stage === maxStage) {
+    } else if (stage > maxStage) {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     }
   }, [stage]);
 
+  const [response, setResponse] = useState({});
+  const [openAlert, setOpenAlert] = useState(false);
+
+  const handleCloseAlert = (value) => {
+    setOpenAlert(false);
+  };
+
+  const handleResponse = (response, index) => {
+    if (response) response.index = index;
+    console.log(response);
+    setResponse((responses) => {
+      responses[index] = response;
+      console.log(responses);
+      return responses;
+    });
+  };
+
   return (
     <Container maxWidth="xl" className={classes.instructContainer}>
       <div className={classes.grid}>
         <div
-          className={classes.hello}
-          style={stage >= 0 && stage < 2 ? easinStyle : hiddenStyle}
+          className={classes.yourJob}
+          style={stage == 0 ? easinStyle : hiddenStyle}
         >
           <p>
             {" "}
-            Hi! In this study, we will show you a series of tweets that quote
-            news headlines. Click continue to see the tweet + quoted news
-            headline.
+            We will ask you if you would{" "}
+            <span className={classes.emph}>consider sharing</span> the tweet and
+            the news headline on Social Media. By Social Media, we mean
+            platforms like Facebook, Twitter, or even sending to friends in
+            Whatsapp and Apple chats.
           </p>
         </div>
         <div
-          className={classes.thisTweet}
-          style={stage >= 2 ? easinStyle : hiddenStyle}
+          className={classes.toughPart}
+          style={stage >= 1 ? easinStyle : hiddenStyle}
         >
           <p>
-            {" "}
-            In each tweet, you will see a person making a{" "}
-            <span className={classes.emph}>conclusion</span>. Here is an example
-            from Johnathan Nolander, at right
+            For example, We would ask if you would consider sharing the tweet by
+            Johnathan Nolander including the quoted headline by Sunny Hollywood
+            News.
           </p>
         </div>
         <div
           className={classes.pointToTweet}
-          style={stage >= 2 ? easinStyle : hiddenStyle}
+          style={stage >= 1 ? easinStyle : hiddenStyle}
         >
           <p>👉👉👉👉</p>
         </div>
+
         <div
-          className={classes.thisQuote}
-          style={stage == 3 ? easinStyle : hiddenStyle}
+          className={classes.inThisCase}
+          style={stage >= 2 ? easinStyle : hiddenStyle}
         >
           <p>
-            {" "}
-            Here is a <span className={classes.emph}>headline</span> from a news
-            story that Johnathan quotes
+            We understand that in general, you might not share a lot on social
+            media.
           </p>
         </div>
         <div
-          className={classes.pointToQuote}
-          style={stage == 3 ? easinStyle : hiddenStyle}
+          className={classes.assume}
+          style={stage >= 3 ? easinStyle : hiddenStyle}
         >
-          <p>👈👈👈👈</p>
+          In this case please assume you are a person who moderately shares
+          tweets on social media platforms.
         </div>
+
         <div
           className={classes.tweet}
-          style={stage >= 1 ? easinStyle : hiddenStyle}
+          style={stage >= 0 ? easinStyle : hiddenStyle}
         >
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
@@ -178,4 +219,4 @@ const Instructions1 = (props) => {
   );
 };
 
-export default Instructions1;
+export default Instructions2;
