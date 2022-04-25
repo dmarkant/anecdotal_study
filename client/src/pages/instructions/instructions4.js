@@ -124,7 +124,7 @@ const InstructionsTask3 = (props) => {
         <div className={classes.tweet}>
           <Tweet
             text={`Spielberg is one of the worst directors of the recent decade.`}
-            accName={"Johnatan Nolander"}
+            accName={"Johnathan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}
           >
