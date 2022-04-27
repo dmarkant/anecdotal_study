@@ -50,7 +50,7 @@ const PreSurveyPage = (props) => {
     elements: [
       {
         type: "html",
-        html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly. You can change your answers until all responses are correct.<h4/>",
+        html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
       },
       {
         name: "claim",
@@ -84,12 +84,12 @@ const PreSurveyPage = (props) => {
         isRequired: true,
         choices: ["yes", "no"],
       },
-      // {
-      //   name: "understand-text",
-      //   type: "text",
-      //   title: "Please describe what this study is asking you to do",
-      //   isRequired: true,
-      // },
+      {
+        name: "understand-text",
+        type: "text",
+        title: "Please describe what this study is asking you to do",
+        isRequired: true,
+      },
     ],
   };
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];

@@ -147,12 +147,13 @@ const InstructionsTask3 = (props) => {
             ></TweetQuote>
           </Tweet>
           <CustomSlider
-            // style={{ width: "80%" }}
+            // style={{ width: "50%" }}
             labels={labels}
             domain={[0, 1]}
             question={question}
             handleResponse={handleSliderResponse}
             response={instructionResponse}
+            banded={false}
           ></CustomSlider>
         </div>
         {/* <div className={classes.slider}></div> */}

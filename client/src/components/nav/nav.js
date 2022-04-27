@@ -42,7 +42,7 @@ export default function NavBar(props) {
               Social Media News Judgment Study
             </Typography>
           </div>
-          {/* <Stack direction="row" spacing={1} alignItems="center" style={{}}>
+          <Stack direction="row" spacing={1} alignItems="center" style={{}}>
             <Typography>
               FOR TESTING ONLY: Change Question Condition:{" "}
             </Typography>
@@ -58,7 +58,7 @@ export default function NavBar(props) {
               }}
             />
             <Typography>Strength</Typography>
-          </Stack> */}
+          </Stack>
         </Toolbar>
       </AppBar>
     </div>
