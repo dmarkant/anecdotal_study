@@ -96,8 +96,9 @@ const CustomSlider = ({
           display: "flex",
           justifyContent: "flex-start",
           flexDirection: "column",
-          gap: "20px",
+          gap: "10px",
         }}
+        className="customSlider"
       >
         <Typography variant="h6">{question}</Typography>
         <StyledSlider

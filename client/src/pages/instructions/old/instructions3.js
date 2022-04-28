@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Container } from "@mui/material/";
 import { useHistory, useLocation } from "react-router-dom";
 import { useRecoilValue, useRecoilState } from "recoil";
@@ -49,35 +49,24 @@ const useStyles = makeStyles((theme) => ({
     // alignSelf: "center",
   },
   slider: {
-    gridColumn: "4 /  10",
-    gridRow: "9 /  12",
+    width: "500px",
     // justifySelf: "center",
     // alignSelf: "center",
   },
-  button: {
-    gridColumn: "4 /  10",
-    gridRow: "11 /  13",
-    // justifySelf: "center",
-    // alignSelf: "center",
-  },
-  pointToSlider: {
-    gridColumn: "3/4",
-    gridRow: "9 /  11",
+  pointToTweetRight: {
+    margin: 0,
+    width: "300px",
     fontSize: messageFontSize,
-  },
-  toughPart: {
-    gridColumn: "1/3",
-    gridRow: "8 /  13",
-    fontSize: messageFontSize,
-  },
-  judgment: {
-    gridColumn: "1/4",
-    gridRow: "6 /  10",
-    fontSize: messageFontSize,
+    position: "absolute",
+    right: ({ positions }) =>
+      positions ? `${positions.slider.right + 20}px` : "none",
+    top: ({ positions }) => (positions ? `${positions.slider.top}px` : "none"),
   },
 }));
 
 const InstructionsTask3 = (props) => {
+  const tweetRef = useRef(null);
+  const [positions, setPositions] = useState(null);
   const history = useHistory();
   const location = useLocation();
   const classes = useStyles();
@@ -112,20 +101,22 @@ const InstructionsTask3 = (props) => {
     <Container maxWidth="xl" className={classes.instructContainer}>
       <div className={classes.grid}>
         {" "}
-        <div className={classes.judgment}>
-          <p>
-            For each tweet, we will ask you to provide your judgment using a
-            slider.
-          </p>
-        </div>
-        <div className={classes.toughPart}>
-          <p>
-            Drag the slider to the point that best represents your judgment
-            about the question.
-          </p>
-        </div>
-        <div className={classes.pointToSlider}>
-          <p>👉👉</p>
+        <div className={classes.pointToTweetRight}>
+          <div>
+            <p>
+              For each tweet, we will ask you to provide your judgment using a
+              slider.
+            </p>
+          </div>
+          <div>
+            <p>
+              Drag the slider to the point that best represents your judgment
+              about the question.
+            </p>
+          </div>
+          <div>
+            <p>👉👉</p>
+          </div>
         </div>
         <div className={classes.tweet}>
           <Tweet
@@ -146,34 +137,37 @@ const InstructionsTask3 = (props) => {
               }
             ></TweetQuote>
           </Tweet>
-          <CustomSlider
-            // style={{ width: "50%" }}
-            labels={labels}
-            domain={[0, 1]}
-            question={question}
-            handleResponse={handleSliderResponse}
-            response={instructionResponse}
-            banded={false}
-          ></CustomSlider>
+          <div>
+            <CustomSlider
+              // style={{ width: "50%" }}
+              ref={tweetRef}
+              labels={labels}
+              domain={[0, 1]}
+              question={question}
+              handleResponse={handleSliderResponse}
+              response={instructionResponse}
+              banded={false}
+            ></CustomSlider>
+          </div>
+          <div
+            className={classes.button}
+            style={{
+              textAlign: "center",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+            }}
+          >
+            <Button
+              // style={{ backgroundColor: "gray", color: "black" }}
+              variant="contained"
+              onClick={handleConsent}
+              disabled={instructionResponse !== null ? false : true}
+            >
+              Continue
+            </Button>
+          </div>
         </div>
         {/* <div className={classes.slider}></div> */}
-        <div
-          className={classes.button}
-          style={{
-            textAlign: "center",
-            paddingTop: "10px",
-            paddingBottom: "10px",
-          }}
-        >
-          <Button
-            // style={{ backgroundColor: "gray", color: "black" }}
-            variant="contained"
-            onClick={handleConsent}
-            disabled={instructionResponse !== null ? false : true}
-          >
-            Continue
-          </Button>
-        </div>
       </div>
 
       {/* <div

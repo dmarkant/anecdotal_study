@@ -31,7 +31,7 @@ const Tweet = (props) => {
   console.log(props.accLogo);
   return (
     <div
-      className={classes.tweetCard}
+      className={classes.tweetCard + " quoteComponent"}
       style={{ width: "100%", display: "flex", flexDirection: "row" }}
     >
       <div

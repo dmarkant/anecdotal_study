@@ -40,33 +40,38 @@ const useStyles = makeStyles((theme) => ({
     gridTemplateColumns: "repeat(12, 1fr)",
     gridTemplateRows: "repeat(12, 1fr)",
     width: "100%",
+    height: "100%",
     gap: "10px",
   },
   tweet: {
     gridColumn: "4 /  10",
-    gridRow: "1 /  9",
+    gridRow: "1 /  12",
     // justifySelf: "center",
     // alignSelf: "center",
   },
   slider: {
     gridColumn: "4 /  10",
-    gridRow: "9 /  13",
+    gridRow: "7 /  11",
     // justifySelf: "center",
     // alignSelf: "center",
   },
+  qual: {
+    gridColumn: "4 /  10",
+    gridRow: "11 /  13",
+  },
   pointToSlider: {
     gridColumn: "3/4",
-    gridRow: "9 /  11",
+    gridRow: "9 /  12",
     fontSize: messageFontSize,
   },
   toughPart: {
     gridColumn: "1/3",
-    gridRow: "9 /  13",
+    gridRow: "9 /  12",
     fontSize: messageFontSize,
   },
   judgment: {
-    gridColumn: "1/4",
-    gridRow: "7 /  9",
+    gridColumn: "1/3",
+    gridRow: "6 /  9",
     fontSize: messageFontSize,
   },
 }));
@@ -140,8 +145,6 @@ const InstructionsTask3 = (props) => {
               }
             ></TweetQuote>
           </Tweet>
-        </div>
-        <div className={classes.slider}>
           <CustomSlider
             // style={{ width: "80%" }}
             labels={labels}
@@ -150,34 +153,50 @@ const InstructionsTask3 = (props) => {
             response={instructionResponse}
             value={instructionResponse !== null ? instructionResponse : 0.5}
           ></CustomSlider>
-        </div>
-      </div>
+          <div>
+            <QualResponse
+              setQualResponse={setQualResponse}
+              qualResponse={qualResponse}
+            ></QualResponse>
+          </div>
 
-      <div
-        style={{
-          // textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "10px",
-          paddingBottom: "10px",
-        }}
-      >
-        <div style={{ width: "50%" }}>
+          <div
+            style={{
+              // textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+            }}
+          >
+            <Button
+              // style={{ backgroundColor: "gray", color: "black" }}
+              variant="contained"
+              onClick={handleConsent}
+              disabled={qualResponse.length <= minCharacterCount}
+            >
+              Continue
+            </Button>
+          </div>
+        </div>
+        {/* <div className={classes.slider}> */}
+        {/* <CustomSlider
+            // style={{ width: "80%" }}
+            labels={labels}
+            domain={[0, 1]}
+            question={question}
+            response={instructionResponse}
+            value={instructionResponse !== null ? instructionResponse : 0.5}
+          ></CustomSlider> */}
+        {/* </div> */}
+        {/* <div style={{ width: "50%" }} className={classes.qual}>
           <QualResponse
             setQualResponse={setQualResponse}
             qualResponse={qualResponse}
           ></QualResponse>
-        </div>
-        <Button
-          // style={{ backgroundColor: "gray", color: "black" }}
-          variant="contained"
-          onClick={handleConsent}
-          disabled={qualResponse.length <= minCharacterCount}
-        >
-          Continue
-        </Button>
+        </div> */}
       </div>
     </Container>
   );

@@ -168,7 +168,7 @@ const Task1Page = (props) => {
         gap: "50px",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: "30px",
+        paddingTop: "10px",
         paddingBottm: "30px",
         opacity: opacity,
       }}
@@ -190,9 +190,6 @@ const Task1Page = (props) => {
       >
         {" "}
         {/* <Divider></Divider> */}
-        <Typography variant="h6">
-          Tweet {answerIndex + 1}/{data ? data.length * 2 : 18}
-        </Typography>
         <Tweet
           text={`${tweetText.claim}`}
           accName={tweetText.name}
@@ -224,6 +221,9 @@ const Task1Page = (props) => {
           paddingBottom: "10px",
         }}
       >
+        <Typography variant="h6">
+          Tweet {answerIndex + 1}/{data ? data.length * 2 : 18}
+        </Typography>
         <Button
           style={{
             marginRight: "10px",

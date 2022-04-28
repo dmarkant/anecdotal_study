@@ -16,11 +16,11 @@ import PostSurveyPage from "./pages/survey/post";
 import CogRefSurveyPage from "./pages/survey/cogRef";
 import ConsentPage from "./pages/consent/consent";
 import DebriefPage from "./pages/debrief/debrief";
-import Instructions1 from "./pages/instructions/instruction1";
-import InstructionsStrength from "./pages/instructions/instructionsStrength";
-import InstructionsShare from "./pages/instructions/instructionsShare";
+import Instructions1 from "./pages/instructions/instruction1_better";
+import InstructionsStrength from "./pages/instructions/instructionsStrength_better";
+import InstructionsShare from "./pages/instructions/instructionsShare_better";
 
-import Instructions3 from "./pages/instructions/instructions3";
+import Instructions3 from "./pages/instructions/instructions3_better";
 import Instructions4 from "./pages/instructions/instructions4";
 import Quiz from "./pages/survey/quiz";
 //pages

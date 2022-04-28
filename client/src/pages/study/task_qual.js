@@ -187,13 +187,6 @@ const QualTask = (props) => {
           flexDirection: "column",
         }}
       >
-        <Typography
-          variant="h6"
-          align="center"
-          style={{ marginBottom: "10px" }}
-        >
-          Tweet {answerIndex + 1}/{data ? data.length : 18}
-        </Typography>{" "}
         <Tweet
           text={`${tweetText.claim}`}
           accName={tweetText.name}
@@ -225,11 +218,13 @@ const QualTask = (props) => {
           // flexGrow: 1,
         }}
       >
+        <Typography variant="h6" align="left" style={{ marginBottom: "10px" }}>
+          Tweet {answerIndex + 1}/{data ? data.length : 18}
+        </Typography>{" "}
         <QualResponse
           setQualResponse={setQualResponse}
           qualResponse={qualResponse}
         ></QualResponse>
-
         <div
           style={{
             textAlign: "center",

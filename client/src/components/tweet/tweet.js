@@ -44,7 +44,7 @@ const Tweet = (props) => {
       : `url('${props.person_image_path}')`;
 
   return (
-    <div className={classes.card}>
+    <div className={classes.card + " tweetComponent"}>
       <div
         className={classes.tweetCard}
         style={{ display: "flex", flexDirection: "row" }}
