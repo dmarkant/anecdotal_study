@@ -64,6 +64,7 @@ const Task1Page = (props) => {
     responseCopy[answerIndex]["value"] = r;
     responseCopy[answerIndex]["name"] = tweetText["name"];
     responseCopy[answerIndex]["accName"] = tweetText["accName"];
+    responseCopy[answerIndex]["accLogo"] = tweetText["accLogo"];
     responseCopy[answerIndex]["screen_name"] = tweetText["screen_name"];
     responseCopy[answerIndex]["person_image_path"] =
       tweetText["person_image_path"];
@@ -140,6 +141,7 @@ const Task1Page = (props) => {
           claim: d.claim,
           image: d.image,
           accName: d.source_name,
+          accLogo: `/logos/${d.source_logo}`,
           screen_name: d.source_name.split(" ").join(""),
           name: name,
           handle: handle,
@@ -198,6 +200,7 @@ const Task1Page = (props) => {
           person_image_path={tweetText.person_image_path}
         >
           <TweetQuote
+            accLogo={tweetText.accLogo}
             text={tweetText.evidence}
             accName={tweetText.accName}
             screen_name={tweetText.screen_name}

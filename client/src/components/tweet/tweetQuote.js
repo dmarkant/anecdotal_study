@@ -27,6 +27,8 @@ const Tweet = (props) => {
   const classes = useStyles();
   const accName = props.accName || "Twitter Account";
   const screen_name = props.screen_name || "tweetScreenName";
+  const bg_image = props.accLogo == undefined ? "" : `url('${props.accLogo}')`;
+  console.log(props.accLogo);
   return (
     <div
       className={classes.tweetCard}
@@ -46,25 +48,33 @@ const Tweet = (props) => {
         >
           <div
             style={{
+              border: "0.1px",
+              borderColor: "#AAB8C2",
+              borderStyle: "solid",
               borderRadius: "50%",
-              width: "25px",
-              height: "25px",
-              backgroundColor: "grey",
+              width: "40px",
+              height: "40px",
               display: "flex",
               marginRight: "4px",
               marginBottom: "5px",
               alignItems: "center",
               justifyContent: "center",
+              backgroundImage: bg_image,
+              backgroundColor: props.accLogo == undefined ? "grey" : "white",
+              backgroundSize: "100% auto",
             }}
           >
             {/* <PersonIcon></PersonIcon> */}
-            <p style={{ fontSize: "8px" }}>
-              {accName
-                .split(" ")
-                .map((l) => l[0])
-                .join("")}
-            </p>
+            {props.accLogo == undefined ? (
+              <p style={{ fontSize: "14px" }}>
+                {accName
+                  .split(" ")
+                  .map((l) => l[0])
+                  .join("")}
+              </p>
+            ) : null}
           </div>
+
           <span style={{ fontWeight: "bold", marginRight: "2px" }}>
             {accName + " "}{" "}
           </span>

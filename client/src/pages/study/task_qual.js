@@ -135,6 +135,7 @@ const QualTask = (props) => {
         let screen_name =
           lenResponse > 0 ? response[answerIndex]["screen_name"] : "";
         let person_image_path = response[answerIndex]["person_image_path"];
+        let accLogo = response[answerIndex]["accLogo"];
         let nameSplit = name.split(" ");
         let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
         setTweetText({
@@ -142,6 +143,7 @@ const QualTask = (props) => {
           claim: data[answerIndex].claim,
           image: data[answerIndex].image,
           accName: accName,
+          accLogo: accLogo,
           screen_name: screen_name,
           name: name,
           handle: handle,
@@ -204,6 +206,7 @@ const QualTask = (props) => {
             screen_name={tweetText.screen_name}
             showImage={true}
             src={tweetText.image}
+            accLogo={tweetText.accLogo}
           ></TweetQuote>
         </Tweet>
         <SliderFixed
