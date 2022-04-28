@@ -14,7 +14,7 @@ const PreSurveyPage = (props) => {
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
-  console.log(questionCondition);
+  // console.log(questionCondition);
   const extraQuestions =
     questionCondition == "strength"
       ? [
@@ -47,51 +47,84 @@ const PreSurveyPage = (props) => {
       : [];
 
   const json = {
-    elements: [
+    pages: [
       {
-        type: "html",
-        html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
-      },
-      {
-        name: "claim",
-        type: "radiogroup",
-        title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
-        isRequired: true,
-        choices: [
-          "a conclusion about a topic",
-          "a news headline",
-          "I don't know",
+        elements: [
+          {
+            name: "understand_before",
+            type: "radiogroup",
+            title: "Do you understand what this study is asking you to do?",
+            isRequired: true,
+            choices: ["yes", "no"],
+          },
+          {
+            name: "understand-text_before",
+            type: "text",
+            title:
+              "Please in sentence or two, please describe what this study is asking you to do",
+            isRequired: true,
+          },
         ],
-        correctAnswer: "a conclusion about a topic",
       },
       {
-        name: "headline",
-        type: "radiogroup",
-        title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
-        isRequired: true,
-        choices: [
-          "a conclusion about a topic",
-          "a news headline",
-          "I don't know",
+        elements: [
+          {
+            type: "html",
+            html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
+          },
+          {
+            name: "claim",
+            type: "radiogroup",
+            title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
+            isRequired: true,
+            choices: [
+              "a conclusion about a topic",
+              "a news headline",
+              "I don't know",
+            ],
+            correctAnswer: "a conclusion about a topic",
+          },
+          {
+            name: "headline",
+            type: "radiogroup",
+            title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
+            isRequired: true,
+            choices: [
+              "a conclusion about a topic",
+              "a news headline",
+              "I don't know",
+            ],
+            correctAnswer: "a news headline",
+          },
+          ...extraQuestions,
         ],
-        correctAnswer: "a news headline",
-      },
-      ...extraQuestions,
-      {
-        name: "understand",
-        type: "radiogroup",
-        title: "Do you understand what this study is asking you to do?",
-        isRequired: true,
-        choices: ["yes", "no"],
       },
       {
-        name: "understand-text",
-        type: "text",
-        title: "Please describe what this study is asking you to do",
-        isRequired: true,
+        elements: [
+          {
+            type: "html",
+            html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
+          },
+          {
+            name: "understand_after",
+            type: "radiogroup",
+            title:
+              "Asking again, do you understand what this study is asking you to do?",
+            isRequired: true,
+            choices: ["yes", "no"],
+          },
+          {
+            name: "understand-text_after",
+            type: "text",
+            title:
+              "Please in sentence or two, please describe what this study is asking you to do",
+            isRequired: true,
+          },
+        ],
       },
     ],
   };
+
   var defaultThemeColors = Survey.StylesManager.ThemeColors["default"];
   defaultThemeColors["$main-color"] = "black";
   defaultThemeColors["$main-hover-color"] = "lightgrey";
@@ -107,10 +140,13 @@ const PreSurveyPage = (props) => {
   Survey.StylesManager.applyTheme();
 
   const onCompleting = (survey, options) => {
-    console.log(options);
+    // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
-      allTrue = allTrue && isAnswerCorrect(q);
+      let correct = isAnswerCorrect(q);
+      correct = correct == undefined ? true : correct;
+
+      allTrue = allTrue && correct;
       renderCorrectAnswer(q);
     });
     if (allTrue) {
@@ -131,6 +167,30 @@ const PreSurveyPage = (props) => {
     });
   };
 
+  const onCurrentPageChanging = (survey, option) => {
+    if (!option.isNextPage) return;
+    let allTrue = true;
+    survey.getAllQuestions().forEach((q) => {
+      if (survey.currentPage == q.page) {
+        let correct = isAnswerCorrect(q);
+        correct = correct == undefined ? true : correct;
+
+        allTrue = allTrue && correct;
+        renderCorrectAnswer(q);
+      }
+    });
+    console.log(allTrue);
+    if (allTrue) {
+      option.allowChanging = true;
+    } else {
+      option.allowChanging = false;
+    }
+    // console.log(survey.currentPage());
+    // option.oldCurrentPage.questions.forEach((q) => {
+    //   console.log(q);
+    // });
+  };
+
   function getTextHtml(text, str, isCorrect) {
     if (text.indexOf(str) < 0) return undefined;
     return (
@@ -144,7 +204,7 @@ const PreSurveyPage = (props) => {
   }
   function isAnswerCorrect(q) {
     const right = q.correctAnswer;
-    if (right == undefined) return true;
+    if (right == undefined) return undefined;
     if (!right || q.isEmpty()) return undefined;
     var left = q.value;
     if (!Array.isArray(right)) return right == left;
@@ -163,8 +223,9 @@ const PreSurveyPage = (props) => {
     }
     if (isCorrect === undefined) {
       q.title = q.prevTitle;
+    } else {
+      q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
     }
-    q.title = q.prevTitle + " " + (isCorrect ? correctStr : inCorrectStr);
   }
 
   const model = new Survey.Model(json);
@@ -200,8 +261,9 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          One last thing before we start, please respond to the following
-          questions about our study!
+          It is really important that you understand the task in our study! One
+          last thing before we start, please respond to the following questions
+          about our study!
         </Typography>
         <Divider></Divider>
         <div style={{ width: "50%", margin: "30px" }}>
@@ -230,6 +292,7 @@ const PreSurveyPage = (props) => {
         model={model}
         onComplete={onComplete}
         onCompleting={onCompleting}
+        onCurrentPageChanging={onCurrentPageChanging}
       />
     </Container>
   );

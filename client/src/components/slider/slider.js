@@ -12,7 +12,7 @@ const StyledSlider = styled(Slider)(({ theme }) => ({
   "& .MuiSlider-mark": {
     backgroundColor: "black",
     height: 5,
-    width: 2,
+    width: 1,
     // '&[data-index="1"]': {
     //   width: 0,
     // },
