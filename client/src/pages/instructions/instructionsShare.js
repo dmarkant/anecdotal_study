@@ -145,8 +145,8 @@ const Instructions2 = (props) => {
           style={stage >= 1 ? easinStyle : hiddenStyle}
         >
           <p>
-            For example, We would ask if you would consider sharing the tweet by
-            Johnathan Nolander including the quoted headline by Sunny Hollywood
+            For example, we would ask if you would consider sharing the tweet by
+            Johnathan Nolander, including the quoted headline by Sunny Hollywood
             News.
           </p>
         </div>

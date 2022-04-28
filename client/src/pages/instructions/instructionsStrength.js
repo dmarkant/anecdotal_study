@@ -199,8 +199,8 @@ const Instructions2 = (props) => {
           className={classes.assumeExample}
           style={stage >= 5 ? easinStyle : hiddenStyle}
         >
-          So in this case, assume latest three Spielberg movies were in fact
-          among the worst rated Rotten Tomatoes movies!
+          So in this case, assume that hte latest three Spielberg movies were in
+          fact among the worst rated Rotten Tomatoes movies!
         </div>
         <div
           className={classes.tweet}
