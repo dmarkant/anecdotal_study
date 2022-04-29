@@ -17,13 +17,26 @@ const Response = mongoose.model(collection, responseSchema);
 
 router.get("/consent", (req, res) => {
   if (!req.session.consent) {
-    let usertoken = randomstring.generate(8);
+    // let usertoken = randomstring.generate(8);
+    let PROLIFIC_PID = req.query.PROLIFIC_PID;
+    let STUDY_ID = req.query.STUDY_ID;
+    let SESSION_ID = req.query.SESSION_ID;
+    let usertoken;
+    if (PROLIFIC_PID != undefined) {
+      usertoken = req.query.PROLIFIC_PID;
+    } else {
+      usertoken = randomstring.generate(8);
+    }
+
     req.session.consent = true;
     req.session.completed = false;
     req.session.usertoken = usertoken;
 
     let newResponse = new Response({
       usertoken: usertoken,
+      STUDY_ID: STUDY_ID,
+      SESSION_ID: SESSION_ID,
+      PROLIFIC_PID: PROLIFIC_PID,
     });
 
     newResponse.save(function (err) {

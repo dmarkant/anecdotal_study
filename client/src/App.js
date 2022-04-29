@@ -31,12 +31,20 @@ import {
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from "react-router-dom";
 import { choose } from "./functions/functions";
 
 import "./App.css";
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 const App = () => {
+  let query = useQuery();
   const questions = ["strength", "share"];
   // const questions = ["strength"];
   // const questions = ["share"];
@@ -168,8 +176,13 @@ const App = () => {
                   return <Redirect to="/consent" />;
                 }}
               />
+              {/* https://vtl-study.herokuapp.com/consent?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}} */}
               <Route path="/consent">
-                <ConsentPage></ConsentPage>
+                <ConsentPage
+                  PROLIFIC_PID={query.get("PROLIFIC_PID")}
+                  STUDY_ID={query.get("STUDY_ID")}
+                  SESSION_ID={query.get("SESSION_ID")}
+                ></ConsentPage>
               </Route>
               <Route path="/pre" component={PreSurveyPage}></Route>
               <Route path="/instructions1">

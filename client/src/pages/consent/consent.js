@@ -27,17 +27,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Consent = (props) => {
+  // ?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
+  const PROLIFIC_PID = props.PROLIFIC_PID;
+  const STUDY_ID = props.STUDY_ID;
+  const SESSION_ID = props.SESSION_ID;
+  console.log(STUDY_ID);
   const d = new Date();
   const history = useHistory();
   const location = useLocation();
   const query = queryString.parse(location.search);
 
   const handleConsent = () => {
-    axios.get("/api/consent").then((result) => {
-      console.log(result);
-      let nextPage = pageHandler(location.pathname);
-      history.push(nextPage);
-    });
+    axios
+      .get(
+        `/api/consent?PROLIFIC_PID=${PROLIFIC_PID}&STUDY_ID=${STUDY_ID}&SESSION_ID=${SESSION_ID}`
+      )
+      .then((result) => {
+        console.log(result);
+        let nextPage = pageHandler(location.pathname);
+        history.push(nextPage);
+      });
   };
   const classes = useStyles();
   const [overflow, setOverflow] = useState(true);

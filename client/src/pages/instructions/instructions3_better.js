@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: messageFontSize,
     position: "absolute",
     right: ({ positions }) =>
-      positions ? `${positions.slider.right + 50}px` : "none",
+      positions ? `${positions.slider.right + 75}px` : "none",
     top: ({ positions }) => (positions ? `${positions.slider.top}px` : "none"),
   },
 }));
@@ -183,8 +183,16 @@ const InstructionsTask3 = (props) => {
             <div className={classes.pointToSliderRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
+                  You will use a slider to give us a response to this question.
+                </span>
+                <span>👉👉</span>
+              </div>
+              <br />
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <span>
                   Drag the slider to the point that best represents your
-                  judgment about the question.
+                  judgment about the question. your response can be{" "}
+                  <span className={classes.emph}>anywhere on the line.</span>
                 </span>
                 <span>👉👉</span>
               </div>
