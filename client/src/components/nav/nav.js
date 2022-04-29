@@ -27,7 +27,12 @@ export default function NavBar(props) {
     useRecoilState(questionState);
   return (
     <div className={classes.root} style={{ height: props.height }}>
-      <AppBar position="sticky" className={classes.navBar} color="secondary">
+      <AppBar
+        position="sticky"
+        className={classes.navBar}
+        color="secondary"
+        elevation={0}
+      >
         <Toolbar style={{ justifyContent: "space-between" }}>
           <div
             style={{

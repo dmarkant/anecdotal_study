@@ -6,12 +6,12 @@ const LoadingCircle = (props) => {
   return (
     <CircularProgress
       size={300}
-      thickness={10}
+      thickness={5}
       style={{
         position: "absolute",
         top: "30%",
         left: "40%",
-        color: "orange",
+        color: "#111",
         display: props.show,
         opacity: opacity,
         pointerEvents: "none",

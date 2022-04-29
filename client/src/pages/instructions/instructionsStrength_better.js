@@ -80,7 +80,7 @@ const Instructions1 = (props) => {
   const quoteRef = useRef(null);
   const location = useLocation();
   const [stage, setStage] = useState(-1);
-  const maxStage = 5;
+  const maxStage = 6;
   const history = useHistory();
   const classes = useStyles({ positions: positions });
   const handleClick = () => {
@@ -93,6 +93,7 @@ const Instructions1 = (props) => {
 
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
+    if (tweetParent.current == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
 
     let quote = tweetParent.querySelector(".quoteComponent");
@@ -105,9 +106,12 @@ const Instructions1 = (props) => {
   };
 
   useEffect(() => {
+    window.addEventListener("resize", setTweetPositions);
+  }, []);
+
+  useEffect(() => {
     if (tweetRef.current != null) {
       setTweetPositions();
-      window.addEventListener("resize", setTweetPositions);
     }
   }, [tweetRef, quoteRef]);
 
@@ -184,21 +188,29 @@ const Instructions1 = (props) => {
             </span>
             <span>👉👉</span>
           </div>
+          <br />
+          <div style={stage >= 3 ? easinStyle : hiddenStyle}>
+            <span>
+              So in this case, it doesn't matter whether you personally believe
+              Spielberg is one of the worst directors in history or not.
+            </span>
+          </div>
         </div>
 
         <div className={classes.pointToTweetLeft}>
-          <div style={stage >= 3 ? easinStyle : hiddenStyle}>
+          <div style={stage >= 4 ? easinStyle : hiddenStyle}>
+            {/* <span style={{ marginRight: "10px" }}>👈👈</span> */}
             <span>
-              We understand that in general, you might not share a lot on social
-              media.
+              Please assume that the news headline is factually correct, even if
+              that seems unlikely to you.
             </span>
           </div>
           <br />
-          <div style={stage >= 4 ? easinStyle : hiddenStyle}>
+          <div style={stage >= 5 ? easinStyle : hiddenStyle}>
             <span style={{ marginRight: "10px" }}>👈👈</span>
             <span>
-              Also, please assume that hte latest three Spielberg movies were in
-              fact among the worst rated Rotten Tomatoes movies!
+              So in this case, assume that the latest three Spielberg movies
+              were in fact among the worst rated Rotten Tomatoes movies!
             </span>
           </div>
         </div>

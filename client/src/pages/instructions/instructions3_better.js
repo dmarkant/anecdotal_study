@@ -97,6 +97,8 @@ const InstructionsTask3 = (props) => {
   const setTweetPositions = () => {
     let sliderParent = sliderRef.current;
     let tweetParent = tweetRef.current;
+    if (tweetParent == null || sliderParent == null) return;
+
     let tweet = tweetParent.querySelector(".tweetComponent");
     let slider = sliderParent.querySelector(".customSlider");
 

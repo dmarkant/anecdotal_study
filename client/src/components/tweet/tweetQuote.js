@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     border: "0.5px",
     borderColor: "#AAB8C2",
     borderStyle: "solid",
-    borderRadius: "20px",
+    borderRadius: "8px",
     marginTop: "10px",
   },
 });
@@ -98,7 +98,7 @@ const Tweet = (props) => {
           <div
             style={{
               marginTop: "10px",
-              borderRadius: 15,
+              borderRadius: 8,
               width: "100%",
               height: "200px",
               backgroundImage: `url('${props.src}')`,

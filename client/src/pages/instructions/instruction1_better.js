@@ -84,6 +84,7 @@ const Instructions1 = (props) => {
 
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
+    if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
 
     let quote = tweetParent.querySelector(".quoteComponent");
@@ -96,9 +97,13 @@ const Instructions1 = (props) => {
   };
 
   useEffect(() => {
+    window.addEventListener("resize", setTweetPositions);
+  }, []);
+
+  useEffect(() => {
     if (tweetRef.current != null) {
       setTweetPositions();
-      window.addEventListener("resize", setTweetPositions);
+      // window.addEventListener("resize", setTweetPositions);
     }
   }, [tweetRef, quoteRef]);
 

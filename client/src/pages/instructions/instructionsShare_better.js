@@ -91,8 +91,13 @@ const Instructions1 = (props) => {
     setStage((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    window.addEventListener("resize", setTweetPositions);
+  }, []);
+
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
+    if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
 
     let quote = tweetParent.querySelector(".quoteComponent");
