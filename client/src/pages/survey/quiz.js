@@ -261,9 +261,9 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          It is really important that you understand the task in our study! One
+          It is really important that you understand the task in our study. One
           last thing before we start, please respond to the following questions
-          about our study!
+          about our study.
         </Typography>
         <Divider></Divider>
         <div style={{ width: "50%", margin: "30px" }}>

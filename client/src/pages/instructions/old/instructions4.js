@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { Button, Container } from "@mui/material/";
 import { useHistory, useLocation } from "react-router-dom";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { instructionResponseState } from "../../atoms/instructionResponse";
-import Tweet from "../../components/tweet/tweet";
-import TweetQuote from "../../components/tweet/tweetQuote";
+import { instructionResponseState } from "../../../atoms/instructionResponse";
+import Tweet from "../../../components/tweet/tweet";
+import TweetQuote from "../../../components/tweet/tweetQuote";
 import { makeStyles } from "@mui/styles";
-import pageHandler from "../pageHandler";
-import CustomSlider from "../../components/slider/sliderFixed";
+import pageHandler from "../../pageHandler";
+import CustomSlider from "../../../components/slider/sliderFixed";
 import {
   labelSelector,
   questionSelector,
   questionState,
-} from "../../atoms/questionSelector";
-import QualResponse from "../../components/qualResponse/qualResponse";
+} from "../../../atoms/questionSelector";
+import QualResponse from "../../../components/qualResponse/qualResponse";
 
 const messageFontSize = "min(1.3vw, 20px)";
 

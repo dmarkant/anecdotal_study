@@ -83,6 +83,7 @@ const Instructions1 = (props) => {
   const maxStage = 6;
   const history = useHistory();
   const classes = useStyles({ positions: positions });
+
   const handleClick = () => {
     incrementStage();
   };
@@ -93,15 +94,15 @@ const Instructions1 = (props) => {
 
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
-    if (tweetParent.current == null) return;
+    console.log(tweetParent);
+    if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
-
     let quote = tweetParent.querySelector(".quoteComponent");
-
     let p = {
       quote: quote.getBoundingClientRect(),
       tweet: tweet.getBoundingClientRect(),
     };
+    console.log(p);
     setPositions(p);
   };
 

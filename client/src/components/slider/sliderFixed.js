@@ -24,6 +24,7 @@ const CustomSlider = ({ labels, domain, question, value }) => {
         maxWidth: "500px",
         overflow: "visible",
       }}
+      className="customSlider"
     >
       <Typography variant="body">{question}</Typography>
       <div

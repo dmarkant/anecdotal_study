@@ -21,7 +21,7 @@ import InstructionsStrength from "./pages/instructions/instructionsStrength_bett
 import InstructionsShare from "./pages/instructions/instructionsShare_better";
 
 import Instructions3 from "./pages/instructions/instructions3_better";
-import Instructions4 from "./pages/instructions/instructions4";
+import Instructions4 from "./pages/instructions/instructions4_better";
 import Quiz from "./pages/survey/quiz";
 //pages
 import LoadingCircle from "./components/loading/loading";
@@ -150,75 +150,80 @@ const App = () => {
     <div className="app" style={{ height: "100%", lineHeight: "150%" }}>
       <Router>
         <NavBar height={"7%"} className="navBar"></NavBar>
-        <Container
-          style={{ height: "86%", margin: "0 auto", overflow: "auto" }}
-          // style={{ height: "93%" }}
-          id="root-container"
-          maxWidth="lg"
+        <div
+          style={{ width: "100%", height: "86%", overflow: "auto" }}
+          id="scrollWrapper"
         >
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <Redirect to="/consent" />;
-              }}
-            />
-            <Route path="/consent">
-              <ConsentPage></ConsentPage>
-            </Route>
-            <Route path="/pre" component={PreSurveyPage}></Route>
-            <Route path="/instructions1">
-              <Instructions1></Instructions1>
-            </Route>
-            <Route
-              path="/instructions2"
-              render={() => {
-                if (question === "strength") {
-                  return <InstructionsStrength></InstructionsStrength>;
-                } else {
-                  // return <Redirect to="/instructions3"></Redirect>;
-                  return <InstructionsShare></InstructionsShare>;
-                }
-              }}
-            ></Route>
-            <Route path="/Instructions3">
-              <Instructions3></Instructions3>
-            </Route>
-            <Route path="/quiz">
-              <Quiz></Quiz>
-            </Route>
-            <Route path="/task1">
-              <Task
-                phase={0}
-                opacity={loadingOpacity}
-                setLoadingOpacity={setLoadingOpacity}
-              ></Task>
-            </Route>
-            <Route path="/cogref" component={CogRefSurveyPage}></Route>
-            <Route path="/task2">
-              <Task
-                phase={1}
-                opacity={loadingOpacity}
-                setLoadingOpacity={setLoadingOpacity}
-              ></Task>
-            </Route>
-            <Route path="/Instructions4">
-              <Instructions4></Instructions4>
-            </Route>
-            <Route path="/task3">
-              <QualTask
-                opacity={loadingOpacity}
-                setLoadingOpacity={setLoadingOpacity}
-              ></QualTask>
-            </Route>
+          <Container
+            // style={{ height: "86%", margin: "0 auto",  }}
+            // style={{ height: "93%" }}
+            id="root-container"
+            maxWidth="lg"
+          >
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => {
+                  return <Redirect to="/consent" />;
+                }}
+              />
+              <Route path="/consent">
+                <ConsentPage></ConsentPage>
+              </Route>
+              <Route path="/pre" component={PreSurveyPage}></Route>
+              <Route path="/instructions1">
+                <Instructions1></Instructions1>
+              </Route>
+              <Route
+                path="/instructions2"
+                render={() => {
+                  if (question === "strength") {
+                    return <InstructionsStrength></InstructionsStrength>;
+                  } else {
+                    // return <Redirect to="/instructions3"></Redirect>;
+                    return <InstructionsShare></InstructionsShare>;
+                  }
+                }}
+              ></Route>
+              <Route path="/Instructions3">
+                <Instructions3></Instructions3>
+              </Route>
+              <Route path="/quiz">
+                <Quiz></Quiz>
+              </Route>
+              <Route path="/task1">
+                <Task
+                  phase={0}
+                  opacity={loadingOpacity}
+                  setLoadingOpacity={setLoadingOpacity}
+                ></Task>
+              </Route>
+              <Route path="/cogref" component={CogRefSurveyPage}></Route>
+              <Route path="/task2">
+                <Task
+                  phase={1}
+                  opacity={loadingOpacity}
+                  setLoadingOpacity={setLoadingOpacity}
+                ></Task>
+              </Route>
+              <Route path="/Instructions4">
+                <Instructions4></Instructions4>
+              </Route>
+              <Route path="/task3">
+                <QualTask
+                  opacity={loadingOpacity}
+                  setLoadingOpacity={setLoadingOpacity}
+                ></QualTask>
+              </Route>
 
-            <Route path="/post" component={PostSurveyPage}></Route>
-            <Route path="/debrief">
-              <DebriefPage></DebriefPage>
-            </Route>
-          </Switch>
-        </Container>
+              <Route path="/post" component={PostSurveyPage}></Route>
+              <Route path="/debrief">
+                <DebriefPage></DebriefPage>
+              </Route>
+            </Switch>
+          </Container>
+        </div>
         <BottomNav height="7%"></BottomNav>
       </Router>
       <LoadingCircle opacity={loadingOpacity}></LoadingCircle>

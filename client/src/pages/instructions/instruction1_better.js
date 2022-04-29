@@ -84,6 +84,7 @@ const Instructions1 = (props) => {
 
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
+    console.log(tweetParent);
     if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
 

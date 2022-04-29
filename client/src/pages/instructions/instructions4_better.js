@@ -7,7 +7,9 @@ import Tweet from "../../components/tweet/tweet";
 import TweetQuote from "../../components/tweet/tweetQuote";
 import { makeStyles } from "@mui/styles";
 import pageHandler from "../pageHandler";
-import CustomSlider from "../../components/slider/slider";
+import CustomSlider from "../../components/slider/sliderFixed";
+import QualResponse from "../../components/qualResponse/qualResponse";
+
 import {
   labelSelector,
   questionSelector,
@@ -82,9 +84,10 @@ const InstructionsTask3 = (props) => {
   const classes = useStyles({ positions: positions });
   const getQuestion = useRecoilValue(questionSelector);
   const labels = useRecoilValue(labelSelector);
-  const [instructionResponse, setInstructionResponse] = useRecoilState(
-    instructionResponseState
-  );
+  const instructionResponse = useRecoilValue(instructionResponseState);
+  console.log(instructionResponse);
+  const [qualResponse, setQualResponse] = useState(() => "");
+  let minCharacterCount = 5;
 
   const tweetText = {
     claim: "",
@@ -112,6 +115,7 @@ const InstructionsTask3 = (props) => {
 
   useEffect(() => {
     if (sliderRef.current != null && tweetRef.current != null) {
+      console.log("sliderRef");
       setTweetPositions();
       window.addEventListener("resize", setTweetPositions);
       document
@@ -119,11 +123,6 @@ const InstructionsTask3 = (props) => {
         .addEventListener("scroll", setTweetPositions);
     }
   }, [sliderRef, tweetRef]);
-
-  const handleSliderResponse = (event, r) => {
-    console.log(r);
-    setInstructionResponse(r);
-  };
 
   const question = getQuestion(tweetText);
 
@@ -165,10 +164,15 @@ const InstructionsTask3 = (props) => {
                 labels={labels}
                 domain={[0, 1]}
                 question={question}
-                handleResponse={handleSliderResponse}
                 response={instructionResponse}
                 banded={false}
               ></CustomSlider>
+            </div>
+            <div>
+              <QualResponse
+                setQualResponse={setQualResponse}
+                qualResponse={qualResponse}
+              ></QualResponse>
             </div>
             {/* <div className={classes.pointToSliderRight}> */}
             <div className={classes.pointToTweetRight}>
@@ -194,9 +198,12 @@ const InstructionsTask3 = (props) => {
           {/* <div className={classes.slider}></div> */}
         </div>
         <div
-          className={classes.button}
           style={{
-            textAlign: "center",
+            // textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
             paddingTop: "10px",
             paddingBottom: "10px",
           }}
@@ -205,7 +212,7 @@ const InstructionsTask3 = (props) => {
             // style={{ backgroundColor: "gray", color: "black" }}
             variant="contained"
             onClick={handleConsent}
-            disabled={instructionResponse !== null ? false : true}
+            disabled={qualResponse.length <= minCharacterCount}
           >
             Continue
           </Button>
