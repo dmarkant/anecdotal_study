@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import pageHandler from "../pageHandler";
 import axios from "axios";
@@ -11,6 +11,7 @@ import { questionState } from "../../atoms/questionSelector";
 import "survey-react/survey.css";
 
 const PreSurveyPage = (props) => {
+  const quizResponses = useRef([]);
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
@@ -99,29 +100,6 @@ const PreSurveyPage = (props) => {
           ...extraQuestions,
         ],
       },
-      {
-        elements: [
-          {
-            type: "html",
-            html: "<h4>We are asking you to respond to these questions to make sure you understand the task at hand. You will not be able to move forward if you answer incorrectly.<h4/>",
-          },
-          {
-            name: "understand_after",
-            type: "radiogroup",
-            title:
-              "Asking again, do you understand what this study is asking you to do?",
-            isRequired: true,
-            choices: ["yes", "no"],
-          },
-          {
-            name: "understand-text_after",
-            type: "text",
-            title:
-              "Please in sentence or two, please describe what this study is asking you to do",
-            isRequired: true,
-          },
-        ],
-      },
     ],
   };
 
@@ -149,6 +127,7 @@ const PreSurveyPage = (props) => {
       allTrue = allTrue && correct;
       renderCorrectAnswer(q);
     });
+    quizResponses.current.push(survey.data);
     if (allTrue) {
       options.allowComplete = true;
     } else {
@@ -158,10 +137,10 @@ const PreSurveyPage = (props) => {
 
   const onComplete = (survey, options) => {
     //Write survey results into database
-    console.log(options);
+    // console.log(options);
 
-    console.log("Survey results: " + JSON.stringify(survey.data));
-    axios.post("/api/quiz", survey.data).then((response) => {
+    console.log("Survey results: " + JSON.stringify(quizResponses.current));
+    axios.post("/api/quiz", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
       history.push(nextPage);
     });

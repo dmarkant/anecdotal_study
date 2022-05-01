@@ -56,16 +56,16 @@ const Debrief = (props) => {
         Ryan Wesslen (College of Computing and Informatics)
       </p> */}
       <p>
-        Thank you for your participation! In this study, we investiage whether
+        Thank you for your participation! In this study, we investigated whether
         anecdotal evidence (experience of a single person) used as evidence is
         seen as strong evidence.
       </p>
       <h3>
-        Here is your token of completion. Please enter this into Prolific. You
-        may close the page after you have entered the code
+        Below is your token of completion. Please enter (copy and paste) this
+        into Prolific. You may close the page after you have entered the code
       </h3>
       <hr />
-      <h3>{token}</h3>
+      <h3>463377EF</h3>
       <hr />
       {/* <h3>If you a SONA participant, there is nothing else you need to do.</h3>
       <p>

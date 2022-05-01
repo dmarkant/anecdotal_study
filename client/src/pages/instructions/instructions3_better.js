@@ -86,6 +86,8 @@ const InstructionsTask3 = (props) => {
     instructionResponseState
   );
 
+  console.log(instructionResponse);
+
   const tweetText = {
     claim: "",
     evidence: "",

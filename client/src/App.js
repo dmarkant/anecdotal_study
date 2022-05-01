@@ -5,6 +5,7 @@ import { responseState } from "./atoms/response";
 import { answerIndexState } from "./atoms/answerIndex";
 import { qualResponseState } from "./atoms/qualResponseIndex";
 import { questionState } from "./atoms/questionSelector";
+import { instructionResponseState } from "./atoms/instructionResponse";
 import NavBar from "./components/nav/nav";
 import Container from "@mui/material/Container";
 import BottomNav from "./components/bottomNav/bottomNav";
@@ -55,6 +56,9 @@ const App = () => {
   const [question, setQuestion] = useRecoilState(questionState);
   const [qualResponseIndex, setQualResponseIndex] =
     useRecoilState(qualResponseState);
+  const [instructionResponse, setInstructionResponse] = useRecoilState(
+    instructionResponseState
+  );
 
   const [loadingOpacity, setLoadingOpacity] = useState(0);
 
@@ -70,10 +74,18 @@ const App = () => {
       const sessionQualResponseIndex =
         localStorage.getItem("qualResponseIndex");
       const sessionQuestion = localStorage.getItem("question");
+      const sessionInstructionResponse = localStorage.getItem(
+        "instructionResponse"
+      );
+      console.log(sessionInstructionResponse);
       // console.log(sessionResponse);
       if (sessionResponse !== null) {
         setResponse(JSON.parse(sessionResponse));
         console.log(sessionResponse);
+      }
+      if (sessionInstructionResponse !== null) {
+        console.log(sessionInstructionResponse);
+        setInstructionResponse(+sessionInstructionResponse);
       }
       if (sessionAnswerIndex !== null) {
         setAnswerIndex(+sessionAnswerIndex);
@@ -108,6 +120,13 @@ const App = () => {
       window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
     }
   }, [qualResponseIndex]);
+
+  useEffect(() => {
+    console.log(instructionResponse);
+    if (instructionResponse !== null) {
+      window.localStorage.setItem("instructionResponse", instructionResponse);
+    }
+  }, [instructionResponse]);
 
   useEffect(() => {
     console.log(question);

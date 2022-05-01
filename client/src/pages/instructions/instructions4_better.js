@@ -9,7 +9,7 @@ import { makeStyles } from "@mui/styles";
 import pageHandler from "../pageHandler";
 import CustomSlider from "../../components/slider/sliderFixed";
 import QualResponse from "../../components/qualResponse/qualResponse";
-
+import axios from "axios";
 import {
   labelSelector,
   questionSelector,
@@ -85,7 +85,7 @@ const InstructionsTask3 = (props) => {
   const getQuestion = useRecoilValue(questionSelector);
   const labels = useRecoilValue(labelSelector);
   const instructionResponse = useRecoilValue(instructionResponseState);
-  console.log(instructionResponse);
+  console.log("instructionResponse", instructionResponse);
   const [qualResponse, setQualResponse] = useState(() => "");
   let minCharacterCount = 5;
 
@@ -127,8 +127,17 @@ const InstructionsTask3 = (props) => {
   const question = getQuestion(tweetText);
 
   const handleConsent = () => {
-    let nextPage = pageHandler(location.pathname);
-    history.push(nextPage);
+    axios
+      .post("/api/instruction", {
+        instructionResponse: instructionResponse,
+        instructionQualResponse: qualResponse,
+      })
+      .then((response) => {
+        let nextPage = pageHandler(location.pathname);
+        history.push(nextPage);
+      });
+    // let nextPage = pageHandler(location.pathname);
+    // history.push(nextPage);
   };
 
   return (
@@ -164,7 +173,7 @@ const InstructionsTask3 = (props) => {
                 labels={labels}
                 domain={[0, 1]}
                 question={question}
-                response={instructionResponse}
+                value={instructionResponse !== null ? instructionResponse : 0.5}
                 banded={false}
               ></CustomSlider>
             </div>
@@ -178,18 +187,31 @@ const InstructionsTask3 = (props) => {
             <div className={classes.pointToTweetRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
-                  For each tweet and news headline, we will ask you to provide
-                  your judgment using a slider.
+                  Next, we will show you the responses you have provided for
+                  every tweet. We ask that you think about your responses and
+                  the tweet and tell us{" "}
+                  <span className={classes.emph}>
+                    the reasons you have for your judgment.
+                  </span>
                 </span>
-                <span>👉👉</span>
+                {/* <span>👉👉</span> */}
               </div>
             </div>
             <div className={classes.pointToSliderRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
-                  Drag the slider to the point that best represents your
-                  judgment about the question.
+                  You can see your response for the Spielberg tweet here.
                 </span>
+                <span>👉👉</span>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <span>Type down your responses in the provided text box.</span>
                 <span>👉👉</span>
               </div>
             </div>

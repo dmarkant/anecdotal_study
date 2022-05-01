@@ -21,12 +21,13 @@ router.get("/consent", (req, res) => {
     let PROLIFIC_PID = req.query.PROLIFIC_PID;
     let STUDY_ID = req.query.STUDY_ID;
     let SESSION_ID = req.query.SESSION_ID;
-    let usertoken;
-    if (PROLIFIC_PID != undefined) {
+    let usertoken = randomstring.generate(8);
+    console.log(usertoken);
+    console.log(PROLIFIC_PID);
+    if (PROLIFIC_PID !== "null") {
       usertoken = req.query.PROLIFIC_PID;
-    } else {
-      usertoken = randomstring.generate(8);
     }
+    console.log(usertoken);
 
     req.session.consent = true;
     req.session.completed = false;
@@ -38,6 +39,7 @@ router.get("/consent", (req, res) => {
       SESSION_ID: SESSION_ID,
       PROLIFIC_PID: PROLIFIC_PID,
     });
+    console.log(newResponse);
 
     newResponse.save(function (err) {
       if (err) console.log(err);
@@ -71,6 +73,19 @@ router.post("/cogref", (req, res) => {
   Response.findOneAndUpdate(
     { usertoken: usertoken },
     { cogref: req.body },
+    (err, doc) => {
+      if (err) req.status(404).send(err);
+      else res.json(req.body);
+    }
+  );
+});
+
+router.post("/instruction", (req, res) => {
+  console.log(req.body);
+  let usertoken = req.session.usertoken;
+  Response.findOneAndUpdate(
+    { usertoken: usertoken },
+    { instructions: req.body },
     (err, doc) => {
       if (err) req.status(404).send(err);
       else res.json(req.body);
