@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     padding: "10px",
     borderStyle: "solid",
     borderColor: "lightgrey",
-    borderRadius: 10,
+    borderRadius: 8,
     border: "0.1px",
   },
   card: {
