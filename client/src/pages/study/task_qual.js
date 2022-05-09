@@ -64,6 +64,7 @@ const QualTask = (props) => {
     let responseCopy = { ...response };
     responseCopy[answerIndex] = { ...responseCopy[answerIndex] };
     responseCopy[answerIndex]["qualResponse"] = qualResponse;
+    responseCopy[answerIndex]["qualResponseTime"] = Date.now();
     setResponse(responseCopy);
   };
 
