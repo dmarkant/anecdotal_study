@@ -41,14 +41,14 @@ export const qualQuestionSelector = selector({
     switch (questionCondition) {
       case "strength":
         getQL = (tweetText) => {
-          return `For the tweet above👆 You made the below👇 judgment when asked: "how strong the quoted news headline supports ${tweetText.name}'s conclusion?"`;
+          return `For the tweet above👆 You made the below👇 judgment when asked: "To what extent does the quoted news headline support ${tweetText.name}'s conclusion?"`;
         };
         return getQL;
 
         break;
       case "share":
         getQL = (tweetText) => {
-          return `For the tweet above👆 You made the below👇 judgment when asked: "Would you consider sharing ${tweetText.name}'s tweet on social media?"`;
+          return `For the tweet above👆 You made the below👇 judgment when asked: "Would you consider sharing ${tweetText.name}'s tweet on social media"`;
         };
         return getQL;
         break;
