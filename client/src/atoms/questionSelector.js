@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 
 export const questionState = atom({
   key: "questionState",
-  default: null,
+  default: "strength",
 });
 
 export const questionSelector = selector({
