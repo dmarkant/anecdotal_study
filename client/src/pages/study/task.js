@@ -131,7 +131,7 @@ const Task1Page = (props) => {
       let pindex = answerIndex - props.phase * data.length;
       if (pindex < data.length) {
         let d = data[pindex];
-        console.log(d);
+        // console.log(d);
         // let name = fakerator.names.name();
         let name = d.person_name;
         let person_image_path = d.person_image_path;

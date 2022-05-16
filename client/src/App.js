@@ -77,27 +77,27 @@ const App = () => {
       const sessionInstructionResponse = localStorage.getItem(
         "instructionResponse"
       );
-      console.log(sessionInstructionResponse);
+      // console.log(sessionInstructionResponse);
       // console.log(sessionResponse);
       if (sessionResponse !== null) {
         setResponse(JSON.parse(sessionResponse));
-        console.log(sessionResponse);
+        // console.log(sessionResponse);
       }
       if (sessionInstructionResponse !== null) {
-        console.log(sessionInstructionResponse);
+        // console.log(sessionInstructionResponse);
         setInstructionResponse(+sessionInstructionResponse);
       }
       if (sessionAnswerIndex !== null) {
         setAnswerIndex(+sessionAnswerIndex);
-        console.log("session answer index", sessionAnswerIndex);
+        // console.log("session answer index", sessionAnswerIndex);
       }
       if (sessionQualResponseIndex !== null) {
         setQualResponseIndex(+sessionQualResponseIndex);
-        console.log("qual response index", sessionQualResponseIndex);
+        // console.log("qual response index", sessionQualResponseIndex);
       }
       if (sessionQuestion !== null) {
         setQuestion(sessionQuestion);
-        console.log("session question", sessionQuestion);
+        // console.log("session question", sessionQuestion);
       }
     }
   }, []);
@@ -115,14 +115,14 @@ const App = () => {
   }, [answerIndex]);
 
   useEffect(() => {
-    console.log(question);
+    // console.log(question);
     if (response && Object.keys(response).length > 0) {
       window.localStorage.setItem("qualResponseIndex", qualResponseIndex);
     }
   }, [qualResponseIndex]);
 
   useEffect(() => {
-    console.log(instructionResponse);
+    // console.log(instructionResponse);
     if (instructionResponse !== null) {
       window.localStorage.setItem("instructionResponse", instructionResponse);
     }
@@ -136,7 +136,7 @@ const App = () => {
   }, [question]);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (data) {
       window.localStorage.setItem("data", JSON.stringify(data));
     }
@@ -146,7 +146,7 @@ const App = () => {
     async function fetchData() {
       const result = await axios.get("/api/data");
       setTimeout(() => {
-        console.log(result.data);
+        // console.log(result.data);
         // let shuffledData = [shuffle(result.data[0]), shuffle(result.data[1])];
         let shuffledData;
         if (DEV) {
@@ -169,7 +169,7 @@ const App = () => {
     }
 
     const sessionData = window.localStorage.getItem("data");
-    console.log("session data", sessionData);
+    // console.log("session data", sessionData);
     if (sessionData !== null) {
       setData(JSON.parse(sessionData));
     } else {

@@ -53,30 +53,29 @@ const Consent = (props) => {
 
   useEffect(() => {
     window.addEventListener("beforeprint", () => {
-      setOverflow(false);
+      // setOverflow(false);
+      document.querySelector("#scrollWrapper").style.overflow = "visible";
     });
     window.addEventListener("afterprint", () => {
-      setOverflow(true);
+      document.querySelector("#scrollWrapper").style.overflow = "scroll";
     });
   }, []);
 
   return (
     <Container
       maxWidth="xl"
+      // style={{ overflow: overflow }}
       className={classes.instructContainer}
       id="consent-container"
     >
-      <div>
-        {/* <img
-          src={process.env.PUBLIC_URL + "/university.png"}
-          height="120px"
-        ></img> */}
-      </div>
+      <div></div>
       <h1>Consent to Participate in Online Research</h1>
       <h2>Title of Research Study:</h2>
       <p>Reasoning with Evidence on Social Media</p>
       <h2>Principal Investigator</h2>
       <p>Dr. Steven Franconeri</p>
+      <h2>Supported By</h2>
+      <p>Northwestern University, Department of Psychology</p>
 
       <h2>Key Information about this research study:</h2>
       <p>
@@ -88,22 +87,22 @@ const Consent = (props) => {
         interventions in the form of explanations reduce users’ reliance on weak
         evidence. You will be asked to read sentences on a screen, and asked
         questions about what you read. We expect that you will be in this
-        research study for between 20 and 30 minutes. Your participation in this
+        research study for between 30 and 45 minutes. Your participation in this
         study does not involve any risks other than what you would encounter in
         daily life. You are not likely to have any direct benefit from being in
         this research study. The potential benefits to you from participation
         may include learning about how psychological research is conducted, and
-        you may learn about issues of current interest in psychology.{" "}
+        you may learn about issues of current interest in psychology.
       </p>
 
       <h2>Why am I being asked to take part in this research study?</h2>
       <p>
         We are asking you to take part in this research study because you are 18
-        years or older and are an English speaker living in the United States.
+        years or older and are an English speaker living in the United States.{" "}
       </p>
 
       <h2>How many people will be in this study?</h2>
-      <p>We expect no more than 1000 people will be in this research study.</p>
+      <p>We expect about 1000 people will be in this research study.</p>
 
       <h2>What should I know about participating in a research study?</h2>
       <ul>
@@ -114,10 +113,12 @@ const Consent = (props) => {
       </ul>
       <h2>What happens if I say, “Yes, I want to be in this research”?</h2>
       <p>
-        Your participation in this study will last between 20 and 30 minutes. In
-        this experiment you will be asked to perform a task on a computer screen
-        that will require your focus. You will be asked to read text, reflect on
-        the information, and answer questions about what you read.
+        • Your participation in this study will last between 30 and 45 minutes.
+        The experiment is to be completed on a computer, at a location of your
+        choosing. In this experiment you will first be asked to answer questions
+        about yourself (i.e., age, gender, race/ethnicity, education level). You
+        will then be asked to read text on your computer screen, reflect on the
+        information, and answer questions about what you read.
       </p>
 
       <h2>Is there any way being in this study could be bad for me?</h2>
@@ -150,13 +151,14 @@ const Consent = (props) => {
         and other representatives of this institution.
       </p>
       <p>
-        Data Sharing: De-identified data from this study will be shared with the
-        research team and the research community at large to advance science and
-        health. We will remove or code any personal information that could
-        identify you before files are shared with other researchers to ensure
-        that, by current scientific standards and known methods, no one will be
-        able to identify you from the information we share. Despite these
-        measures, we cannot guarantee anonymity of your personal data.
+        <span style={{ fontWeight: "bold" }}>Data Sharing</span>: De-identified
+        data from this study will be shared with the research team and the
+        research community at large to advance science and health. We will
+        remove or code any personal information that could identify you before
+        files are shared with other researchers to ensure that, by current
+        scientific standards and known methods, no one will be able to identify
+        you from the information we share. Despite these measures, we cannot
+        guarantee anonymity of your personal data.
       </p>
 
       <h2>What else do I need to know?</h2>
