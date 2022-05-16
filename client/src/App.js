@@ -156,6 +156,10 @@ const App = () => {
           ];
         } else {
           shuffledData = [result.data[0], result.data[1]];
+          // shuffledData = [
+          //   result.data[0].slice(0, 4),
+          //   result.data[1].slice(0, 4),
+          // ];
         }
 
         let q = choose(questions);

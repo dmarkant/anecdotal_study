@@ -160,7 +160,7 @@ const PostSurveyPage = (props) => {
         name: "study_feedback",
         title:
           "Please provide any feedback or general comments about this study:",
-        isRequired: false,
+        isRequired: true,
       },
       // {
       //   type: "comment",

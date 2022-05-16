@@ -70,6 +70,7 @@ const Task1Page = (props) => {
       tweetText["person_image_path"];
     responseCopy[answerIndex]["phase"] = props.phase;
     responseCopy[answerIndex]["questionCondition"] = questionCondition;
+    responseCopy[answerIndex]["responseTime"] = Date.now();
     setResponse(responseCopy);
   };
 
