@@ -6,22 +6,16 @@ const responseSchema = new Schema({
   usertoken: {
     type: String,
     required: true,
-    unique: true,
   },
   SESSION_ID: {
     type: String,
-    required: true,
-    unique: true,
   },
   STUDY_ID: {
     type: String,
-    required: true,
-    unique: true,
   },
   PROLIFIC_PID: {
     type: String,
     required: true,
-    unique: true,
   },
   date: {
     type: Date,
