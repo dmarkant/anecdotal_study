@@ -51,14 +51,14 @@ export default function FullScreenDialog(props) {
           <Typography variant="h5">Here we go!</Typography>
           <br></br>
           <Typography variant="h5">
-            You will use a slider to make a judgment about each given tweet
+            You will use a slider to make a judgment about each given post
             using a slider.
           </Typography>
           <br></br>
           <br></br>
           <Typography variant="h5">
-            After you have evaluated the tweet, Click on Next to see the next
-            tweet
+            After you have evaluated the post, Click on Next to see the next
+            post
           </Typography>
         </div>
       </div>

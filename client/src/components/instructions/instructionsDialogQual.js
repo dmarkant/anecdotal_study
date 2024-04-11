@@ -50,7 +50,7 @@ export default function FullScreenDialog(props) {
         <div style={{ width: "60%" }}>
           <Typography variant="h5">
             Now we will show you exactly the rating you provided for each of the
-            tweets! We ask that you try your best to provide reasons for your
+            posts. We ask that you try your best to provide reasons for your
             ratings. Any rationale would be good!
           </Typography>
         </div>

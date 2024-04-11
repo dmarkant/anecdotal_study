@@ -110,7 +110,7 @@ const InstructionsTask3 = (props) => {
           </div>
           <div>
             <p>
-              Drag the slider to the point that best represents your judgment
+              Click on the point along the line that best represents your judgment
               about the question.
             </p>
           </div>

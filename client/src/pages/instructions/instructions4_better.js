@@ -187,9 +187,9 @@ const InstructionsTask3 = (props) => {
             <div className={classes.pointToTweetRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
-                  Next, we will show you the responses you have provided for
-                  every tweet. We ask that you think about your responses and
-                  the tweet and tell us{" "}
+                  Next, we will show you the response you gave for
+                  each post. We ask that you think about your response and
+                  the post and tell us{" "}
                   <span className={classes.emph}>
                     the reasons you have for your judgment.
                   </span>

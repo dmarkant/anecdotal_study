@@ -154,9 +154,8 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            Hi! In this study, we will show you a series of tweets that quote
-            news headlines. Click continue to see the tweet + quoted news
-            headline.
+            In this part of the study, we will show you a series of social media posts 
+            that quote news headlines. Click continue to see an example post.
           </span>
         </div>
         <div
@@ -165,22 +164,21 @@ const Instructions1 = (props) => {
         >
           <span>
             {" "}
-            In each tweet, you will see a person making a{" "}
-            <span className={classes.emph}>conclusion</span>. Here is an example
-            from Johnathan Nolander, at right
+            In each post, you'll see a person making a{" "}
+            <span className={classes.emph}>conclusion</span>. Here is an example:
           </span>
-          <span>👉👉👉👉</span>
+          <span>👉👉👉</span>
         </div>
 
         <div
           className={classes.pointToQuoteLeft}
           style={stage == 2 ? easinStyle : hiddenStyle}
         >
-          <p>👈👈👈👈</p>
+          <p>👈👈👈</p>
           <p>
             {" "}
-            Here is a <span className={classes.emph}>headline</span> from a news
-            story that Johnathan quotes
+            Each post will also include a <span className={classes.emph}>headline</span> from a news
+            story that the person is quoting to support their conclusion.
           </p>
         </div>
         <div

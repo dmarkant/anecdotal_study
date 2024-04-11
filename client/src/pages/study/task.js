@@ -149,11 +149,6 @@ const Task1Page = (props) => {
           person_image_path: person_image_path,
         });
       } else {
-        // if (props.phase === 0) {
-        //   history.push("cogref");
-        // } else {
-        //   history.push("task3");
-        // }
         let nextPage = pageHandler(location.pathname);
         history.push(nextPage);
       }

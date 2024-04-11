@@ -161,10 +161,10 @@ const Instructions1 = (props) => {
             <span>
               {" "}
               We will ask you if you would{" "}
-              <span className={classes.emph}>consider sharing</span> the tweet
-              and the news headline on Social Media. By Social Media, we mean
-              platforms like Facebook, Twitter, or even sending to friends in
-              Whatsapp and Apple chats.
+              <span className={classes.emph}>consider sharing</span> each post
+              on social media. By social media, we mean
+              platforms like Facebook, Twitter/X, TikTok, or even sending to friends in
+              direct messages or group chats.
             </span>
           </div>
           <br />
@@ -173,26 +173,26 @@ const Instructions1 = (props) => {
         <div className={classes.pointToTweetRight}>
           <div style={stage >= 1 ? easinStyle : hiddenStyle}>
             <span>
-              For example, we would ask if you would consider sharing the tweet
-              by Johnathan Nolander, including the quoted headline by Sunny
-              Hollywood News.
+              For example: Would you consider sharing this post, 
+              including the quoted headline?
             </span>
-            <span>👉👉</span>
+            <span>👉👉👉</span>
           </div>
         </div>
 
         <div className={classes.pointToTweetLeft}>
           <div style={stage >= 2 ? easinStyle : hiddenStyle}>
             <span>
-              We understand that in general, you might not share a lot on social
+              We understand that, in general, you might not share a lot on social
               media.
             </span>
           </div>
           <br />
           <div style={stage >= 3 ? easinStyle : hiddenStyle}>
             <span>
-              In this case please assume you are a person who moderately shares
-              tweets on social media platforms.
+              Even if you don't share often, there may be some posts that you would 
+              be more likely to share than others. When responding, please consider 
+              how likely you would be to share the post compared to other content. 
             </span>
           </div>
         </div>

@@ -40,7 +40,6 @@ import "./App.css";
 
 function useQuery() {
   const { search } = useLocation();
-
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
@@ -49,7 +48,7 @@ const App = () => {
   const questions = ["strength", "share"];
   // const questions = ["strength"];
   // const questions = ["share"];
-  const DEV = false;
+  const DEV = true;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);
@@ -260,7 +259,7 @@ const App = () => {
             </Switch>
           </Container>
         </div>
-        <BottomNav height="7%"></BottomNav>
+        {/* <BottomNav height="7%"></BottomNav> */}
       </Router>
       <LoadingCircle opacity={loadingOpacity}></LoadingCircle>
     </div>

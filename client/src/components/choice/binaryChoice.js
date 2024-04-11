@@ -37,7 +37,7 @@ const BinaryChoice = (props) => {
         let uncertaintyMade = false;
         let nLines = props.nLines || 100;
         const choiceDomain = props.choiceDomain || [-1.0, 1.0];
-        let qText = props.question || "how suspicious is this tweet?";
+        let qText = props.question || "how suspicious is this post?";
 
         const g = svg
           .append("g")

@@ -20,7 +20,7 @@ export const questionSelector = selector({
         break;
       case "share":
         getQL = (tweetText) => {
-          return `Would you consider sharing ${tweetText.name}'s tweet on social media (for example Twitter, Facebook, or Whatsapp)?`;
+          return `To what extent would you consider sharing ${tweetText.name}'s post on social media?`;
         };
         return getQL;
         break;

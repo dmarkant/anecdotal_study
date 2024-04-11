@@ -176,7 +176,7 @@ const InstructionsTask3 = (props) => {
             <div className={classes.pointToTweetRight}>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
-                  For each tweet and news headline, we will ask you to provide
+                  For each post, we will ask you to provide
                   your judgment using a slider.
                 </span>
                 <span>👉👉</span>
@@ -192,11 +192,11 @@ const InstructionsTask3 = (props) => {
               <br />
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <span>
-                  Drag the slider to the point that best represents your
-                  judgment about the question. your response can be{" "}
+                  Click on the point along the line that best represents your
+                  judgment about the question. Your response can be{" "}
                   <span className={classes.emph}>anywhere on the line.</span>
                 </span>
-                <span>👉👉</span>
+                <span>👉👉👉👉</span>
               </div>
             </div>
             {/* </div> */}

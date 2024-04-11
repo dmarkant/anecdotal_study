@@ -76,7 +76,7 @@ const PreSurveyPage = (props) => {
           {
             name: "claim",
             type: "radiogroup",
-            title: `The tweet: "Spielberg is one of the worst directors of the recent decade." is ___.`,
+            title: `In the example post, "Spielberg is one of the worst directors of the recent decade." is ___.`,
             isRequired: true,
             choices: [
               "a conclusion about a topic",
@@ -88,7 +88,7 @@ const PreSurveyPage = (props) => {
           {
             name: "headline",
             type: "radiogroup",
-            title: `The tweet: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
+            title: `In the example post, "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." is ___.`,
             isRequired: true,
             choices: [
               "a conclusion about a topic",
@@ -137,8 +137,6 @@ const PreSurveyPage = (props) => {
 
   const onComplete = (survey, options) => {
     //Write survey results into database
-    // console.log(options);
-
     console.log("Survey results: " + JSON.stringify(quizResponses.current));
     axios.post("/api/quiz", quizResponses.current).then((response) => {
       let nextPage = pageHandler(location.pathname);
@@ -240,9 +238,8 @@ const PreSurveyPage = (props) => {
         }}
       >
         <Typography variant="h5">
-          It is really important that you understand the task in our study. One
-          last thing before we start, please respond to the following questions
-          about our study.
+          It is important that you understand how this task will work. Before we start, 
+          please respond to the questions below about the task.
         </Typography>
         <Divider></Divider>
         <div style={{ width: "50%", margin: "30px" }}>

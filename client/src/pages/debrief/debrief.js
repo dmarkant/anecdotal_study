@@ -42,7 +42,7 @@ const Debrief = (props) => {
           height="120px"
         ></img>
       </div> */}
-      <h1>Debriefing</h1>
+      {/* <h1>Debriefing</h1> */}
       {/* <p>
         <b>Principal investigator:</b> Alireza Karduni, College of Computing and
         Informatics
@@ -56,16 +56,14 @@ const Debrief = (props) => {
         Ryan Wesslen (College of Computing and Informatics)
       </p> */}
       <p>
-        Thank you for your participation! In this study, we investigated whether
-        anecdotal evidence (experience of a single person) used as evidence is
-        seen as strong evidence.
+        Thanks for your responses! You're done with this phase of the study. 
+        Click on the link below to proceed to the final steps.
       </p>
-      <h3>
+      {/* <h3>
         Below is your token of completion. Please enter (copy and paste) this
         into Prolific. You may close the page after you have entered the code
-      </h3>
-      <hr />
-      <h3>463377EF</h3>
+      </h3> */}
+      <h3>ADD QUALTRICS LINK HERE</h3>
       <hr />
       {/* <h3>If you a SONA participant, there is nothing else you need to do.</h3>
       <p>

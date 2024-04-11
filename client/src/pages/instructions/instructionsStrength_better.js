@@ -160,7 +160,7 @@ const Instructions1 = (props) => {
           <div style={stage == 0 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
-              Your job will be to evaluate how well the{" "}
+              We will ask you to evaluate how well the{" "}
               <span className={classes.emph}>conclusion</span> (top) is
               supported by the <span className={classes.emph}>headline</span>{" "}
               (bottom)
@@ -172,8 +172,7 @@ const Instructions1 = (props) => {
         <div className={classes.pointToTweetRight}>
           <div style={stage >= 1 ? easinStyle : hiddenStyle}>
             <span>
-              Here's the tough part! When you evaluate the{" "}
-              <span className={classes.emph}>conclusion</span>, try to ignore
+              Here's the tough part! When you evaluate the post, try to ignore
               your own opinions.
             </span>
             <span>👉👉</span>
@@ -182,8 +181,9 @@ const Instructions1 = (props) => {
           <div style={stage >= 2 ? easinStyle : hiddenStyle}>
             <span>
               {" "}
-              You should only evaluate the{" "}
-              <span className={classes.emph}> logic </span> of making that
+              You should only evaluate 
+              the{" "}
+              <span className={classes.emph}> logic </span> of drawing that
               conclusion based on the{" "}
               <span className={classes.emph}>headline</span>.
             </span>
@@ -193,7 +193,7 @@ const Instructions1 = (props) => {
           <div style={stage >= 3 ? easinStyle : hiddenStyle}>
             <span>
               So in this case, it doesn't matter whether you personally believe
-              Spielberg is one of the worst directors in history or not.
+              Spielberg is one of the worst directors in recent history or not.
             </span>
           </div>
         </div>
