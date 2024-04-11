@@ -48,7 +48,7 @@ const App = () => {
   const questions = ["strength", "share"];
   // const questions = ["strength"];
   // const questions = ["share"];
-  const DEV = true;
+  const DEV = false;
   const [data, setData] = useRecoilState(dataState);
   const [response, setResponse] = useRecoilState(responseState);
   const [answerIndex, setAnswerIndex] = useRecoilState(answerIndexState);

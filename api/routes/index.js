@@ -175,9 +175,7 @@ async function randomize_data() {
   // randomize counterbalance conditions
   let cb_cond_CT = shuffle([...Array(8).keys()]);
   let cb_cond_nonCT = shuffle([...Array(8).keys()]);
-  console.log(cb_cond_CT);
-  console.log(cb_cond_nonCT);
-
+  
   let CT_entries = jsonArray.filter((entry) => entry["topic_general"] == "CT");
   let CT_quads = nestArray(CT_entries, 4);
 
@@ -222,7 +220,6 @@ async function randomize_data() {
         order = [pair2_NA, pair1_A, pair2_A, pair1_NA];
       };
 
-      console.log(order);
       phase_1.push(order[0]);
       phase_2.push(order[1]);
       phase_3.push(order[2]);

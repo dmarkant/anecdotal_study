@@ -19,7 +19,6 @@ import $ from "jquery";
 
 // let index = 0;
 const Task1Page = (props) => {
-  //   console.log(props.setChoice);
   // const data = props.data;\
   const history = useHistory();
   const location = useLocation();
