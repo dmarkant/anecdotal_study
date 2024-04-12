@@ -28,7 +28,7 @@ const Tweet = (props) => {
   const accName = props.accName || "Twitter Account";
   const screen_name = props.screen_name || "tweetScreenName";
   const bg_image = props.accLogo == undefined ? "" : `url('${props.accLogo}')`;
-  console.log(props.accLogo);
+  
   return (
     <div
       className={classes.tweetCard + " quoteComponent"}

@@ -8,8 +8,8 @@ const pages = [
   "task1",
   //"cogref",
   "task2",
-  "instructions4",
-  "task3",
+  //"instructions4",
+  //"task3",
   //"post",
   "debrief",
 ];

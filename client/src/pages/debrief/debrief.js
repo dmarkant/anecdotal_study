@@ -24,13 +24,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Debrief = (props) => {
+  console.log('debrief');
+
   const classes = useStyles();
   const [token, setToken] = useState(null);
 
   useEffect(() => {
+    console.log('get debrief');
     axios.get("api/debrief").then((res) => {
+      console.log(res.data);
       setToken(res.data.token);
-      console.log(res);
+      console.log(res.data.token);
     });
   }, []);
 
@@ -63,7 +67,7 @@ const Debrief = (props) => {
         Below is your token of completion. Please enter (copy and paste) this
         into Prolific. You may close the page after you have entered the code
       </h3> */}
-      <h3>ADD QUALTRICS LINK HERE</h3>
+      <h3><a href="https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?">Link to continue</a></h3>
       <hr />
       {/* <h3>If you a SONA participant, there is nothing else you need to do.</h3>
       <p>

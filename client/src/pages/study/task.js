@@ -53,22 +53,28 @@ const Task1Page = (props) => {
   };
 
   const submitResponse = async (r) => {
-    console.log(r);
+    console.log('saving response:', r);
     let responseCopy = { ...response };
     let phase_index = answerIndex - props.phase * data.length;
     let d = data[phase_index];
     let dindex = d["index"];
+
     responseCopy[answerIndex] = responseCopy[answerIndex] || {};
     responseCopy[answerIndex]["d_index"] = dindex;
-    responseCopy[answerIndex]["value"] = r;
-    responseCopy[answerIndex]["name"] = tweetText["name"];
-    responseCopy[answerIndex]["accName"] = tweetText["accName"];
-    responseCopy[answerIndex]["accLogo"] = tweetText["accLogo"];
-    responseCopy[answerIndex]["screen_name"] = tweetText["screen_name"];
+    responseCopy[answerIndex]["claim"] = d["claim"];
+    responseCopy[answerIndex]["evidence"] = d["evidence"];
+    responseCopy[answerIndex]["evidence_type"] = d["evidence_type"];
+    responseCopy[answerIndex]["topic_general"] = d["topic_general"];
+    responseCopy[answerIndex]["topic_detail"] = d["topic_detail"];
+    responseCopy[answerIndex]["person_name"] = tweetText["name"];
+    responseCopy[answerIndex]["source_name"] = tweetText["accName"];
+    responseCopy[answerIndex]["source_logo"] = tweetText["accLogo"];
+    responseCopy[answerIndex]["source_handle"] = tweetText["screen_name"];
     responseCopy[answerIndex]["person_image_path"] =
       tweetText["person_image_path"];
     responseCopy[answerIndex]["phase"] = props.phase;
     responseCopy[answerIndex]["questionCondition"] = questionCondition;
+    responseCopy[answerIndex]["response"] = r;
     responseCopy[answerIndex]["responseTime"] = Date.now();
     setResponse(responseCopy);
   };
@@ -217,7 +223,7 @@ const Task1Page = (props) => {
         }}
       >
         <Typography variant="h6">
-          Tweet {answerIndex + 1}/{data ? data.length * 2 : 18}
+          Post {answerIndex + 1}/{data ? data.length * 2 : 18}
         </Typography>
         <Button
           style={{
