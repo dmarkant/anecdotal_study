@@ -4,7 +4,7 @@ const pages = [
   "instructions1",
   "instructions2",
   "instructions3",
-  "quiz",
+  //"quiz",
   "task1",
   //"cogref",
   "task2",
