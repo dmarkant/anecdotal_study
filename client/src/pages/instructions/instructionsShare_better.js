@@ -117,11 +117,11 @@ const Instructions1 = (props) => {
   }, [tweetRef, quoteRef]);
 
   useEffect(() => {
-    console.log(positions);
+    // console.log(positions);
   }, [positions]);
 
   useEffect(() => {
-    console.log("stage", stage);
+    // console.log("stage", stage);
     if (stage === -1) {
       incrementStage();
     } else if (stage === maxStage) {

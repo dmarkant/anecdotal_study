@@ -84,7 +84,7 @@ const Instructions1 = (props) => {
 
   const setTweetPositions = () => {
     let tweetParent = tweetRef.current;
-    console.log(tweetParent);
+    // console.log(tweetParent);
     if (tweetParent == null) return;
     let tweet = tweetParent.querySelector(".tweetComponent");
 
@@ -113,7 +113,7 @@ const Instructions1 = (props) => {
   // }, [positions]);
 
   useEffect(() => {
-    console.log("stage", stage);
+    // console.log("stage", stage);
     if (stage === -1) {
       incrementStage();
     } else if (stage === maxStage) {

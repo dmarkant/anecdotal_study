@@ -160,10 +160,13 @@ const App = () => {
           //   result.data[1].slice(0, 4),
           // ];
         }
+        setData(shuffledData);
 
+        // randomly assign question condition
+        console.log('randomly assigning question condition');
         let q = choose(questions);
         setQuestion(q);
-        setData(shuffledData);
+        
       }, 1000);
     }
 
@@ -234,7 +237,7 @@ const App = () => {
                   setLoadingOpacity={setLoadingOpacity}
                 ></Task>
               </Route>
-              <Route path="/cogref" component={CogRefSurveyPage}></Route>
+              {/* <Route path="/cogref" component={CogRefSurveyPage}></Route> */}
               <Route path="/task2">
                 <Task
                   phase={1}
@@ -251,8 +254,7 @@ const App = () => {
                   setLoadingOpacity={setLoadingOpacity}
                 ></QualTask>
               </Route>
-
-              <Route path="/post" component={PostSurveyPage}></Route>
+              {/* <Route path="/post" component={PostSurveyPage}></Route> */}
               <Route path="/debrief">
                 <DebriefPage></DebriefPage>
               </Route>

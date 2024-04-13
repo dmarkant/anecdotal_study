@@ -17,7 +17,6 @@ const Response = mongoose.model(collection, responseSchema);
 
 router.get("/consent", (req, res) => {
   if (!req.session.consent) {
-    // let usertoken = randomstring.generate(8);
     let PROLIFIC_PID = req.query.PROLIFIC_PID;
     let STUDY_ID = req.query.STUDY_ID;
     let SESSION_ID = req.query.SESSION_ID;
@@ -80,8 +79,9 @@ router.post("/cogref", (req, res) => {
 });
 
 router.post("/instruction", (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let usertoken = req.session.usertoken;
+  console.log(usertoken);
   Response.findOneAndUpdate(
     { usertoken: usertoken },
     { instructions: req.body },
@@ -109,13 +109,16 @@ router.get("/debrief", (req, res) => {
   let usertoken = req.session.usertoken;
   console.log(usertoken);
   console.log(req.body);
-  if (req.session.completed) {
-    res.status(200).json({ token: req.session.usertoken });
-  } else {
-    res.status(200).send({
-      token: "you have skiped pages. Please complete the study first.",
-    });
-  }
+  res.status(200).json({
+    token: usertoken,
+  });
+  // if (req.session.completed) {
+  //   res.status(200).json({ token: req.session.usertoken });
+  // } else {
+  //   res.status(200).send({
+  //     token: "you have skiped pages. Please complete the study first.",
+  //   });
+  // }
 });
 
 router.post("/postq", (req, res) => {

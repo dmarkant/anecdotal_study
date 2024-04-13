@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { usertoken } from "../../atoms/token";
 import axios from "axios";
 import { Button, Container } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
@@ -32,12 +34,17 @@ const Consent = (props) => {
   const STUDY_ID = props.STUDY_ID;
   const SESSION_ID = props.SESSION_ID;
   console.log("PART_ID:", PROLIFIC_PID);
-  // console.log(SESSION_ID);
-  // console.log(STUDY_ID);
+  
   const d = new Date();
   const history = useHistory();
   const location = useLocation();
   const query = queryString.parse(location.search);
+
+  const [token, setToken] = useRecoilState(usertoken);
+
+  useEffect(() => {
+    if (token === null) setToken(PROLIFIC_PID);
+  });
 
   const handleConsent = () => {
     axios
@@ -45,7 +52,6 @@ const Consent = (props) => {
         `/api/consent?PROLIFIC_PID=${PROLIFIC_PID}&STUDY_ID=${STUDY_ID}&SESSION_ID=${SESSION_ID}`
       )
       .then((result) => {
-        console.log(result);
         let nextPage = pageHandler(location.pathname);
         history.push(nextPage);
       });

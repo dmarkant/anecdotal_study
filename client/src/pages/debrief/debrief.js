@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { usertoken } from "../../atoms/token";
+
 import axios from "axios";
 import { Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -25,18 +28,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Debrief = (props) => {
   console.log('debrief');
-
   const classes = useStyles();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useRecoilState(usertoken);
 
-  useEffect(() => {
-    console.log('get debrief');
-    axios.get("api/debrief").then((res) => {
-      console.log(res.data);
-      setToken(res.data.token);
-      console.log(res.data.token);
-    });
-  }, []);
+  let targetURL = "https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?PART_ID="+token;
+
+  // useEffect(() => {
+  //   // console.log('get debrief');
+  //   axios.get("api/debrief").then((res) => {
+  //     // console.log(res.data);
+  //     //targetURL += res.data.token;
+  //     console.log(targetURL);
+  //     //setToken(res.data.token);
+  //     // console.log(res.data.token);
+  //   });
+  // }, []);
 
   return (
     <Container maxWidth="lg" className={classes.instructContainer}>
@@ -67,7 +73,8 @@ const Debrief = (props) => {
         Below is your token of completion. Please enter (copy and paste) this
         into Prolific. You may close the page after you have entered the code
       </h3> */}
-      <h3><a href="https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?">Link to continue</a></h3>
+      {/* <h3><a href="https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?PART_ID="{token}>Link to continue</a></h3> */}
+      <h3><a href={targetURL}>Link to continue</a></h3>
       <hr />
       {/* <h3>If you a SONA participant, there is nothing else you need to do.</h3>
       <p>
