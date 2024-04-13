@@ -48,7 +48,6 @@ const Task1Page = (props) => {
   const questionWidth = "500px";
 
   const handleSliderResponse = (event, r) => {
-    // console.log(r);
     setSliderResponse(r);
   };
 

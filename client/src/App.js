@@ -163,8 +163,8 @@ const App = () => {
         setData(shuffledData);
 
         // randomly assign question condition
-        console.log('randomly assigning question condition');
         let q = choose(questions);
+        console.log('randomly assigned question condition to', q);
         setQuestion(q);
         
       }, 1000);

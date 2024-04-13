@@ -16,8 +16,7 @@
     "express-session": "^1.17.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.24",
-    "randomstring": "^1.1.5",
-    "survey-react": "^1.7.19"
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"

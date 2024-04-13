@@ -15,7 +15,7 @@ const PreSurveyPage = (props) => {
   const history = useHistory();
   const location = useLocation();
   const questionCondition = useRecoilValue(questionState);
-  // console.log(questionCondition);
+  
   const extraQuestions =
     questionCondition == "strength"
       ? [
@@ -47,6 +47,7 @@ const PreSurveyPage = (props) => {
         ]
       : [];
 
+  
   const json = {
     pages: [
       {
@@ -118,7 +119,6 @@ const PreSurveyPage = (props) => {
   Survey.StylesManager.applyTheme();
 
   const onCompleting = (survey, options) => {
-    // console.log(options);
     let allTrue = true;
     survey.getAllQuestions().forEach((q) => {
       let correct = isAnswerCorrect(q);
@@ -156,7 +156,6 @@ const PreSurveyPage = (props) => {
         renderCorrectAnswer(q);
       }
     });
-    console.log(allTrue);
     if (allTrue) {
       option.allowChanging = true;
     } else {
@@ -244,7 +243,7 @@ const PreSurveyPage = (props) => {
         <Divider></Divider>
         <div style={{ width: "50%", margin: "30px" }}>
           <Tweet
-            text={`Spielberg is one of the worst directors of the recent decade.`}
+            text={"Spielberg is one of the worst directors of the recent decade."}
             accName={"Johnathan Nolander"}
             screen_name={"JNolander"}
             style={{ width: "50%" }}

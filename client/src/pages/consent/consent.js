@@ -33,7 +33,6 @@ const Consent = (props) => {
   const PROLIFIC_PID = props.PROLIFIC_PID;
   const STUDY_ID = props.STUDY_ID;
   const SESSION_ID = props.SESSION_ID;
-  console.log("PART_ID:", PROLIFIC_PID);
   
   const d = new Date();
   const history = useHistory();

@@ -123,41 +123,52 @@ const QualTask = (props) => {
     setQuestion(q);
   }, [tweetText, questionCondition]);
 
+  // just save responses and move on
   useEffect(() => {
-    // console.log(answerIndex);
-    // console.log(phaseData);
-    if (data !== null) {
-      if (answerIndex < data.length) {
-        console.log(answerIndex);
+    axios.post("/api/response", response).then((r) => {
+      let nextPage = pageHandler(location.pathname);
+      history.push(nextPage);
+    });
+  }, []);
 
-        let lenResponse = Object.keys(response).length;
-        let name = lenResponse > 0 ? response[answerIndex]["name"] : "";
-        let accName = lenResponse > 0 ? response[answerIndex]["accName"] : "";
-        let screen_name =
-          lenResponse > 0 ? response[answerIndex]["screen_name"] : "";
-        let person_image_path = response[answerIndex]["person_image_path"];
-        let accLogo = response[answerIndex]["accLogo"];
-        let nameSplit = name.split(" ");
-        let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
-        setTweetText({
-          evidence: data[answerIndex]["evidence"],
-          claim: data[answerIndex].claim,
-          image: data[answerIndex].image,
-          accName: accName,
-          accLogo: accLogo,
-          screen_name: screen_name,
-          name: name,
-          handle: handle,
-          person_image_path: person_image_path,
-        });
-      } else {
-        axios.post("/api/response", response).then((r) => {
-          let nextPage = pageHandler(location.pathname);
-          history.push(nextPage);
-        });
-      }
-    }
-  }, [answerIndex, response]);
+
+
+  // useEffect(() => {
+
+  //   // console.log(answerIndex);
+  //   // console.log(phaseData);
+  //   if (data !== null) {
+  //     if (answerIndex < data.length) {
+  //       console.log(answerIndex);
+
+  //       let lenResponse = Object.keys(response).length;
+  //       let name = lenResponse > 0 ? response[answerIndex]["name"] : "";
+  //       let accName = lenResponse > 0 ? response[answerIndex]["accName"] : "";
+  //       let screen_name =
+  //         lenResponse > 0 ? response[answerIndex]["screen_name"] : "";
+  //       let person_image_path = response[answerIndex]["person_image_path"];
+  //       let accLogo = response[answerIndex]["accLogo"];
+  //       let nameSplit = name.split(" ");
+  //       let handle = nameSplit[0][0].toLowerCase() + nameSplit[1].toLowerCase();
+  //       setTweetText({
+  //         evidence: data[answerIndex]["evidence"],
+  //         claim: data[answerIndex].claim,
+  //         image: data[answerIndex].image,
+  //         accName: accName,
+  //         accLogo: accLogo,
+  //         screen_name: screen_name,
+  //         name: name,
+  //         handle: handle,
+  //         person_image_path: person_image_path,
+  //       });
+  //     } else {
+  //       axios.post("/api/response", response).then((r) => {
+  //         let nextPage = pageHandler(location.pathname);
+  //         history.push(nextPage);
+  //       });
+  //     }
+  //   }
+  // }, [answerIndex, response]);
 
   return (
     <div
