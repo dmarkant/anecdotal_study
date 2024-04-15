@@ -30,6 +30,7 @@ const Debrief = (props) => {
   console.log('debrief');
   const classes = useStyles();
   const [token, setToken] = useRecoilState(usertoken);
+  console.log(token);
 
   let targetURL = "https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?PART_ID="+token;
 

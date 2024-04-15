@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { answerIndexState } from "../../atoms/answerIndex";
 import { responseState } from "../../atoms/response";
 import { dataState } from "../../atoms/data";
+import axios from "axios";
 import InstructionsDialog from "../../components/instructions/instructionsDialog";
 import {
   labelSelector,
@@ -153,8 +154,15 @@ const Task1Page = (props) => {
           person_image_path: person_image_path,
         });
       } else {
-        let nextPage = pageHandler(location.pathname);
-        history.push(nextPage);
+
+        // save responses and move on
+        axios.post("/api/response", response).then((r) => {
+          let nextPage = pageHandler(location.pathname);
+          history.push(nextPage);
+        });
+    
+        // let nextPage = pageHandler(location.pathname);
+        // history.push(nextPage);
       }
     }
   }, [data, answerIndex]);

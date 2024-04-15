@@ -41,11 +41,15 @@ const Consent = (props) => {
 
   const [token, setToken] = useRecoilState(usertoken);
 
-  useEffect(() => {
-    if (token === null) setToken(PROLIFIC_PID);
-  });
+  // useEffect(() => {
+  //   if (token === null) setToken(PROLIFIC_PID);
+  // });
 
   const handleConsent = () => {
+
+    console.log('setting usertoken to', PROLIFIC_PID);
+    setToken(PROLIFIC_PID);
+
     axios
       .get(
         `/api/consent?PROLIFIC_PID=${PROLIFIC_PID}&STUDY_ID=${STUDY_ID}&SESSION_ID=${SESSION_ID}`

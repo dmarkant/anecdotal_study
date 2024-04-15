@@ -9,7 +9,7 @@ const pages = [
   //"cogref",
   "task2",
   //"instructions4",
-  "task3",
+  // "task3",
   //"post",
   "debrief",
 ];

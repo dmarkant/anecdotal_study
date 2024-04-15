@@ -56,7 +56,7 @@ const QualTask = (props) => {
   const divContainer = useRef(null);
   const questionWidth = "500px";
 
-  console.log(response);
+  // console.log(response);
 
   const submitResponse = async (r) => {
     // console.log(r);
