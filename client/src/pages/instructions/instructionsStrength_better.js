@@ -116,9 +116,9 @@ const Instructions1 = (props) => {
     }
   }, [tweetRef, quoteRef]);
 
-  useEffect(() => {
-    console.log(positions);
-  }, [positions]);
+  // useEffect(() => {
+  //   console.log(positions);
+  // }, [positions]);
 
   useEffect(() => {
     console.log("stage", stage);

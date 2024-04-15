@@ -136,6 +136,7 @@ router.post("/postq", (req, res) => {
 });
 
 router.post("/response", (req, res) => {
+  console.log("/response");
   console.log(req.body);
   let usertoken = req.session.usertoken;
   Response.findOneAndUpdate(

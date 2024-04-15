@@ -154,6 +154,7 @@ const Task1Page = (props) => {
           person_image_path: person_image_path,
         });
       } else {
+        console.log(response);
 
         // save responses and move on
         axios.post("/api/response", response).then((r) => {
