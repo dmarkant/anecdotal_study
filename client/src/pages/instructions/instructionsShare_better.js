@@ -80,7 +80,7 @@ const Instructions1 = (props) => {
   const quoteRef = useRef(null);
   const location = useLocation();
   const [stage, setStage] = useState(-1);
-  const maxStage = 4;
+  const maxStage = 6;
   const history = useHistory();
   const classes = useStyles({ positions: positions });
   const handleClick = () => {
@@ -195,6 +195,23 @@ const Instructions1 = (props) => {
               how likely you would be to share the post compared to other content. 
             </span>
           </div>
+          <br />
+          <div style={stage >= 4 ? easinStyle : hiddenStyle}>
+            {/* <span style={{ marginRight: "10px" }}>👈👈</span> */}
+            <span>
+              Please assume that the news headline is factually correct, even if
+              that seems unlikely to you.
+            </span>
+          </div>
+          <br />
+          <div style={stage >= 5 ? easinStyle : hiddenStyle}>
+            <span style={{ marginRight: "10px" }}>👈👈</span>
+            <span>
+              So in this case, assume that the latest three Spielberg movies
+              were in fact among the worst rated Rotten Tomatoes movies!
+            </span>
+          </div>
+
         </div>
         <div
           style={{

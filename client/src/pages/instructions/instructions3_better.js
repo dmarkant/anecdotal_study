@@ -179,7 +179,7 @@ const InstructionsTask3 = (props) => {
                   For each post, we will ask you to provide
                   your judgment using a slider.
                 </span>
-                <span>👉👉</span>
+                {/* <span>👉👉</span> */}
               </div>
             </div>
             <div className={classes.pointToSliderRight}>

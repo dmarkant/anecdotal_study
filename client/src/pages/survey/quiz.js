@@ -22,7 +22,7 @@ const PreSurveyPage = (props) => {
           {
             name: "support",
             type: "radiogroup",
-            title: `When I read: "Spielberg is one of the worst directors of the recent decade." I should:`,
+            title: `When I read the conclusion: "Spielberg is one of the worst directors of the recent decade." I should:`,
             isRequired: true,
             choices: [
               "Evaluate whether it is supported by the headline.",
@@ -35,7 +35,7 @@ const PreSurveyPage = (props) => {
           {
             name: "headline_true",
             type: "radiogroup",
-            title: `When I read: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
+            title: `When I read the headline: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
             isRequired: true,
             choices: [
               "Evaluate whether the headline is accurate.",
@@ -45,7 +45,33 @@ const PreSurveyPage = (props) => {
             correctAnswer: "Assume that the headline is true.",
           },
         ]
-      : [];
+      : [
+        {
+          name: "share",
+          type: "radiogroup",
+          title: `When I read the conclusion and news headline, I should:`,
+          isRequired: true,
+          choices: [
+            "Identify whether the news headline is about the same topic as the conclusion.",
+            "Evaluate whether I would be more or less likely to share the post compared to other content.",
+            "I don't know.",
+          ],
+          correctAnswer: "Evaluate whether I would be more or less likely to share the post compared to other content.",
+        },
+
+        {
+          name: "headline_true",
+          type: "radiogroup",
+          title: `When I read the headline: "Steven Spielberg's latest three movies were among the worst rated in Rotten Tomatoes." I should:`,
+          isRequired: true,
+          choices: [
+            "Evaluate whether the headline is accurate.",
+            "Assume that the headline is true.",
+            "I don't know.",
+          ],
+          correctAnswer: "Assume that the headline is true.",
+        },
+      ];
 
   
   const json = {
@@ -55,7 +81,7 @@ const PreSurveyPage = (props) => {
           {
             name: "understand_before",
             type: "radiogroup",
-            title: "Do you understand what this study is asking you to do?",
+            title: "Do you understand what you are being asked to do in this task?",
             isRequired: true,
             choices: ["yes", "no"],
           },
@@ -63,7 +89,7 @@ const PreSurveyPage = (props) => {
             name: "understand-text_before",
             type: "text",
             title:
-              "Please in sentence or two, please describe what this study is asking you to do",
+              "In a sentence or two, please describe what you are being asked to do in this task.",
             isRequired: true,
           },
         ],
