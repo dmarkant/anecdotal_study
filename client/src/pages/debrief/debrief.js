@@ -32,7 +32,7 @@ const Debrief = (props) => {
   const [token, setToken] = useRecoilState(usertoken);
   console.log(token);
 
-  let targetURL = "https://surveys.qualtrics.charlotte.edu/jfe/form/SV_a5EDoMr53PbDLCe?PART_ID="+token+"&TASK_COMPLETE=1";
+  let targetURL = "https://surveys.qualtrics.charlotte.edu/jfe/form/SV_cMAFzEgCOGU61QW?PART_ID="+token;
 
   // useEffect(() => {
   //   // console.log('get debrief');
